@@ -1,0 +1,384 @@
+<% include('../layouts/header.ejs') %>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="css/animate.css">
+
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+
+  <link rel="stylesheet" href="css/aos.css">
+
+  <link rel="stylesheet" href="css/ionicons.min.css">
+
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+  <link rel="stylesheet" href="css/flaticon.css">
+  <link rel="stylesheet" href="css/icomoon.css">
+  <link rel="stylesheet" href="css/style.css">
+
+
+
+  <link rel="stylesheet" href="assetss/css/all.min.css">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="assetss/css/main.css">
+  <!-- responsive -->
+  <link rel="stylesheet" href="assetss/css/responsive.css">
+
+  <style>
+    #minus-button {
+      width: 20px;
+      border-radius: 5px 0 0 5px;
+      background-color: #dbcc8f;
+    }
+
+    #plus-button {
+      width: 20px;
+      border-radius: 0 5px 5px 0;
+      background-color: #dbcc8f;
+    }
+
+    
+  </style>
+
+
+
+  <% include('../layouts/center.ejs') %>
+
+    <body class="goto-here">
+      <%- include('../layouts/navbar.ejs') %>
+
+
+        <style>
+          #header {
+            margin-top: 7%;
+            width: 100%;
+            height: 70px;
+            background-color: #dbcc8f;
+          }
+
+          #noCart {
+            margin: 3% 26%;
+          }
+
+
+          @media(max-width:992px) {
+            #header {
+              margin-top: 2%;
+              width: 100%;
+              height: 70px;
+              background-color: #dbcc8f;
+            }
+
+            #noCart {
+              margin: 3% 13%;
+            }
+
+          }
+        </style>
+
+        <section id="header">
+          <div>
+            <h1 style="color: rgb(0, 0, 0); text-align: center;">Wishlist</h1>
+          </div>
+        </section>
+        <div class="container ms-5 me-5 mt-3">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="product__details__breadcrumb">
+                <a href="/">Home</a> <span>/</span>
+                <span>Wishlist</span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END nav -->
+        <section class="ftco-section ftco-cart">
+			<div class="container">
+				<div class="row">
+    			<div class="col-md-12 ftco-animate">
+    				<div class="cart-list" style="overflow-x: hidden;">
+                        <%if(wishlist.length>0){%>
+	    				<table class="table" >
+						    <thead class="thead-primary">
+						      <tr class="text-center">
+						        <th>&nbsp;</th>
+						        <th>&nbsp;</th>
+						        <th>Product</th>
+						        <th>Price</th>
+						        <th>Stock status</th>
+						        <th></th>
+						      </tr>
+						    </thead>
+						    <tbody>
+                                <%
+                                wishlist.forEach((product)=>{ %>
+						      <tr class="text-center" id="deleteId-<%=product._id %>">
+						        <td style="height: 60px;"><a href="#" onclick="deleteWishlist(event,'<%=product._id%>')" style="color: black; font-size: 18px;"><i class="fa-solid fa-trash"></i></a></td>
+						        
+						        <td class="image-prod">
+                                    <% if (product.productId.image.length > 0) { %>
+                                    <a href="/product?productId=<%= product.productId._id %>">    
+                                    <div class="img"><img src="/ResizedImages/<%= product.productId.image[0] %>" alt=""></div>
+                                    </a>
+                                    <% } %>
+                                </td>
+						        
+						        <td class="product-name">
+                                    <a href="/product?productId=<%= product.productId._id %>">    
+                                    <h3><%= product.productId.name %></h3> 
+                                    </a>
+						        	<!-- <p><%= product.productId.description %></p> -->
+                    </td>
+      
+						        
+						        <td class="price">
+                      <% if ( product.productId.offer){ var discount=(product.productId.price *
+                        product.productId.offer.percentage / 100).toFixed(0) } else if (
+                        product.productId.category.offer ) {var discount=( product.productId.price *
+                        product.productId.category.offer.percentage / 100 ).toFixed(0) } %>
+  
+                      <% if ( product.productId.offer ) { %>
+                        <p class="mb-0"><del>₹ <%= product.productId.price %></del></p>
+                        <p class="price">₹ <%= product.productId.price - discount %> <span
+                                    class="badge badge-success"> Save ₹ <%= discount %>
+                                </span></p>
+                        <%} else if ( product.productId.category.offer ) { %>
+                            <p class="mb-0"><del>₹ <%= product.productId.price %></del></p>
+                            <p class="price">₹ <%= product.productId.price - discount %>
+                                    <span class="badge badge-success"> Save ₹ <%=
+                                            discount %>
+                                    </span></p>
+                            <% } else { %>
+                              <p class="price"><span>₹<%= product.productId.price %></span></p>
+                                </h5>
+                                <% } %>
+                    </td>
+						        
+                                <td class="quantity">
+                                    <%if(product.productId.stockQuantity > 0 ){%>
+                                      <h6 class="text-success">In Stock</h6>
+                                      <% }else{%>
+                                      <h6 class="text-danger">Out Of Stock</h6>
+                                    <% } %>
+                                </td>
+
+                                <input type="hidden" name="" id="product-<%=product.productId._id%>" value="<%= product.productId.quantity%>">
+
+                                <% if (product.productId.stockQuantity > 0) { %>
+
+						        <td class="total"> <button class="btn btn-primary mb-3" onclick="addToCart(event, '<%=product.productId._id%>')" style="width: fit-content;">Add to cart</button></td>
+                                 <% } %>
+						      </tr><!-- END TR-->
+                              <% })
+                              %>
+          
+                                      </tbody>
+                                    </table>
+                        <% }else{%>
+                          <div class="empty-wishlist" id="empty-wishlists">
+                            <div class="empty-wishlist-content">
+                              <h3>Your Wishlist is Empty</h3>
+                              <p>Start exploring our products and add items to your wishlist!</p>
+                              <a href="/shop" class="btn btn-primary">Browse Products</a>
+                            </div>
+                          </div>
+                        <%}%> 
+
+						  
+						    </tbody>
+						  </table>
+					  </div>
+    			</div>
+    		</div>
+    
+			</div>
+		</section>
+
+        <style>
+
+
+        </style>
+
+
+
+
+        <%- include('../layouts/page-footer.ejs') %>
+
+
+
+
+          <!-- loader -->
+          <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+              <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+              <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+            </svg></div>
+
+          <!-- Axios CDN -->
+          <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+          <!-- Swal (SweetAlert2) CDN -->
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+          <!-- Include jQuery before the script if using jQuery -->
+          <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+
+
+          <script src="js/jquery.min.js"></script>
+          <script src="js/jquery-migrate-3.0.1.min.js"></script>
+          <script src="js/popper.min.js"></script>
+          <script src="js/bootstrap.min.js"></script>
+          <script src="js/jquery.easing.1.3.js"></script>
+          <script src="js/jquery.waypoints.min.js"></script>
+          <script src="js/jquery.stellar.min.js"></script>
+          <script src="js/owl.carousel.min.js"></script>
+          <script src="js/jquery.magnific-popup.min.js"></script>
+          <script src="js/aos.js"></script>
+          <script src="js/jquery.animateNumber.min.js"></script>
+          <script src="js/bootstrap-datepicker.js"></script>
+          <script src="js/scrollax.min.js"></script>
+          <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+          <script src="js/google-map.js"></script>
+          <script src="js/main.js"></script>
+
+
+          <!-- Your HTML file with the script at the bottom -->
+          <!-- ... your existing HTML code ... -->
+          <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+          <script>
+async function deleteWishlist(event, wishlistId) {
+  try {
+    event.preventDefault();
+    console.log('User clicked delete button');
+
+    swal.fire({
+      title: "Delete wishlist product",
+      text: "Are you sure you want to delete?",
+      icon: "warning",
+      buttons: ["Cancel", "OK"],
+      dangerMode: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        console.log('User confirmed deletion');
+
+        // Perform the delete action
+        const deleteItem = await axios.patch('/deleteWishlist', { data: { wishlistId } });
+
+        console.log('Response from server:', deleteItem.data);
+
+        if (deleteItem.data.success) {
+          console.log('Item deleted successfully');
+
+          const elementToRemove = document.getElementById(`deleteId-${wishlistId}`);
+          if (elementToRemove) {
+            elementToRemove.parentNode.removeChild(elementToRemove);
+          }
+
+          const table = document.getElementById('wishlist-table');
+          const emptyWishlistDiv = document.getElementById('empty-wishlist');
+
+          if (deleteItem.data.length === 0) {
+            console.log('Wishlist is empty now');
+            document.getElementById("wishlistCount").innerHTML = `<span><i class="ion-ios-heart"></i></span>${deleteItem.data.length}`
+            table.style.display = 'none';
+            emptyWishlistDiv.style.display = 'block';
+          }
+
+          const { length } = deleteItem.data;
+          if (length) {
+            console.log('Updated wishlist length:', length);
+            document.getElementById("wishlistCount").innerHTML = `<span><i class="ion-ios-heart"></i></span>${length}`
+          }
+        } else {
+          console.log('Failed to delete item. Server response:', deleteItem.data.message);
+        }
+      } else {
+        console.log('User canceled deletion');
+      }
+    });
+  } catch (error) {
+    console.error('An error occurred:', error.message);
+  }
+}
+
+    async function addToCart(event, productId) {
+              try {
+                event.preventDefault();
+                console.log('hatgdfggllloo');
+
+                const quantity = 1;
+
+                const data = {
+                  productId: productId,
+                  quantity: quantity
+                };
+
+                const response = await axios.post("/addToCart", data);
+
+                if (response.data.success) {
+                  Swal.fire({
+                    title: "Success",
+                    text: "Product added to cart",
+                    icon: "success",
+                    showCancelButton: true,
+                    confirmButtonText: "Go to Cart", // Text for the "Go to Cart" button
+                    cancelButtonText: "Cancel", // Text for the "Cancel" button
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      // Redirect to the cart page when the "Go to Cart" button is clicked
+                      window.location.href = "/cart"; // Replace "/cart" with your actual cart page URL
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                      // Handle the cancel action if needed (not needed in this case)
+                    }
+                  });
+
+                } else if (response.data.limited) {
+                  Swal.fire({
+                    title: "Error",
+                    text: 'Sorry!Product stock exceeded',
+                    icon: 'error',
+                    timer: 2000
+                  })
+
+
+
+                } else {
+                  Swal.fire({
+                    title: "Error adding to cart",
+                    text: "Please login to continue",
+                    icon: "error",
+                    showCancelButton: true,
+                    confirmButtonText: "Login", // Text for the login button
+                    cancelButtonText: "Cancel", // Text for the cancel button
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      // Redirect to the login section when the "Login" button is clicked
+                      window.location.href = "/login"; // Replace "/login" with your actual login page URL
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                      // Handle the cancel action if needed (not needed in this case)
+                    }
+                  });
+
+
+                }
+              } catch (error) {
+
+                alert("Error");
+              }
+            }
+
+          </script>
+
+
+
+
+
+
+          <% include('../layouts/footer.ejs') %>

@@ -1,0 +1,110 @@
+
+
+  <div class="row" id="product-listing">
+    <!-- Product details here -->
+    <% if(products.length > 0) { %>
+      <% products.forEach(product => { %>
+          <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
+            <!-- Render each product as needed -->
+            <div class="product d-flex flex-column">
+              <a href="/product?productId=<%= product._id %>" class="img-prod">
+                <img class="img-fluid zoomable" src="/ResizedImages/<%= product.image[0] %>" alt="Colorlib Template">
+                <% if ( product.offer ) { %>
+                  <span class="status"><%= product.offer.percentage %>% off</span>
+                <%} else if ( product.category.offer ) { %>
+                  <span class="status"><%= product.category.offer.percentage %>% off</span>
+                <% } %>
+
+                <div class="overlay"></div>
+              </a>
+              <div class="text py-3 pb-4 px-3">
+                <!-- Render product details here -->
+                             <div class="text py-3 pb-4 px-3">
+                                  <div class="d-flex">
+                                    <div class="cat">
+                                      <span>
+                                        <%= product.category.name %>
+                                      </span>
+                                    </div>
+                                    <div class="rating">
+                                      <p class="text-right mb-0">
+                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <h3><a href="/product?productId=<%= product._id %>">
+                                      <%=product.name %>
+                                    </a></h3>
+                                  <div class="pricing">
+                                    <% if ( product.offer){ var discount=(product.price *
+                                      product.offer.percentage / 100).toFixed(0) } else if (
+                                      product.category.offer ) {var discount=( product.price *
+                                      product.category.offer.percentage / 100 ).toFixed(0) } %>
+
+                                      <% if ( product.offer ) { %>
+                                          <p class="mb-0"><del>₹ <%= product.price %></del></p>
+                                          <p class="price">₹ <%= product.price - discount %>  <br><span
+                                                      class="badge badge-success"> Save ₹ <%= discount %>
+                                                  </span></p>
+                                          <%} else if ( product.category.offer ) { %>
+                                              <p class="mb-0"><del>₹ <%= product.price %></del></p>
+                                              <p class="price">₹ <%= product.price - discount %>   <br>
+                                                      <span class="badge badge-success"> Save ₹ <%=
+                                                              discount %>
+                                                      </span></p>
+                                              <% } else { %>
+                                                <p class="price"><span>₹<%= product.price %></span></p>
+                                                  </h5>
+                                                  <% } %>
+                                  
+                                    <% if(product.stockQuantity == 0){ %>
+                                      <p  style="color: red;" >Out of Stock</p>
+                                      <% }%>
+                                        
+                                  </div>
+                                  <p class="bottom-area d-flex px-3">
+                                    <% if(product.stockQuantity > 0){ %>
+                                    <input type="hidden" class="productId" value="<%= product._id %>">
+                                    <a href="#" class="add-to-cart text-center py-2 mr-1"
+                                      onclick="addToCart(event, '<%= product._id %>')"><span>Add to cart <i
+                                          class="ion-ios-add ml-1"></i></span></a>
+      
+                                    <a href="#" onclick="addToWishlist(event,'<%= product._id %>')"  class="buy-now text-center py-2">Add to WishList<span></span></a>
+                                    <% }else{ %>
+                                      <a href="#" onclick="addToWishlist(event,'<%= product._id %>')" class="buy-now text-center py-2">Add to WishList<span></span></a>
+                                    <% } %>
+                                  </p>
+                                </div>
+                <!-- ... -->
+              </div>
+            </div>
+          </div>
+        <% }) %>
+        <% } else { %>
+          
+              <h3>No products available</h3>
+              
+          <% } %>
+        <div class="row mt-5">
+          <div class="col text-center">
+            <div class="block-27">
+             
+            </div>
+          </div>
+        </div>
+  </div>
+  
+          
+<div class="pagination">
+
+<% for (let i = 1; i <= totalPages; i++) { %>
+<a href="" class="page-link" data-page="<%= i %>"><%= i %></a>
+<% } %>
+</div>
+
+
+        

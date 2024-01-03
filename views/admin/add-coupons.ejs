@@ -1,0 +1,365 @@
+<%- include('./adminLayouts/header.ejs') %>
+<%- include('./adminLayouts/sideBar.ejs') %>
+
+        <main class="main-wrap">
+            <%- include('./adminLayouts/navBar.ejs') %> 
+            <style>
+              .error-message{
+                font-size: smaller;
+                color: red;
+              }
+            </style>
+            <section class="content-main">
+                <div class="row">
+                  <div class="card mb-4" style="max-width: 500px">
+                    <div class="card-body">
+                      <h4 class="card-title">Add Coupon</h4>
+        
+                      <% if (typeof message !== 'undefined') { %>
+                        <%if(message === 'saved'){%>
+                          <div class="alert alert-success">
+                            <p>
+                              <%= message %>
+                            </p>
+                          </div>
+                        <%}else if(message === ''){%>
+                          <div>
+                            <p>
+                              <%= message %>
+                            </p>
+                          </div>
+                        <%}else{%>
+                          <div class="alert alert-danger">
+                            <p>
+                              <%= message %>
+                            </p>
+                          </div>
+                        <%}%>
+                        <% }%>
+        
+                        <div id="errorContainer" class="alert alert-danger" style="display: none;"></div>
+        
+                        <form id="offer-form" class="forms-sample"  method="POST" onsubmit="return validateForm()">
+                          <div class="form-group mb-4">
+                              <label for="coupon-name" class="form-label">Coupon Name</label>
+                              <input type="text" class="form-control" id="coupon-name" name="name" placeholder="Enter coupon name" value="<%= locals.name %>" >
+                              <span id="couponNameError" class="error-message"></span>
+                          </div>
+                      
+                          <div class="form-group mb-4">
+                              <label class="form-label" for="coupon-code">Coupon Code</label>
+                              <input type="text" class="form-control" id="coupon-code" name="couponCode" placeholder="Enter coupon code" value="<%= locals.couponCode %>" >
+                              <span id="couponCodeError" class="error-message"></span>
+                          </div>
+                      
+                          <div class="form-group mb-4">
+                              <label class="form-label" for="coupon-description">Description</label>
+                              <input type="text" class="form-control" id="coupon-description" name="couponDescription" placeholder="Enter description" value="<%= locals.couponDescription %>" >
+                              <span id="couponDescriptionError" class="error-message"></span>
+                          </div>
+                      
+                          <div class="form-group mb-4">
+                              <label class="form-label" for="coupon-count">Availability</label>
+                              <input type="text" class="form-control" id="coupon-count" name="couponAvailability" placeholder="Enter availability" value="<%= locals.couponAvailability %>" >
+                              <span id="couponCountError" class="error-message"></span>
+                          </div>
+                      
+                          <div class="form-group mb-4">
+                              <label class="form-label" for="coupon-minAmount">Minimum Amount</label>
+                              <input type="text" class="form-control" id="coupon-minAmount" name="minAmount" placeholder="Enter Minimum amount" value="<%= locals.minAmount %>" >
+                              <span id="couponMinAmountError" class="error-message"></span>
+                          </div>
+                      
+                          <div class="form-group mb-4">
+                              <label class="form-label" for="discount-amount">Discount Amount</label>
+                              <input type="text" class="form-control" id="discount-amount" name="discountAmount" placeholder="Enter discount amount" value="<%= locals.discountAmount %>" >
+                              <span id="discountAmountError" class="error-message"></span>
+                          </div>
+                      
+                          <div class="form-group mb-4">
+                              <label class="form-label" for="expiry-date">Expiry Date</label>
+                              <input type="date" class="form-control" id="expiry-date" name="expiryDate" placeholder="Select expiry date" >
+                              <span id="expiryDateError" class="error-message"></span>
+                          </div>
+                      
+                          <div class="mt-4">
+                              <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                              <a href="/admin/coupons" class="btn btn-secondary">Cancel</a>
+                          </div>
+                      </form>
+                      
+               <script>
+                document.addEventListener("DOMContentLoaded", function () {
+    const couponNameInput = document.getElementById("coupon-name");
+    const couponCodeInput = document.getElementById("coupon-code");
+    const couponDescriptionInput = document.getElementById("coupon-description");
+    const couponCountInput = document.getElementById("coupon-count");
+    const couponMinAmountInput = document.getElementById("coupon-minAmount");
+    const discountAmountInput = document.getElementById("discount-amount");
+    const expiryDateInput = document.getElementById("expiry-date");
+    const offerForm = document.getElementById("offer-form");
+
+    // Event listeners for input validation
+    couponNameInput.addEventListener("input", function () {
+        validateRequiredField(couponNameInput, 'couponNameError', 'Coupon name is required.');
+    });
+
+    couponCodeInput.addEventListener("input", function () {
+        validateRequiredField(couponCodeInput, 'couponCodeError', 'Coupon code is required.');
+    });
+
+    couponDescriptionInput.addEventListener("input", function () {
+        validateRequiredField(couponDescriptionInput, 'couponDescriptionError', 'Description is required.');
+    });
+
+    couponCountInput.addEventListener("input", function () {
+        validateNumberField(couponCountInput, 'couponCountError', 'Availability must be a number.');
+    });
+
+    couponMinAmountInput.addEventListener("input", function () {
+        validateNumberField(couponMinAmountInput, 'couponMinAmountError', 'Coupon minimum amount must be a number.');
+    });
+
+    discountAmountInput.addEventListener("input", function () {
+        validateNumberField(discountAmountInput, 'discountAmountError', 'Discount amount must be a number.');
+    });
+
+    expiryDateInput.addEventListener("input", function () {
+        validateRequiredField(expiryDateInput, 'expiryDateError', 'Expiry date is required.');
+    });
+
+      // Replace the old event listener for expiry date
+      expiryDateInput.addEventListener("input", function () {
+            validateExpiryDate(expiryDateInput, 'expiryDateError', 'Expiry date must not be todays.');
+        });
+
+    // Function to validate a required field
+    function validateRequiredField(inputElement, errorId, errorMessage) {
+        const errorElement = document.getElementById(errorId);
+        const inputContainer = inputElement.parentElement;
+
+        if (!inputElement.value.trim()) {
+            errorElement.textContent = errorMessage;
+            inputElement.classList.add("is-invalid");
+            inputContainer.appendChild(errorElement); // Append error message below the input
+        } else {
+            errorElement.textContent = "";
+            inputElement.classList.remove("is-invalid");
+        }
+    }
+
+    // Function to validate a number field
+    function validateNumberField(inputElement, errorId, errorMessage) {
+        const errorElement = document.getElementById(errorId);
+        const inputContainer = inputElement.parentElement;
+
+        if (!/^\d+(\.\d{1,2})?$/.test(inputElement.value.trim())) {
+            errorElement.textContent = errorMessage;
+            inputElement.classList.add("is-invalid");
+            inputContainer.appendChild(errorElement); // Append error message below the input
+        } else {
+            errorElement.textContent = "";
+            inputElement.classList.remove("is-invalid");
+        }
+    }
+});
+
+               </script>
+
+                    <script>
+                      function validateForm() {
+    resetErrorMessages();
+    let isValid = true;
+
+    // Validation for coupon name, code, description, availability, minimum amount, discount amount, and expiry date
+    const couponName = document.getElementById('coupon-name').value.trim();
+    const couponCode = document.getElementById('coupon-code').value.trim();
+    const couponDescription = document.getElementById('coupon-description').value.trim();
+    const couponCount = document.getElementById('coupon-count').value.trim();
+    const couponMinAmount = document.getElementById('coupon-minAmount').value.trim();
+    const discountAmount = document.getElementById('discount-amount').value.trim();
+    const expiryDateInput = document.getElementById('expiry-date');
+    const expiryDate = expiryDateInput.value.trim();
+    const selectedDate = new Date(expiryDate);
+    const currentDate = new Date();
+
+if (selectedDate < currentDate) {
+    showError('expiryDateError', 'Expiry date must not be in the past.');
+    isValid = false;
+}
+
+
+    if (!couponName) {
+        showError('couponNameError', 'Coupon name is required.');
+        isValid = false;
+    }
+
+    if (!couponCode) {
+        showError('couponCodeError', 'Coupon code is required.');
+        isValid = false;
+    }
+
+    if (!couponDescription) {
+        showError('couponDescriptionError', 'Description is required.');
+        isValid = false;
+    }
+
+    if (!couponCount) {
+        showError('couponCountError', 'Availability is required.');
+        isValid = false;
+    }
+
+    if (!/^\d+(\.\d{1,2})?$/.test(couponCount) || parseFloat(couponCount) < 0) {
+    showError('couponCountError', 'Availability must be a non-negative number.');
+    isValid = false;
+}
+
+if (!/^\d+(\.\d{1,2})?$/.test(couponMinAmount) || parseFloat(couponMinAmount) <= 0) {
+    showError('couponMinAmountError', 'Coupon minimum amount must be a non-negative number.');
+    isValid = false;
+}
+
+if (!/^\d+(\.\d{1,2})?$/.test(discountAmount) || parseFloat(discountAmount) <= 0 ) {
+    showError('discountAmountError', 'Discount amount must be a non-negative number ');
+    isValid = false;
+}
+
+
+
+    if (!expiryDate) {
+        showError('expiryDateError', 'Expiry date is required.');
+        isValid = false;
+    }
+
+
+
+    return isValid;
+
+    // Function to show an error message
+    function showError(elementId, message) {
+        const errorElement = document.getElementById(elementId);
+        errorElement.innerText = message;
+    }
+
+    // Function to reset all error messages
+    function resetErrorMessages() {
+        document.querySelectorAll('.error-message').forEach(function (errorElement) {
+            errorElement.innerText = '';
+        });
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const currentDate = new Date();
+currentDate.setDate(currentDate.getDate() + 1);
+
+const tomorrow = currentDate.toISOString().split('T')[0]; // Get the current date in "YYYY-MM-DD" format
+
+    
+    document.getElementById('expiry-date').setAttribute('min', tomorrow);
+  });
+
+</script>
+
+
+<script>
+
+// Function to validate the expiry date
+function validateExpiryDate(inputElement, errorId, errorMessage) {
+    const errorElement = document.getElementById(errorId);
+    const inputContainer = inputElement.parentElement;
+
+    const selectedDate = new Date(inputElement.value);  // Convert the input value to a Date object
+      // Get the current date
+      const currentDate = new Date();
+    // Check if the selected date is earlier than the current date
+    if (selectedDate < currentDate) {
+        errorElement.textContent = errorMessage;
+        inputElement.classList.add("is-invalid");
+        inputContainer.appendChild(errorElement);  // Append error message below the input
+    } else {
+        errorElement.textContent = "";
+        inputElement.classList.remove("is-invalid");
+    }
+}
+
+</script>
+                    
+                    
+                      
+                    
+                                          
+        
+        
+        
+                    </div>
+                  </div>
+                </div>
+              </section>
+            <!-- content-main end// -->
+            <footer class="main-footer font-xs">
+                <div class="row pb-30 pt-15">
+                    <div class="col-sm-6">
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        &copy; Nest - HTML Ecommerce Template .
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end">All rights reserved</div>
+                    </div>
+                </div>
+            </footer>
+        </main>
+        <script src="/adminAssets/js/vendors/jquery-3.6.0.min.js"></script>
+        <script src="/adminAssets/js/vendors/bootstrap.bundle.min.js"></script>
+        <script src="/adminAssets/js/vendors/select2.min.js"></script>
+        <script src="/adminAssets/js/vendors/perfect-scrollbar.js"></script>
+        <script src="/adminAssets/js/vendors/jquery.fullscreen.min.js"></script>
+  
+        <!-- Main Script -->
+        <script src="/adminAssets/js/main.js?v=1.1" type="text/javascript"></script>
+        
+       
+      
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              document.querySelectorAll('.block-user').forEach(function (button) {
+                button.addEventListener('click', function () {
+                  const userId = this.getAttribute('data-user-id');
+                  updateUserStatus(userId, 'block');
+                });
+              });
+          
+              document.querySelectorAll('.unblock-user').forEach(function (button) {
+                button.addEventListener('click', function () {
+                  const userId = this.getAttribute('data-user-id');
+                  updateUserStatus(userId, 'unblock');
+                });
+              });
+          
+              function updateUserStatus(userId, action) {
+                fetch(`/admin/users/${action}/${userId}`, {
+                  method: 'POST',
+                })
+                  .then((response) => response.json())
+                  .then((data) => {
+                    console.log(data);
+                    // Update the UI
+                    const statusElement = document.getElementById(`status_${userId}`);
+                    if (data.user.is_blocked) {
+                      statusElement.innerHTML = '<span class="badge rounded-pill alert-warning">blocked</span>';
+                    } else {
+                      statusElement.innerHTML = '<span class="badge rounded-pill alert-success">Active</span>';
+                    }
+                  })
+                  .catch((error) => {
+                    console.error('Error:', error);
+                  });
+              }
+            });
+          </script>
+
+
+<% include('../layouts/footer.ejs') %>

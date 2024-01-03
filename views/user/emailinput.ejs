@@ -1,0 +1,89 @@
+<% include('../layouts/header.ejs') %>
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/login-form/css/style.css">
+<% include('../layouts/center.ejs') %>
+
+
+
+<section class="ftco-section" style="margin-top: 5%;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="wrap d-md-flex">
+                    <!-- Image on the left -->
+                    
+                    
+                    <!-- Email Input form on the right -->
+                    <div class="login-wrap p-4 p-md-5">
+                        <form action="/emailVerify" method="post" onsubmit="return validateForm()" class="signin-form">
+                            <p>Verification OTP will be sent to your email address</p>
+                            <div class="form-group mb-3">
+                                <label class="label" for="email">Enter Email:</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                                <span id="emailError" class="error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Send OTP</button>
+                            </div>
+
+                            <% if (typeof message !== 'undefined') { %>
+                                <p style="text-align: center; font-size: smaller;"><%- message %></p>
+                            <% } %>
+                        </form>
+                       
+                    </div>
+                    <div class="img" style="background-image: url(/login-form/images/bg-5.jpg);"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<style>
+      body{
+    background-color: #dbcc8f;
+  }
+    .error {
+      color: red;
+      font-size: x-small;
+    }
+  
+    .error-outline {
+      border: 1px solid red;
+    }
+  </style>
+
+<script>
+  
+  function validateForm() {
+  
+
+    // Reset error messages and styles
+    document.getElementById('emailError').innerHTML = '';
+   
+    var email = document.getElementById('email').value;
+   
+         // Email validation using regular expression
+   const emailRegex = /^[a-zA-Z0-9._%+-]+@['a-z']+\.[a-zA-Z]{2,4}$/;
+      if (!emailRegex.test(email)) {
+          document.getElementById('emailError').innerHTML = 'Please enter a valid Gmail address.';
+          return false;
+      }
+
+      return true;
+  }
+  </script>
+
+<script src="/login-form/js/jquery.min.js"></script>
+<script src="/login-form/js/popper.js"></script>
+<script src="/login-form/js/bootstrap.min.js"></script>
+<script src="/login-form/js/main.js"></script>
+
+
+<% include('../layouts/footer.ejs') %>

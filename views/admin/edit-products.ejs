@@ -1,0 +1,389 @@
+<%- include('./adminLayouts/header.ejs') %>
+<%- include('./adminLayouts/sideBar.ejs') %>
+
+        <main class="main-wrap">
+            <%- include('./adminLayouts/navBar.ejs') %> 
+            <style>
+              .error-message{
+                  color: red;
+                  font-size: smaller;
+              }
+          </style>
+            <section class="content-main">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="content-header">
+                            <h2 class="content-title">Edit Product</h2>
+                            <div>
+                              <a href="/admin/products"><button class="btn btn-light rounded font-sm mr-5 text-body hover-up">Go Back</button></a>  
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Basic</h4>
+                            </div>
+                            <div class="card-body">
+                                <form method="post" action="" enctype="multipart/form-data" onsubmit="return validateForm()" >
+                                    <div class="mb-4">
+                                        <label for="product_name" class="form-label">Product title</label>
+                                        <input type="text" placeholder="Type here" class="form-control" id="product_name" name="name"  value="<%= product.name %>"/>
+                                        <span id="productNameError" class="error-message"></span>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label">Full description</label>
+                                        <textarea placeholder="Type here" class="form-control" rows="4" name="description"><%= product.description %></textarea>
+                                        <span id="productDescriptionError" class="error-message"></span>
+                                      </div>
+                                    <div class="row">
+                                        <form action="">
+                                        <div class="col-lg-4">
+                                            <div class="mb-4">
+                                                <label class="form-label">Price</label>
+                                                <div class="row gx-2">
+                                                    <input placeholder="$" type="text" class="form-control" id="product_price" name="price"  value="<%= product.price %>" />
+                                                    <span id="priceError" style="color: red; font-size: smaller;"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-4">
+                                                <label class="form-label">Stock Quantity</label>
+                                                <div class="row gx-2">
+                                                    <input placeholder="quantity" type="text" class="form-control" id="product_qty" name="quantity" value="<%= product.stockQuantity %>" />
+                                                    <span id="quantityError" style="color: red; font-size: smaller;"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 mb-3">
+                                            <label class="form-label">Category</label>
+                                            <select name="category" id="categorySelect" class="form-select">
+                                              <% categories.forEach(category => { %>
+                                                <option <%= product.category.name === category.name ? 'selected' : '' %>><%= category.name %></option>
+                                              <% }); %>
+                                            </select>
+                                          </div>
+                                 
+                                    </div>
+                                  
+                            </div>
+                          
+                        </div>
+                  
+                       
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Media</h4>
+                            </div>
+                        
+                              <div class="card-body">
+                                <div class="row">
+                                  <% for (let i = 0; i < product.image.length; i++) { %>
+                                    <div class="col-3" id="pdtImage_<%= i %>">
+                                      <div class="image-container">
+                                        <img
+                                          class="img-fluid img-thumbnail"
+                                          id="prdtimage_<%= i %>"
+                                          src="/ResizedImages/<%= product.image[i] %>"
+                                          alt=""
+                                        />
+                                        <a
+                                          href="#"
+                                          onclick="deleteImg(event, '<%= product.image[i] %>', '<%= product._id %>', '<%= i %>')"
+                                          class="btn btn-danger btn-sm delete-button mb-3"
+                                        >Delete</a>
+                                      </div>
+                                    </div>
+                                  <% } %>
+                                </div>
+                                <div class="input-upload">
+                                  <input
+                                    class="form-control"
+                                    type="file"
+                                    name="image"
+                                    id="imageInput"
+                                    multiple
+                                    onchange="viewImage(event)"
+                                    accept="image/*"
+                                  />
+                                </div>
+                                <!-- Add this element to display the selected image -->
+                                <!-- Add this div to display newly selected images -->
+                                
+
+                            
+
+                              </div>
+                        </div>
+  
+                        <input type="hidden" name="id" value="<%=product._id %>">
+                        <input type="hidden" name="selectedCategories" id="selectedCategories">
+                        <div>
+                            
+                            <input type="submit" value="Update Product" class="btn btn-md rounded font-sm hover-up" style="width: 100%;">
+                        </div>
+                        <% if(typeof message !== "undefined"){ %>
+                            <p style="color: red; font-size: smaller;"><%=message%></p>
+                        <% } %>
+                    </form>
+                        <!-- card end// -->
+                    </div>
+                </div>
+            </section>
+            <!-- content-main end// -->
+
+
+            <!-- content-main end// -->
+            <footer class="main-footer font-xs">
+                <div class="row pb-30 pt-15">
+                    <div class="col-sm-6">
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        &copy; Nest - HTML Ecommerce Template .
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end">All rights reserved</div>
+                    </div>
+                </div>
+            </footer>
+        </main>
+        <!-- Add this modal structure where you want to display the confirmation modal -->
+<div class="modal" id="confirmationModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Confirm Deletion</h4>
+          <span type="button" class="close" data-bs-dismiss="modal">&times;</span>
+        </div>
+  
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <!-- Display the image to be deleted -->
+          <img id="confirmationImage" class="img-fluid" alt="Confirmation Image" />
+          <!-- Display the image filename as alt text -->
+          <p id="confirmationImageAlt"></p>
+          <p>Are you sure you want to delete this image?</p>
+        </div>
+  
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteButton" onclick="confirmDeleteImage()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+        <script src="/adminAssets/js/vendors/jquery-3.6.0.min.js"></script>
+        <script src="/adminAssets/js/vendors/bootstrap.bundle.min.js"></script>
+        <script src="/adminAssets/js/vendors/select2.min.js"></script>
+        <script src="/adminAssets/js/vendors/perfect-scrollbar.js"></script>
+        <script src="/adminAssets/js/vendors/jquery.fullscreen.min.js"></script>
+        <!-- List.js -->
+       
+  
+        <!-- Main Script -->
+        <script src="/adminAssets/js/main.js?v=1.1" type="text/javascript"></script>
+
+        <!-- <script src="/path/to/axios.min.js"></script>
+        <script src="/path/to/your-script.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <script>
+   
+   
+   const deleteImg = async (event, img, prdtId, index) => {
+  try {
+    console.log("event:",event);
+    event.preventDefault();
+    console.log("img",img);
+
+    // Show the confirmation modal
+    $('#confirmationModal').modal('show');
+
+    // Set the modal values based on the image, product ID, and index
+    document.getElementById("confirmationImage").src = "/ResizedImages/" + img;
+    document.getElementById("confirmationImageAlt").innerText = img;
+
+    // Set the delete function for the modal button
+    document.getElementById("confirmDeleteButton").onclick = function() {
+      hideConfirmationModal();
+      confirmDeleteImage(img, prdtId, index);
+    };
+  } catch (error) {
+    console.error("Error showing confirmation modal:", error.message);
+    alert("An error occurred while showing the confirmation modal. Check console for details.");
+  }
+};
+
+function hideConfirmationModal() {
+  // Hide the confirmation modal
+  $('#confirmationModal').modal('hide');
+}
+
+async function confirmDeleteImage(img, prdtId, index) {
+  try {
+    console.log('hdsjfgbhjf',img)
+    console.log('sjdfhjksdf',prdtId);
+    // Use the confirmation modal to confirm deletion
+    // This function will only be called if the user confirms deletion in the modal
+    const deleted = await axios.put("/admin/products/deleteImage", {
+      img,
+      prdtId,
+    });
+
+    if (deleted.data.success) {
+      alert("Item has been removed");
+      const imageContainer = document.getElementById(`pdtImage_${index}`);
+      imageContainer.style.display = "none";
+    } else {
+      alert("Failed to remove item. Check console for details.");
+    }
+  } catch (error) {
+    console.error("Error deleting image:", error.message);
+    alert("An error occurred while deleting the image. Check console for details.");
+  }
+}
+
+</script>
+
+<script>
+  function validateForm(){
+  // Reset all error messages
+  resetErrorMessages();
+
+  // Validation for product name, description, category, and image
+  const productName = document.getElementById('product_name').value.trim();
+  const productDescription = document.querySelector('textarea[name="description"]').value.trim();
+  // const categorySelect = document.getElementById('categorySelect');
+  const imageInput = document.querySelector('input[name="image"]');
+
+  if (!productName) {
+      showError('productNameError', 'Product title is required.');
+      return false;
+  }
+
+  if (!productDescription) {
+      showError('productDescriptionError', 'Full description is required.');
+      return false
+  }
+
+  // if (categorySelect.selectedIndex === 0) {
+  //     showError('categoryError', 'Please select a category.');
+  //     return false;
+  // }
+
+  if (!imageInput.files.length) {
+      showError('imageError', 'Please upload an image.');
+      return false;
+  }
+
+  // Validation for price and quantity (numeric values)
+  const productPrice = document.getElementById('product_price').value.trim();
+  const productQty = document.getElementById('product_qty').value.trim();
+
+  if (!/^\d+(\.\d{1,2})?$/.test(productPrice)) {
+      showError('priceError', 'Invalid price format. Only numbers are allowed.');
+      return false;
+  }
+
+  if (!/^\d+$/.test(productQty)) {
+      showError('quantityError', 'Invalid quantity format. Only numbers are allowed.');
+      return false;
+  }
+
+  return true;
+
+
+// Function to show an error message
+function showError(elementId, message) {
+  const errorElement = document.getElementById(elementId);
+  errorElement.innerText = message;
+}
+
+// Function to reset all error messages
+function resetErrorMessages() {
+  document.querySelectorAll('.error-message').forEach(function (errorElement) {
+      errorElement.innerText = '';
+  });
+}
+}
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const productNameInput = document.getElementById("product_name");
+      const productDescriptionInput = document.querySelector('textarea[name="description"]');
+      // const categorySelect = document.getElementById("categorySelect");
+      const imageInput = document.querySelector('input[name="image"]');
+      const priceInput = document.getElementById("product_price");
+      const quantityInput = document.getElementById("product_qty");
+
+      // Event listener for product name input
+      productNameInput.addEventListener("input", function () {
+          validateRequiredField(productNameInput, 'productNameError', 'Product title is required.');
+      });
+
+      // Event listener for product description input
+      productDescriptionInput.addEventListener("input", function () {
+          validateRequiredField(productDescriptionInput, 'productDescriptionError', 'Full description is required.');
+      });
+
+      // // Event listener for category select
+      // categorySelect.addEventListener("change", function () {
+      //     validateRequiredField(categorySelect, 'categoryError', 'Please select a category.');
+      // });
+
+      // Event listener for image input
+      imageInput.addEventListener("change", function () {
+          validateRequiredField(imageInput, 'imageError', 'Please upload an image.');
+      });
+
+      // Event listener for price input
+      priceInput.addEventListener("input", function () {
+          validateNumericField(priceInput, 'priceError', 'Enter valid Price');
+      });
+
+      // Event listener for quantity input
+      quantityInput.addEventListener("input", function () {
+          validateNumericField(quantityInput, 'quantityError', 'Enter valid quantity');
+      });
+
+      function validateRequiredField(inputElement, errorId, errorMessage) {
+          const errorElement = document.getElementById(errorId);
+
+          if (!inputElement.value.trim()) {
+              errorElement.textContent = errorMessage;
+              inputElement.classList.add("is-invalid");
+          } else {
+              errorElement.textContent = "";
+              inputElement.classList.remove("is-invalid");
+          }
+      }
+
+      function validateNumericField(inputElement, errorId, errorMessage) {
+          const errorElement = document.getElementById(errorId);
+          const inputValue = parseFloat(inputElement.value);
+
+          if (isNaN(inputValue) || inputValue <= 0) {
+              errorElement.textContent = errorMessage;
+              inputElement.classList.add("is-invalid");
+          } else {
+              errorElement.textContent = "";
+              inputElement.classList.remove("is-invalid");
+          }
+      }
+  });
+</script>
+
+
+
+<% include('../layouts/footer.ejs') %>

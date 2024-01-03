@@ -1,0 +1,184 @@
+<%- include('./adminLayouts/header.ejs') %>
+<%- include('./adminLayouts/sideBar.ejs') %>
+
+        <main class="main-wrap">
+            <%- include('./adminLayouts/navBar.ejs') %> 
+            <style>
+              .error-message{
+                  color: red;
+                  font-size: smaller;
+              }
+          </style>
+            <section class="content-main">
+                <div class="content-header">
+                    <div>
+                        <h2 class="content-title card-title">Categories</h2>
+                        <p>Add category</p>
+                    </div>
+                  
+                    <div>
+                        <a href="/admin/categories"><button class="btn btn-light rounded font-sm mr-5 text-body hover-up">Go Back</button></a>  
+                          
+                      </div>
+                </div>
+                <div class="card" style="width: 30%;">
+                    <div class="card-body" >
+                        <div class="row" >
+                          <div class="col-md-3" style="width: 100%;">
+                            <form action="" method="post" onsubmit="return validateForm()">
+                                <div class="mb-4">
+                                    <label for="product_name" class="form-label">Name</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="category_name" name="cName" value="<%= locals.cName %>" />
+                                    <span id="categoryNameError" class="error-message"></span>
+                                </div>
+                        
+                                <div class="mb-4">
+                                    <label class="form-label">Description</label>
+                                    <textarea placeholder="Type here" class="form-control" name="cDescription"><%= locals.cDescription %></textarea>
+                                    <span id="categoryDescriptionError" class="error-message"></span>
+                                </div>
+                        
+                                <div class="d-grid">
+                                    <button class="btn btn-primary">Create category</button>
+                                </div>
+                        
+                                <% if (typeof message !== 'undefined') { %>
+                                    <p style="color: red;"><%- message %></p>
+                                <% } %>
+                            </form>
+                        </div>
+                        
+             
+                        
+                           
+                            </div>
+                            <!-- .col// -->
+                        </div>
+                        <!-- .row // -->
+                    </div>
+                    <!-- card body .// -->
+                    
+                        
+                   
+                <!-- card .// -->
+            </section>
+            <!-- content-main end// -->
+            <footer class="main-footer font-xs">
+                <div class="row pb-30 pt-15">
+                    <div class="col-sm-6">
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        &copy; Nest - HTML Ecommerce Template .
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end">All rights reserved</div>
+                    </div>
+                </div>
+            </footer>
+        </main>
+        <script src="/adminAssets/js/vendors/jquery-3.6.0.min.js"></script>
+        <script src="/adminAssets/js/vendors/bootstrap.bundle.min.js"></script>
+        <script src="/adminAssets/js/vendors/select2.min.js"></script>
+        <script src="/adminAssets/js/vendors/perfect-scrollbar.js"></script>
+        <script src="/adminAssets/js/vendors/jquery.fullscreen.min.js"></script>
+  
+        <!-- Main Script -->
+        <script src="/adminAssets/js/main.js?v=1.1" type="text/javascript"></script>
+        
+        <script>
+          function validateForm() {
+              resetErrorMessages();
+      
+              const categoryName = document.getElementById('category_name').value.trim();
+      
+              // Validation for category name
+              if (!categoryName) {
+                  showError('categoryNameError', 'Category name is required.');
+                  return false;
+              }
+      
+              return true;
+          }
+      
+          // Function to show an error message
+          function showError(elementId, message) {
+              const errorElement = document.getElementById(elementId);
+              errorElement.innerText = message;
+          }
+      
+          // Function to reset all error messages
+          function resetErrorMessages() {
+              document.querySelectorAll('.error-message').forEach(function (errorElement) {
+                  errorElement.innerText = '';
+              });
+          }
+      </script>
+       
+       
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+              const categoryNameInput = document.getElementById("category_name");
+             
+      
+              // Event listener for category name input
+              categoryNameInput.addEventListener("input", function () {
+                  validateRequiredField(categoryNameInput, 'categoryNameError', 'Category name is required.');
+              });
+      
+           
+      
+              function validateRequiredField(inputElement, errorId, errorMessage) {
+                  const errorElement = document.getElementById(errorId);
+      
+                  if (!inputElement.value.trim()) {
+                      errorElement.textContent = errorMessage;
+                      inputElement.classList.add("is-invalid");
+                  } else {
+                      errorElement.textContent = "";
+                      inputElement.classList.remove("is-invalid");
+                  }
+              }
+          });
+      </script>
+      
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              document.querySelectorAll('.block-user').forEach(function (button) {
+                button.addEventListener('click', function () {
+                  const userId = this.getAttribute('data-user-id');
+                  updateUserStatus(userId, 'block');
+                });
+              });
+          
+              document.querySelectorAll('.unblock-user').forEach(function (button) {
+                button.addEventListener('click', function () {
+                  const userId = this.getAttribute('data-user-id');
+                  updateUserStatus(userId, 'unblock');
+                });
+              });
+          
+              function updateUserStatus(userId, action) {
+                fetch(`/admin/users/${action}/${userId}`, {
+                  method: 'POST',
+                })
+                  .then((response) => response.json())
+                  .then((data) => {
+                    console.log(data);
+                    // Update the UI
+                    const statusElement = document.getElementById(`status_${userId}`);
+                    if (data.user.is_blocked) {
+                      statusElement.innerHTML = '<span class="badge rounded-pill alert-warning">blocked</span>';
+                    } else {
+                      statusElement.innerHTML = '<span class="badge rounded-pill alert-success">Active</span>';
+                    }
+                  })
+                  .catch((error) => {
+                    console.error('Error:', error);
+                  });
+              }
+            });
+          </script>
+
+
+<% include('../layouts/footer.ejs') %>

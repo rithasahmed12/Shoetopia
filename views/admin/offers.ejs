@@ -1,0 +1,207 @@
+<%- include('./adminLayouts/header.ejs') %>
+<%- include('./adminLayouts/sideBar.ejs') %>
+
+        <main class="main-wrap">
+            <%- include('./adminLayouts/navBar.ejs') %> 
+            <section class="content-main">
+                <div class="content-header">
+                    <div>
+                        <h2 class="content-title card-title">Offers</h2>
+                        
+                    </div>
+                    <div>
+                        <a href="/admin/addOffer" class="btn btn-primary btn-sm rounded">Create offer</a>
+                    </div>
+                   
+                </div>
+                <div class="card mb-4">
+             
+                    <!-- card-header end// -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="example" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                      
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Starting Date</th>
+                                        <th scope="col">Expiry Date</th>
+                                        <th scope="col">Percentage</th>
+                                        <!-- <th scope="col">value</th> -->
+                                        <th scope="col">status</th>
+                                        <!-- <th scope="col">Action</th> -->
+                                        <th scope="col" class="text-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if(offers.length > 0) { %>
+                                        <% offers.forEach(offer =>{ %>
+
+                                       
+                                        <tr>
+                                        
+                                            <td><%= offer.name %></td>
+                                            <td> <%= moment(offer.startingDate).format('DD/MM/YYYY') %> <p hidden><%= offer.startingDate %></p></td>
+                                            <td> <%= moment(offer.expiryDate).format('DD/MM/YYYY') %> <p hidden><%= offer.expiryDate %></p></td>
+                                            <td class="text">
+                                                <!-- <span id="">
+                                                  
+                                                    <span class="badge rounded-pill alert-primary"></span> -->
+                                                    <%= offer.percentage %>%
+                                          
+                                              </td>
+                                           
+                                            <td class="text">
+                                                <span id="">
+                                                    <% if(offer.status === true ){ %>
+
+                                                     
+                                                    <span class="badge rounded-pill alert-success">Active</span>
+                                                    <% }else{ %>
+                                                        <span class="badge rounded-pill alert-warning">Not Acive</span>
+                                                     <% } %>
+                                          
+                                              </td>
+    
+                                              
+                                     
+                                              <!-- <td class="text">
+                                                <button class="btn btn-light rounded btn-sm font-sm list-products" data-product-id="<%= offer._id %>">List</button>
+                                                <button class="btn btn-danger rounded btn-sm font-sm unlist-products" data-product-id="<%= offer._id %>">Unlist</button>
+                                            </td> -->
+                                              <td class="text-end">
+                                                <button class="btn btn-md rounded font-sm block-user delete-coupon" style="background-color: rgb(214, 0, 0);" data-toggle="modal" data-target="#deleteCouponModal" data-coupon-id="<%= offer._id %>">Remove</button>
+                                            </td>
+                                            
+                                        </tr>
+                                        <% }) %>
+
+                                     <% }else{ %>
+                                        <tr>
+                                           <td>no offer found</td>
+                                        </tr>
+
+                                      <% } %>
+
+                                       
+                          
+                                 
+                                   
+                            
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- table-responsive //end -->
+                    </div>
+                    <!-- card-body end// -->
+
+                </div>
+                <!-- card end// -->
+             
+            </section>
+            <!-- content-main end// -->
+            <footer class="main-footer font-xs">
+                <div class="row pb-30 pt-15">
+                    <div class="col-sm-6">
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        &copy; Nest - HTML Ecommerce Template .
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end">All rights reserved</div>
+                    </div>
+                </div>
+            </footer>
+
+
+            <!-- Delete Coupon Modal -->
+<div class="modal fade" id="deleteCouponModal" tabindex="-1" aria-labelledby="deleteCouponModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteCouponModalLabel">Confirm Deletion</h5>
+                <button type="button" class="btn-close goBackBtn" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this coupon?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteCouponBtn">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </main>
+        <script src="/adminAssets/js/vendors/jquery-3.6.0.min.js"></script>
+        <script src="/adminAssets/js/vendors/bootstrap.bundle.min.js"></script>
+        <script src="/adminAssets/js/vendors/select2.min.js"></script>
+        <script src="/adminAssets/js/vendors/perfect-scrollbar.js"></script>
+        <script src="/adminAssets/js/vendors/jquery.fullscreen.min.js"></script>
+  
+        <!-- Main Script -->
+        <script src="/adminAssets/js/main.js?v=1.1" type="text/javascript"></script>
+
+
+
+<!-- DataTables JS -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+
+       
+       
+          <script>
+
+$(document).ready(function() {
+        $('#example').DataTable();
+    });
+
+
+
+          document.addEventListener('DOMContentLoaded', function () {
+    // Handle Delete Coupon button click
+    $('.delete-coupon').on('click', function () {
+        const couponId = $(this).data('coupon-id');
+
+        // Set the couponId in the modal for reference
+        $('#deleteCouponModal').data('coupon-id', couponId);
+
+        // Show the modal
+        $('#deleteCouponModal').modal('show');
+    });
+
+    // Handle Confirm Delete Coupon button click
+    $('#confirmDeleteCouponBtn').on('click', function () {
+        // Retrieve the couponId from the modal
+        const couponId = $('#deleteCouponModal').data('coupon-id');
+
+        // Make a POST request to delete the coupon
+        fetch(`/admin/offer/deleteOffer/${couponId}`, {
+            method: 'POST',
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Perform actions after successful deletion
+                    console.log('Coupon deleted successfully');
+
+                    // Redirect or update the UI as needed
+                    window.location.href = '/admin/offers';
+                } else {
+                    // Handle deletion failure
+                    console.error('Coupon deletion failed');
+                }
+            })
+            .catch(error => {
+                // Handle fetch error
+                console.error('Fetch error:', error);
+            });
+    });
+});
+
+          </script>
+
+
+<% include('../layouts/footer.ejs') %>

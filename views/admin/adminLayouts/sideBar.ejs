@@ -1,0 +1,84 @@
+<div class="screen-overlay"></div>
+<aside class="navbar-aside" id="offcanvas_aside">
+    <div class="aside-top">
+        <a href="/admin/dashboard" class="brand-wrap">
+            Shoetopia Admin
+        </a>
+        <div>
+            <button class="btn btn-icon btn-aside-minimize"><i class="text-muted material-icons md-menu_open"></i></button>
+        </div>
+    </div>
+    <nav>
+        <ul class="menu-aside">
+            <li class="menu-item">
+                <a class="menu-link" href="/admin/dashboard">
+                    <i class="icon material-icons md-home"></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="/admin/users">
+                    <i class="icon material-icons md-person"></i>
+                    <span class="text">Users</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="/admin/products">
+                    <i class="icon material-icons md-shopping_bag"></i>
+                    <span class="text">Products</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="/admin/categories">
+                    <i class="icon material-icons md-add_box"></i>
+                    <span class="text">Categories</span>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a class="menu-link" href="/admin/orders">
+                    <i class="icon material-icons md-shopping_cart"></i>
+                    <span class="text">Orders</span>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a class="menu-link" href="/admin/coupons">
+                    <i class="icon material-icons md-monetization_on"></i>
+                    <span class="text">Coupons</span>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a class="menu-link" href="/admin/offers">
+                    <i class="icon material-icons md-local_offer"></i>
+                    <span class="text">Offers</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" disabled href="/admin/banner">
+                    <i class="icon material-icons md-pie_chart"></i>
+                    <span class="text">Banner</span>
+                </a>
+            </li>
+        </ul>
+        <hr />
+        <br />
+        <br />
+    </nav>
+</aside>
+
+<script>
+    // Get the current URL
+    const currentURL = window.location.pathname;
+
+    // Select all menu links
+    const menuLinks = document.querySelectorAll('.menu-link');
+
+    // Loop through menu links and apply "active" class if their href matches the current URL
+    menuLinks.forEach(link => {
+        if (link.getAttribute('href') === currentURL) {
+            link.parentElement.classList.add('active');
+        }
+    });
+</script>

@@ -1,0 +1,227 @@
+<% include('../layouts/header.ejs') %>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+
+  <link rel="stylesheet" href="css/aos.css">
+
+  <link rel="stylesheet" href="css/ionicons.min.css">
+
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+  <link rel="stylesheet" href="css/flaticon.css">
+  <link rel="stylesheet" href="css/icomoon.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- Add Bootstrap JS (Check the version number) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <style>
+    .btns{
+      border: 1px solid #dbcc8f;
+      background-color: #dbcc8f;
+      color: white;
+      text-align: center;
+      border-radius: 5px;
+      height: 35px;
+    }
+    .btns:hover{
+      background-color: transparent;
+    }
+    #delete-btn{
+      background-color: red;
+      border: solid 1px red;
+      color: white;
+      width: 100px;
+    }
+
+    #delete-btn:hover{
+      background-color: transparent;
+      color: red;
+    }
+
+  </style>
+
+
+  <% include('../layouts/center.ejs') %>
+
+    <body class="goto-here">
+      <%- include('../layouts/navbar.ejs') %>
+        <!-- END nav -->
+    </body>
+    <section style="background-color: #eee; margin-top: 6%;">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-lg-4">
+            <!-- User Photo and Name Card -->
+            <div class="card mb-4">
+              <div class="card-body text-center">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                  class="rounded-circle img-fluid" style="width: 150px;">
+                <h5 class="my-3">
+                  <%=user.username %>
+                </h5>
+              </div>
+            </div>
+            <!-- Navigation Buttons -->
+            <div class="d-flex flex-column mb-4">
+              <a href="/profile" class="btns mb-1 mt-1" >User Profile</a>
+              <a href="/profile-address" class="btns mb-1 mt-1" >Address</a>
+              <a href="/orders" class="btns mb-1 mt-1" >Orders</a>
+              <a href="/wallet" class="btns mb-1 mt-1" >Wallet</a>
+            </div>
+          </div>
+
+          <div class="col-lg-8" id="addressHolder">
+            <!-- User Details and Edit Button -->
+            <div class="card mb-4">
+              <div class="card-body">
+                
+                  <!-- <h3>User Wallet</h3> -->
+                  <div class="col-xl-12 ftco-animate">
+                    <!-- <div class="card shadow-0 border mb-4" id="addressDetails"> -->
+                      
+                        <h3>Your Wallet</h3>
+
+                        <div class="mt-5" style="text-align: center;">
+                            <img src="/assets/images/pngwing.com.png" alt="" width="200px">
+                        </div>
+                      <!-- <div class="card-body"> -->
+                       <div class="mt-5" style="text-align: center;">
+                            <div class="balance">
+                             <h5>Balance: <span id="balance" style="color: rgb(110, 110, 110);">₹<%= user.wallet.toFixed(2) %></span> </h5>
+                            </div>
+                        
+                            <form id="deposit-form">
+                              <!-- <button class="btn btn-primary" style="width: 140px;" type="submit">Add to Wallet</button> -->
+                            </form>
+                        
+                        </div>  
+
+  
+                        
+                            <!-- <h2>Transactions</h2> -->
+                            <!-- <div class="row"> -->
+                                <div class="col-8">
+                                    <h5>Wallet History</h5>
+                                    <div>
+                                        <table style="background-color: #ededed;" class="table table-bordered text-center">
+                                            <tbody>
+                                              <% if(user.wallet_history.length > 0) { %>
+                                                <% const sortedWalletHistory = user.wallet_history.sort((a, b) => b.date - a.date); %>
+                                            
+                                                <% sortedWalletHistory.forEach((wallet) => { %>
+                                                    <tr>
+                                                        <td class="ms-2"><%= wallet.date.toISOString().substr(0, 10) %></td>
+                                                        <% if (wallet.amount > 0) { %>
+                                                            <td class="text-success">₹<%= wallet.amount.toFixed(2) %></td>
+                                                        <% } else { %>
+                                                            <td class="text-danger">₹<%= wallet.amount.toFixed(2) %></td>
+                                                        <% }  %>
+                                                        <td><%= wallet.description %></td>
+                                                    </tr>
+                                                <% })%>
+                                            
+                                            <% } else { %>
+                                                <tr>
+                                                    <td>no transaction found</td>
+                                                </tr>
+                                            <% } %>
+                                              
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                      
+                                  </div>
+                                  </div>
+
+
+                              </div>
+                              <!-- </div> -->
+                              </div>
+
+                              
+                            </div>
+                            
+                        
+                        
+    
+                    
+                    <!-- </div> -->
+                    
+
+
+                    <!-- </div> -->
+
+                  </div>
+                </div>
+
+
+
+
+                <!-- Orders Content (Similar structure as profile) -->
+                <!-- <div id="ordersContent" style="display: none;">
+                  <h3>Orders Content</h3>
+                 
+                </div> -->
+              
+            
+
+
+          
+    
+      
+    </section>
+
+
+
+
+    
+
+    <%- include('../layouts/page-footer.ejs') %>
+
+
+
+      <!-- loader -->
+      <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+          <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+          <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+            stroke="#F96D00" />
+        </svg></div>
+
+      <script src="js/jquery.min.js"></script>
+      <script src="js/jquery-migrate-3.0.1.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/jquery.easing.1.3.js"></script>
+      <script src="js/jquery.waypoints.min.js"></script>
+      <script src="js/jquery.stellar.min.js"></script>
+      <script src="js/owl.carousel.min.js"></script>
+      <script src="js/jquery.magnific-popup.min.js"></script>
+      <script src="js/aos.js"></script>
+      <script src="js/jquery.animateNumber.min.js"></script>
+      <script src="js/bootstrap-datepicker.js"></script>
+      <script src="js/scrollax.min.js"></script>
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+      <script src="js/google-map.js"></script>
+      <script src="js/main.js"></script>
+
+      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+
+
+
+
+
+      <% include('../layouts/footer.ejs') %>

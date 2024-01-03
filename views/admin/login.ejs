@@ -1,0 +1,99 @@
+<%- include('./adminLayouts/header.ejs') %>
+
+
+<style>
+ 
+  .error {
+    text-align: center;
+      font-size: smaller;
+      color: red;
+  
+  }
+</style>
+
+
+
+<section class="content-main mt-80 mb-80">
+  <div class="card mx-auto card-login">
+      <div class="card-body">
+          <h4 class="card-title text-center mb-4">Admin Login</h4>
+          <form action="/admin/" method="POST" onsubmit="return validateForm()">
+              <div class="mb-3">
+                  <input class="form-control" placeholder="Enter email" type="email" name="email" id="email" value="<%= locals.email %>" >
+                  <span id="emailError" class="error"></span>
+              </div>
+              <!-- form-group// -->
+              <div class="mb-3">
+                  <input class="form-control" placeholder="Enter Password" type="password" id="password" name="password" value="<%= locals.password %>" >
+                  <span id="pError" class="error"></span>
+              </div>
+              <!-- form-group// -->
+       
+              <!-- form-group form-check .// -->
+              <div class="mb-4">
+                  <button type="submit" class="btn btn-primary w-100">Login</button>
+              </div>
+              <!-- form-group// -->
+
+          </form>
+          <% if (typeof message !== 'undefined') { %>
+            <h3 class="error"><%= message %></h3>
+          <% } %>
+  
+      </div>
+  </div>
+</section>
+
+
+
+<!-- <script src="assets/js/vendors/jquery-3.6.0.min.js"></script>
+<script src="assets/js/vendors/bootstrap.bundle.min.js"></script>
+<script src="assets/js/vendors/jquery.fullscreen.min.js"></script>
+
+<script src="assets/js/main.js?v=1.1" type="text/javascript"></script> -->
+
+
+
+  <!-- ... your form fields ... -->
+
+  <script>
+    function validateForm() {
+      console.log('askalda');
+      document.getElementById('emailError').innerHTML = '';
+      document.getElementById('pError').innerHTML = '';
+  
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+  
+      // Check if email is empty
+      if (!email.trim()) {
+        document.getElementById('emailError').innerHTML = 'Email address is required.';
+        return false;
+      }
+  
+      // Check if password is empty
+      if (!password.trim()) {
+        document.getElementById('pError').innerHTML = 'Password is required.';
+        return false;
+      }
+  
+      // Email validation using a more general regular expression
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').innerHTML = 'Please enter a valid email address.';
+        return false;
+      }
+  
+      // Password validation (no spaces)
+      if (password.includes(' ')) {
+        document.getElementById('pError').innerHTML = 'Password should not contain spaces.';
+        return false;
+      }
+  
+      return true;
+    }
+  </script>
+  
+
+
+<% include('../layouts/footer.ejs') %>

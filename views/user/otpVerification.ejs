@@ -1,0 +1,87 @@
+<% include('../layouts/header.ejs') %>
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/login-form/css/style.css">
+<% include('../layouts/center.ejs') %>
+
+
+
+<section class="ftco-section" style="margin-top: 5%;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="wrap d-md-flex">
+                    <!-- Image on the left -->
+                    <div class="img" style="background-image: url(/login-form/images/bg-4.jpg);"></div>
+                    
+                    <!-- OTP Verification form on the right -->
+                    <div class="login-wrap p-4 p-md-5">
+                        <form action="/otp" method="post" onsubmit="return validateForm()" class="signin-form">
+                            <p>OTP has been sent to your email</p>
+                            <input type="hidden" name="id" value="<%= locals.id %>">
+
+                            <div class="form-group mb-3">
+                                <label class="label" for="otp">Enter OTP:</label>
+                                <input type="text" id="otp" name="otp" class="form-control" required>
+                                <span id="otpError" class="error"></span>
+                            </div>
+                            <% if (typeof message !== 'undefined') { %>
+                                <p style="text-align: center; font-size: smaller; color: red;"><%- message %></p>
+                            <% } %>
+
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Verify OTP</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+ 
+ <style>
+      body{
+    background-color: #dbcc8f;
+  }
+    .error {
+      color: red;
+      font-size: x-small;
+    }
+  
+    .error-outline {
+      border: 1px solid red;
+    }
+  </style>
+
+ <script>
+    function validateForm(){
+        document.getElementById('otpError').innerHTML='';
+
+        var otp = document.getElementById("otp").value;
+        const otpRegex = /^\d{6}$/;
+        if(!otpRegex.test(otp)){
+            document.getElementById('otpError').innerHTML = 'Please enter a valid 6-digit OTP.';
+            return false;
+        }
+        return true;
+    }
+ </script>
+
+<script src="/login-form/js/jquery.min.js"></script>
+<script src="/login-form/js/popper.js"></script>
+<script src="/login-form/js/bootstrap.min.js"></script>
+<script src="/login-form/js/main.js"></script>
+
+ 
+ <% include('../layouts/footer.ejs') %>
+
