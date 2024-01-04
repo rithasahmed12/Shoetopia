@@ -1,3 +1,4 @@
+
 const User = require("../models/usersModels");
 const moment = require('moment');
 const Products = require("../models/productsModel");
@@ -160,21 +161,23 @@ const loadOrders = async (req, res) => {
   const loadAdminOrders = async (req, res) => {
     try {
     
-      const orders = await Order.find().populate({
-        path: "items.product_id",
-        populate:{
-          path:'offer'
-        }
-      }).populate({
-        path: "items.product_id",
-        populate: {
-          path: 'category',
-          populate: {
-            path: 'offer',
-        
-          },  
-        }
-      }).sort({_id:1});
+      const orders = await Order.find()
+            .populate({
+                path: "items.product_id",
+                populate: {
+                    path: 'offer'
+                }
+            })
+            .populate({
+                path: "items.product_id",
+                populate: {
+                    path: 'category',
+                    populate: {
+                        path: 'offer',
+                    },
+                }
+            })
+            .sort({ updatedAt: -1 });
 
       
         

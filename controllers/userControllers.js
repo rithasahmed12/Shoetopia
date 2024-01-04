@@ -563,12 +563,12 @@ const priceSort = req.query.priceSort;
 const products = await Products.find({ is_listed: 1 })
 .populate({
   path: 'offer',
-  // match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
+  match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
 }).populate({
   path: 'category',
   populate: {
       path: 'offer',
-      // match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
+      match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
   }
 })
                                   
@@ -590,7 +590,7 @@ if (category) {
   );
 }
 
-console.log('listedProducts:',listedProducts);
+// console.log('listedProducts:',listedProducts);
                                                                                                                                                                                                    
 // Extend the query conditions based on the search term
 if (searchTerm) {
@@ -612,9 +612,12 @@ if (priceFrom && priceTo) {
                                
 // Extend the query conditions based on the sorting option
 if(priceSort){
-  if (priceSort === 'asc') {
+  console.log('ibde');
+  if (priceSort === 'asc'|| priceSort[0] ==='asc') {
+      console.log('ovde');
     listedProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-  } else if (priceSort === 'desc') {
+  } else if (priceSort === 'desc' || priceSort[0] ==='desc') {
+    console.log('evde');
     listedProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
   }
 }
@@ -628,7 +631,7 @@ const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
 const endIndex = page * PRODUCTS_PER_PAGE;
 const paginatedProducts = listedProducts.slice(startIndex, endIndex);
 
-console.log('paginated:',paginatedProducts);
+// console.log('paginated:',paginatedProducts);
 
 if (req.xhr) {
   // If it's an AJAX request, render the partial view

@@ -19,7 +19,7 @@ const loadLogin = async(req,res)=>{
         res.render('login');
 
     } catch (error) {
-        console.log(error.message);
+        res.redirect("/500");
     }
 }
 
@@ -34,7 +34,7 @@ const verifyAdmin = async(req,res)=>{
         if(admin_email == emailInput && admin_pass == passInput){
           
             req.session.admin = emailInput; 
-            // console.log('admin-session:',req.session.admin);
+           
             res.redirect('/admin/dashboard');
         }else{
             res.render('login',{message:"invalid username and password"});
@@ -42,7 +42,7 @@ const verifyAdmin = async(req,res)=>{
 
 
     } catch (error) {
-        console.log(error.message);
+        res.redirect("/500");
     }
 }
 
@@ -144,19 +144,7 @@ let yearlySales = await Order.aggregate([
                       ],
                   },
                   },
-                  // monthlyTotalSales: {
-                  //     $sum: {
-                  //         $cond: [
-                  //             {
-                  //                 $eq: [{ $month: "$createdAt" }, new Date().getMonth() + 1],
-                  //             },
-                  //             {
-                  //                 $multiply: ["$items.quantity", "$items.price"],
-                  //             },
-                  //             0,
-                  //         ],
-                  //     },
-                  // },
+          
               },
           },
       ]);
@@ -294,16 +282,9 @@ const orderCounts = await Order.aggregate([
         
     ]);
 
-      console.log('monthlySales:', monthlySales);
-      console.log('yearlySales:', yearlySales);
-      console.log('totalSales:', totalSales[0]);
-      console.log('orderCounts:', orderCounts[0]);
-      console.log('paymentCounts:', paymentCounts[0]);
-      console.log('productCount:',productCount);
-      console.log('categoryCount:',categoryCount);
+     
       
       
-
       const currentYear = new Date().getFullYear();
       const yearsToInclude = 7;
       const currentMonth = new Date().getMonth() + 1; // Month is zero-based in JavaScript dates
@@ -356,6 +337,9 @@ const orderCounts = await Order.aggregate([
           },
         },
       ]);
+
+      console.log('defauldt',defaultMonthlyValues);
+      console.log('monthData:',monthlySalesData);
       
       // Update monthly values based on retrieved data
 const updatedMonthlyValues = defaultMonthlyValues.map((defaultMonth) => {
@@ -365,7 +349,7 @@ const updatedMonthlyValues = defaultMonthlyValues.map((defaultMonth) => {
       
       console.log('Monthly Sales Data:', updatedMonthlyValues);
       
-      // Yearly sales data
+    
     // Yearly sales data
 const yearlySalesData = await Order.aggregate([
   {
@@ -373,6 +357,7 @@ const yearlySalesData = await Order.aggregate([
   },
   {
     $match: {
+      'items.ordered_status': 'delivered',
       createdAt: { $gte: new Date(currentYear - yearsToInclude, 0, 1) }, // Adjust the start date
       status: { $ne: 'cancelled' },
     },
@@ -406,6 +391,9 @@ const yearlySalesData = await Order.aggregate([
   },
 ]);
 
+console.log('yearlyDefault:',defaultYearlyValues);
+console.log('yearData:',yearlySalesData);
+
 // Update yearly values based on retrieved data
 const updatedYearlyValues = defaultYearlyValues.map((defaultYear) => {
   const foundYear = yearlySalesData.find((yearData) => yearData.year === defaultYear.year);
@@ -436,7 +424,7 @@ const updatedYearlyValues = defaultYearlyValues.map((defaultYear) => {
           // ... Continue with the rest of your data
       });
   } catch (error) {
-      console.log(error.message);
+      res.redirect("/500");
   }
 };
 
@@ -451,7 +439,7 @@ const loadUsers = async (req, res) => {
 
         res.render('users', { users: userData });
     } catch (error) {
-        console.log(error.message);
+        res.redirect("/500");
     }
 };
 
@@ -509,7 +497,7 @@ const blockUser = async (req, res) => {
          
        
     } catch (error) {
-        console.log(error.message);
+        res.redirect("/500");
     }
 };
 
@@ -518,7 +506,7 @@ const blockUser = async (req, res) => {
     try {
         res.render('add-categories');
     } catch (error) {
-        console.log(error.message);
+        res.redirect("/500");
     }
   }
   const insertCategories = async (req, res) => {
@@ -541,7 +529,7 @@ const blockUser = async (req, res) => {
             res.redirect('/admin/categories');
         }
     } catch (error) {
-        console.log(error.message);
+        res.redirect("/500");
     }
 }
 
@@ -555,7 +543,7 @@ const blockUser = async (req, res) => {
 
         res.render('edit-categories',{categories:data});
     } catch (error) {
-        console.log(error.message);
+        res.redirect("/500");
     }
   }
 
@@ -578,7 +566,7 @@ const blockUser = async (req, res) => {
         res.redirect('/admin/categories');
 
     } catch (error) {
-        console.log(error.message);
+        res.redirect("/500");
         res.status(500).send('Internal Server Error');
     }
 };
@@ -651,7 +639,7 @@ const loadProducts = async(req,res)=>{
 
     
   } catch (error) {
-    console.log(error.message);
+    res.redirect("/500");
   }
 }
 
@@ -662,7 +650,7 @@ const loadAddProducts = async(req,res)=>{
     res.render('add-products',{categories:categories});
 
   } catch (error) {
-    console.log(error.message);
+    res.redirect("/500");
   }
 }
 
@@ -679,9 +667,15 @@ const addProducts = async (req, res) => {
 
     const categoryId = cat._id;
 
-    if(req.files.length !== 4){
-      return res.render('add-products',{message:'4 images needed',categories});
+    if (req.files.length !== 4) {
+      // Clear uploaded files if the number is not exactly 4
+      for (let i = 0; i < req.files.length; i++) {
+        const filePath = req.files[i].path;
+        fs.unlinkSync(filePath); // Delete the file
+      }
+      return res.render('add-products', { message: 'Exactly 4 images needed', categories });
     }
+    
     
     // Resize and save each uploaded image
     for (let i = 0; i < req.files.length; i++) {
@@ -717,7 +711,7 @@ const addProducts = async (req, res) => {
 
     res.redirect('/admin/products');
   } catch (error) {
-    console.log(error.message);
+    res.redirect("/500");
   }
 };
 
@@ -731,13 +725,13 @@ const listProducts = async (req, res) => {
     if (!updatedProduct) {
       return res.status(404).send('User not found');
     }
-
+    
     res.json({ status: 'success', product: updatedProduct });
     
     
   
   } catch (error) {
-    console.error(error);
+    res.redirect("/500");
     res.status(500).json({ status: 'error', error: 'Internal Server Error' });
   }
 };
@@ -757,7 +751,7 @@ const unlistProducts = async (req, res) => {
     
   
   } catch (error) {
-    console.error(error);
+    res.redirect("/500");
     res.status(500).json({ status: 'error', error: 'Internal Server Error' });
   }
 };
@@ -772,7 +766,7 @@ const deleteProducts = async (req, res) => {
       res.json({ success: true });
 
   } catch (error) {
-      console.error('Error:', error);
+      res.redirect("/500");
       res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 };
@@ -786,7 +780,7 @@ const loadEditProducts = async(req,res)=>{
     res.render('edit-products',{product:data,categories:categories});
 
   } catch (error) {
-    console.log(error.message);
+    res.redirect("/500");
   }
 }                                                        
 
@@ -846,7 +840,7 @@ const editProducts = async (req, res) => {
     // Redirect back to the product page
     res.redirect('/admin/products');
   } catch (error) {
-    console.log(error.message);
+    res.redirect("/500");
     res.status(500).send('Internal Server Error');
   }
 };
@@ -867,7 +861,7 @@ const deleteImg = async (req, res) => {
     );
     res.send({ success: true });
   } catch (error) {
-    console.log(error.message);
+    res.redirect("/500");
     res.status(500).send({ success: false, error: error.message });
   } 
 };
@@ -882,11 +876,11 @@ const logoutAdmin = async(req,res)=>{
 
   } catch (error) {
 
-    console.log(error.message);
+    res.redirect("/500");
   }
 }
 
-const salesReport = async (req, res,next) => {
+const salesReport = async (req, res) => {
   try {
       const moment = require('moment')
 
@@ -909,11 +903,11 @@ const salesReport = async (req, res,next) => {
 
       })
   } catch (err) {
-      next(err)
+    res.redirect("/500");
   }
 };
 
-const datePicker = async (req, res,next) => {
+const datePicker = async (req, res) => {
   try {
     console.log('start:',req.body);
       const { startDate, endDate } = req.body
@@ -974,7 +968,7 @@ const datePicker = async (req, res,next) => {
       console.log('success');
       res.status(200).json({ selectedDate: selectedDate });
   } catch (err) {
-      next(err)
+    res.redirect("/500");
   }
 }
 

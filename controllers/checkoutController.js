@@ -293,6 +293,7 @@ const randomNum = Math.floor(10000 + Math.random() * 90000);
     }
 
     console.log("selected", selectedPayment);
+    
     const status = selectedPayment === "cod" ? "placed" : "pending";
 
     const userData = await User.findOne({ _id: userId });

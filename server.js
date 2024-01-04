@@ -62,9 +62,13 @@ app.use('/',wishlistRoute);
 
 app.set('views','./views/user')
 
+app.get('/500',(req,res)=>{
+  res.status(500).render('500');
+})
+
 app.get('*',(req,res)=>{   
     
-  res.status(404).render('404')
+  res.status(404).render('404');
   
 });
 

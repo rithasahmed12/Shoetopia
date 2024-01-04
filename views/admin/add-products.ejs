@@ -27,15 +27,15 @@
                             </div>
                             <div class="card-body">
 
-                                <form method="post" action="" enctype="multipart/form-data" onsubmit="return validateForm()">
+                                <form method="post" action="/admin/addProducts" enctype="multipart/form-data" onsubmit="return validateForm()">
                                     <div class="mb-4">
                                         <label for="product_name" class="form-label">Product title</label>
-                                        <input type="text" placeholder="Type here" class="form-control" id="product_name" name="name" requied/>
+                                        <input type="text" placeholder="Type here" class="form-control" id="product_name" name="name" />
                                         <span id="productNameError" class="error-message"></span>
                                     </div>
                                     <div class="mb-4">
                                         <label class="form-label">Full description</label>
-                                        <textarea placeholder="Type here" class="form-control" rows="4" name="description" requied></textarea>
+                                        <textarea placeholder="Type here" class="form-control" rows="4" name="description" ></textarea>
                                         <span id="productDescriptionError" class="error-message"></span>
                                     </div>
                                     <div class="row">
@@ -43,7 +43,7 @@
                                             <div class="mb-4">
                                                 <label class="form-label">Price</label>
                                                 <div class="row gx-2">
-                                                    <input placeholder="$" type="text" class="form-control" id="product_price" name="price" requied />
+                                                    <input placeholder="$" type="text" class="form-control" id="product_price" name="price"  />
                                                     <span id="priceError" style="color: red; font-size: smaller;"></span>
                                                 </div>
                                             </div>
@@ -52,14 +52,14 @@
                                             <div class="mb-4">
                                                 <label class="form-label">Stock Quantity</label>
                                                 <div class="row gx-2">
-                                                    <input placeholder="quantity" type="text" class="form-control" id="product_qty" name="quantity" requied/>
+                                                    <input placeholder="quantity" type="text" class="form-control" id="product_qty" name="quantity" />
                                                     <span id="quantityError" style="color: red; font-size: smaller;"></span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-3">
                                             <label class="form-label">Category</label>
-                                            <select name="category" id="categorySelect" class="form-select" requied>
+                                            <select name="category" id="categorySelect" class="form-select" >
                                                 <option value="">select</option>
                                                 <% categories.forEach(category => { %> 
                                                     <option><%= category.name %></option>
@@ -84,7 +84,7 @@
                             <div class="card-body">
                                 <div class="input-upload">
                                     
-                                    <input class="form-control" type="file" name="image" multiple requied/>
+                                    <input class="form-control" type="file" name="image" multiple />
                                     <span id="imageError" class="error-message"></span>
                                 </div>
                             </div>

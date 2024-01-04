@@ -155,8 +155,12 @@
           <script>
 
 $(document).ready(function() {
-        $('#example').DataTable();
+    $('#example').DataTable({
+        destroy: true, // Destroy the existing DataTable, if any
+        ordering: false // or any other options you need
     });
+});
+
 
 
 

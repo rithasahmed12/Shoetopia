@@ -68,7 +68,7 @@ adminRoute.get("/addProducts", adminAuth.isLogin, adminController.loadAddProduct
 
 adminRoute.post(
   "/addProducts",
-  upload.upload.array("image", 4),
+  upload.upload.array("image"),
   adminController.addProducts
 );
 
@@ -85,7 +85,7 @@ adminRoute.get("/editProducts", adminAuth.isLogin, adminController.loadEditProdu
 
 adminRoute.post(
   "/editProducts",
-  upload.upload.array("image", 4),
+  upload.upload.array("image"),
   adminController.editProducts
 );
 
@@ -100,11 +100,6 @@ adminRoute.get(
   adminAuth.isLogin,
   ordersController.loadOrderDetailsAdmin
 );
-
-
-
-
-
 
 
 adminRoute.get("/salesReport", adminAuth.isLogin, adminController.salesReport);

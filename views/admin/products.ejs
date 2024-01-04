@@ -39,7 +39,7 @@
                                             <td>
                                                 <a class="itemside" href="#">
                                                     <div class="left">
-                                                        <img src="/WebImages/<%=product.image[0] %>" class="img-sm img-thumbnail" alt="<%= product.name %>" />
+                                                        <img src="/ResizedImages/<%=product.image[0] %>" class="img-sm img-thumbnail" alt="<%= product.name %>" />
                                                     </div>
                                                     <div class="info">
                                                         <h6 class="mb-0"><%= product.name %></h6>
@@ -273,9 +273,13 @@ aria-hidden="true">
 
 
 <script>
-    $(document).ready(function() {
-        $('#example').DataTable();
+  $(document).ready(function() {
+    $('#example').DataTable({
+        destroy: true, // Destroy the existing DataTable, if any
+        ordering: false // or any other options you need
     });
+});
+
 
     document.addEventListener('DOMContentLoaded', function () {
         // Handle Delete button click
