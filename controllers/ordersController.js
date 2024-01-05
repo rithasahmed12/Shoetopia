@@ -118,7 +118,7 @@ const loadOrders = async (req, res) => {
     const itemId = req.body.itemId;
     const reason = req.body.reason;
     const returnReason = req.body.returnReason;
-
+    console.log('sssssssso:',reason,'lllllllllllo:',returnReason);
   
     try {
       if(reason){
@@ -139,7 +139,7 @@ const loadOrders = async (req, res) => {
         { _id: orderId, 'items._id': itemId },
         { $set: { 
           'items.$.ordered_status': 'request_return',
-          'items.$.cancellationReason':reason
+          'items.$.cancellationReason':returnReason
       } }
       );
   
