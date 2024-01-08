@@ -42,6 +42,10 @@ userRoute.get('/shop/filter',userController.loadShop);
 
 userRoute.get("/product", userController.loadProduct);
 
+userRoute.get('/product-ratings',userController.loadRatings);
+
+userRoute.post('/review', userController.postReview)
+
 userRoute.get('/forgetPass', auth.isLogout, userController. loadEmailInputForgetPass);
 
 userRoute.post('/forgetPass',userController.verifyEmailForPass)

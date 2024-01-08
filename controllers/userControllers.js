@@ -5,12 +5,14 @@ const Cart = require('../models/cartModel');
 const Order = require('../models/orderModel')
 const bannerModel = require('../models/bannerModel')
 const bcrypt = require("bcrypt");
+const moment = require('moment')
 const { error } = require("console");
 const dotenv = require("dotenv");
 const nodemailer = require("nodemailer");
 const randomstring = require("randomstring");
 const userOtpVerification = require("../models/userOtpVerification");
 const { request } = require("http");
+const { query } = require("express");
 dotenv.config();
 
 const securePassword = async (password) => {
@@ -681,36 +683,50 @@ const loadProduct = async (req, res) => {
 
     const products = await Products.find({}).populate({
       path: 'offer',
-      // match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
+      match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
     }).populate({
       path: 'category',
       populate: {
           path: 'offer',
-          // match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
+          match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
       }
-    });
+    }).populate('reviews.user_id');
 
     const product = await Products.findOne({ _id: productId }).populate({
       path: 'offer',
-      // match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
+      match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
     }).populate({
       path: 'category',
       populate: {
           path: 'offer',
-          // match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
+          match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
       }
-    });
+    }).populate('reviews.user_id');
+
+    console.log('pro:',product);
+
+    // Extract ratings from reviews
+const ratings = product.reviews.map(review => review.rating);
+
+// Calculate the average rating
+const averageRating = ratings.reduce((total, rating) => total + rating, 0) / ratings.length;
+
+console.log('Average Rating:', averageRating);
 
     const sameCategoryProducts = products.filter(
       (pro) => pro.category.name === product.category.name
     );
 
 
+
+
     res.render("product-details", {
       product: product,
       products: sameCategoryProducts,
       user,
-      currentRoute: '/shop' 
+      currentRoute: '/shop' ,
+      averageRating,
+      moment
     });
   } catch (error) {
     console.log(error.message);
@@ -1347,6 +1363,111 @@ const loadWallet = async (req, res) => {
   }
 };
 
+const loadRatings = async (req, res) => {
+  try {
+    console.log('q:',req.query);
+
+    const productId = req.query.id;
+    console.log(productId);
+    const { userId } = req.session;
+
+    const user = await User.findOne({ _id: userId });
+
+    const orderData = await Order.find({
+      user_id: userId,
+      'items.product_id': productId,
+      'items.ordered_status': 'delivered',
+    });
+
+    const productPurchased = orderData.length > 0;
+
+    const product = await Products.aggregate([
+      { $unwind: '$reviews' }, // Unwind the reviews array
+    
+    ]).exec();
+    
+    const filteredProducts = product.filter(product => product._id.toString() === productId);
+    
+    const filteredProductsByUser = filteredProducts.filter(product => {
+      return product.reviews.user_id.toString() === userId;
+    });
+    
+
+    if (product) {
+      // User has provided ratings for the product
+      const reviews = filteredProductsByUser[0]?.reviews;
+    
+
+      // You can now use the 'reviews' data to render on the page
+      res.render('ratings', { user, orderData, productPurchased, productId, reviews });
+    } else {
+      // User has not provided ratings for the product
+      res.render('ratings', { user, orderData, productPurchased, productId});
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.redirect('/500');
+  }
+};
+
+
+const postReview = async (req, res) => {
+  try {
+  
+    // Assuming req.body.verifyData is the URL-encoded string
+    console.log(req.body);
+
+    // Now you can access the properties
+    const { description, rate } = req.body;
+
+   
+    const { userId } = req.session;
+    const productId = req.query.id;
+    const reviewId = req.body.reviewId;
+    let product;
+    if(reviewId){
+      product = await Products.findOne({ _id: productId, 'reviews._id': reviewId });
+    }
+    
+  
+
+    if (product) {
+      // If the review exists, update it
+      await Products.updateOne(
+        { _id: productId, 'reviews._id': reviewId },
+        {
+          $set: {
+            'reviews.$.user_id': userId,
+            'reviews.$.description': description,
+            'reviews.$.rating': parseInt(rate),
+            'reviews.$.createdAt': new Date(),
+          },
+        }
+      );
+    } else {
+      // If the review does not exist, create a new one
+      await Products.updateOne(
+        { _id: productId },
+        {
+          $push: {
+            reviews: {
+              user_id: userId,
+              description: description,
+              rating: parseInt(rate),
+              createdAt: new Date(),
+            },
+          },
+        }
+      );
+    }
+
+    res.redirect(`/product?productId=${productId}`);
+  } catch (error) {
+    console.log(error.message);
+    res.redirect('/500');
+  }
+};
+
 
 
 
@@ -1383,5 +1504,8 @@ module.exports = {
   loadBlockedUser,
   changePassword,
   loadWallet,
+  loadRatings,
+  postReview,
+  
   
 }

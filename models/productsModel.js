@@ -41,7 +41,16 @@ name: {
   },
   offerPrice:{
     type:Number
-  }
+  },
+  reviews:[{
+    user_id: {
+      type : mongoose.Schema.Types.ObjectId,
+      ref:"User"
+    },
+    rating:{ type:Number},
+    description:{ type:String },
+    createdAt: {type: Date},
+  }],
 
 });
 

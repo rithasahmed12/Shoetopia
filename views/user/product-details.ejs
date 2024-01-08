@@ -79,6 +79,17 @@
     right: 10;
     z-index: 1;
 }
+.star-date {
+    color: #dbcc8f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.rating-value {
+    margin-left: 5px; /* Adjust the margin as needed */
+}
 
      </style>
 
@@ -113,12 +124,16 @@
                       <h3><%= product.name %></h3>
                       <div class="rating d-flex">
                               <p class="text-left mr-4">
-                                  <a href="#" class="mr-2">5.0</a>
-                                  <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                  <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                  <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                  <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                  <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                   <% if (averageRating){ %> 
+                                    <a href="#" class="mr-2"><%= averageRating.toFixed(1) %></a>
+                                    <% }else { %>
+                                        <a href="#" class="mr-2"> 0.0 </a>
+                                    <% } %> 
+                                 
+                                  <% for (let i = 1; i <= 5; i++) { %>
+                                    <span style="color: #dbcc8f;"><i class="<%= i <= averageRating ? 'ion-ios-star' : 'ion-ios-star-outline' %>"></i></span>
+                                <% } %>
+                               
                               </p>
                              
                               <p class="text-left">
@@ -242,7 +257,7 @@
               <div class="nav nav-pills d-flex text-center justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
   
-                <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Manufacturer</a>
+                <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Rating & Reviews</a>
   
   
               </div>
@@ -259,11 +274,69 @@
                 </div>
   
                 <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
-                    <div class="p-4">
-                        <h3 class="mb-4">Manufactured By Nike</h3>
-                        <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
+                    <div class="row p-4">
+                        <div class="col-md-7">
+                            <% if(product.reviews.length > 0) { %> 
+                                <% product.reviews.forEach(review => { %>
+                                
+                                    <div class="review">
+                                        <div class="desc">
+                                            <h4>
+                                                <h5 class="text-left" style="font-weight: 600; text-transform: uppercase;"><%= review.user_id.username %></h5>
+                                                <p class="star-date">
+                                                    <span class="stars">
+                                                        <% for (let i = 1; i <= 5; i++) { %>
+                                                            <i class="<%= i <= review.rating ? 'ion-ios-star' : 'ion-ios-star-outline' %>"></i>
+                                                        <% } %>
+                                                        
+                                                        <span class="rating-value"><%= (review.rating).toFixed(1) %></span>
+                                                    </span>
+                                                    
+                                                    <span class="text-right date"><%= moment(review.createdAt).format('DD/MM/YYYY') %></span>
+                                                </p>
+                                            </h4>
+                                            <p><%= review.description %></p>
+                                        </div>
+                                    </div>
+                               
+                                    
+                            <% }) %>
+                            <% }else { %>
+                                <div class="review" style="text-align: center;">
+                                    <h2>no reviews</h2>
+                                </div>
+                            <% } %>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="rating-wrap">
+                                 <!-- Add the "Rate Product" button here -->
+                                 <a href="/product-ratings?id=<%= product._id %>"><button type="button" class="btn btn-primary mb-3">
+                                    Rate Product
+                                </button></a>
+                                <p class="star">
+                                    <span>
+                                        <% for (let i = 1; i <= 5; i++) { %>
+                                            <i class="<%= i <= averageRating ? 'ion-ios-star' : 'ion-ios-star-outline' %>"></i>
+                                        <% } %>
+                                        <% if (averageRating){ %> 
+                                            <a href="#" class="mr-2"><%= averageRating.toFixed(1) %></a>
+                                            <% }else { %>
+                                                <a href="#" class="mr-2"> 0.0 </a>
+                                            <% } %> 
+                                       
+                                    </span>
+                                    <span><%= product.reviews.length %> reviews</span>
+                                </p>
+                               
+                             
+                                <!-- ... Remaining rating options ... -->
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
             
               </div>
             </div>
@@ -292,11 +365,22 @@
                               </div>
                               <div class="rating">
                                   <p class="text-right mb-0">
-                                      <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                      <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                      <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                      <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                      <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                    <% const averageRating = productList.reviews.reduce((sum, review) => sum + review.rating, 0) / productList.reviews.length; %>
+  
+  
+                                    <% for (let i = 1; i <= 5; i++) { %>
+                                      <% if (i <= averageRating) { %>
+                                        <a href="#"><span class="ion-ios-star"></span></a>
+                                      <% } else { %>
+                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                      <% } %>
+                                    <% } %>
+                                    <% if (averageRating){ %> 
+                                      
+                                      <span><%= averageRating.toFixed(1) %></span>
+                                      <% }else { %>
+                                        <span>0.0<span>
+                                      <% } %>  
                                   </p>
                               </div>
                           </div>
