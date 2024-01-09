@@ -329,7 +329,6 @@ const loadDashboard = async (req, res) => {
       return foundMonth || defaultMonth;
     });
 
-    console.log("Monthly Sales Data:", updatedMonthlyValues);
 
     // Yearly sales data
     const yearlySalesData = await Order.aggregate([
@@ -380,66 +379,114 @@ const loadDashboard = async (req, res) => {
       return foundYear || defaultYear;
     });
 
-    function getCurrentWeekDates() {
-      const currentDate = new Date();
-      const currentDay = currentDate.getDay(); // 0 is Sunday, 1 is Monday, ..., 6 is Saturday
-      const diff = currentDay - 0;
+    // Monthly total orders
+const monthlyTotalOrders = await Order.aggregate([
+  {
+    $unwind: "$items",
+  },
+  {
+    $match: {
+      createdAt: { $gte: new Date(currentYear, currentMonth - 1, 1) },
+      status: { $ne: "pending" },
+    },
+  },
+  {
+    $group: {
+      _id: { $month: "$createdAt" },
+      totalOrders: { $sum: 1 },
+    },
+  },
+]);
 
-      const startDate = new Date(currentDate);
-      startDate.setDate(currentDate.getDate() - diff);
+// Update monthly total orders based on retrieved data
+const updatedMonthlyTotalOrders = defaultMonthlyValues.map((defaultMonth) => {
+  const foundMonth = monthlyTotalOrders.find(
+    (monthData) => monthData._id === defaultMonth.month
+  );
+  return { month: defaultMonth.month, totalOrders: foundMonth ? foundMonth.totalOrders : 0 };
+});
 
-      const endDate = new Date(currentDate);
-      endDate.setDate(currentDate.getDate() + (6 - diff));
 
-      return {
-        startDate: startDate.toISOString().split("T")[0],
-        endDate: endDate.toISOString().split("T")[0],
-      };
-    }
+// Yearly total orders
+const yearlyTotalOrders = await Order.aggregate([
+  {
+    $unwind: "$items",
+  },
+  {
+    $match: {
+      createdAt: { $gte: new Date(currentYear - yearsToInclude, 0, 1) },
+      status: { $ne: "pending" },
+    },
+  },
+  {
+    $group: {
+      _id: { $year: "$createdAt" },
+      totalOrders: { $sum: 1 },
+    },
+  },
+]);
 
-    // Weekly sales data
-    const weekDates = getCurrentWeekDates();
-    const weeklySalesData = await Order.aggregate([
-      {
-        $unwind: "$items",
-      },
-      {
-        $match: {
-          "items.ordered_status": "delivered",
-          createdAt: {
-            $gte: new Date(weekDates.startDate),
-            $lte: new Date(weekDates.endDate),
-          },
-          status: { $ne: "cancelled" },
-        },
-      },
-      {
-        $group: {
-          _id: { $week: "$createdAt" },
-          total: {
-            $sum: {
-              $subtract: [
-                { $multiply: ["$items.price", "$items.quantity"] },
-                "$items.couponDiscountTotal",
-              ],
-            },
-          },
-          count: { $sum: 1 },
-        },
-      },
-      {
-        $project: {
-          _id: 0,
-          week: "$_id",
-          total: "$total",
-          count: "$count",
-        },
-      },
-    ]);
+// Update yearly total orders based on retrieved data
+const updatedYearlyTotalOrders = defaultYearlyValues.map((defaultYear) => {
+  const foundYear = yearlyTotalOrders.find(
+    (yearData) => yearData._id === defaultYear.year
+  );
+  return { year: defaultYear.year, totalOrders: foundYear ? foundYear.totalOrders : 0 };
+});
 
-    console.log("Weekly Sales Data:", weeklySalesData);
 
-    console.log("Yearly Sales Data:", updatedYearlyValues);
+
+   // Monthly total users
+const monthlyTotalUsers = await User.aggregate([
+  {
+    $match: {
+      createdAt: { $gte: new Date(currentYear, currentMonth - 1, 1) },
+    },
+  },
+  {
+    $group: {
+      _id: { $month: "$createdAt" },
+      totalUsers: { $sum: 1 },
+    },
+  },
+]);
+
+// Update monthly total users based on retrieved data
+const updatedMonthlyTotalUsers = defaultMonthlyValues.map((defaultMonth) => {
+  const foundMonth = monthlyTotalUsers.find(
+    (monthData) => monthData._id === defaultMonth.month
+  );
+  return { month: defaultMonth.month, totalUsers: foundMonth ? foundMonth.totalUsers : 0 };
+});
+
+
+// Yearly total users
+const yearlyTotalUsers = await User.aggregate([
+  {
+    $match: {
+      createdAt: { $gte: new Date(currentYear - yearsToInclude, 0, 1) },
+    },
+  },
+  {
+    $group: {
+      _id: { $year: "$createdAt" },
+      totalUsers: { $sum: 1 },
+    },
+  },
+]);
+
+// Update yearly total users based on retrieved data
+const updatedYearlyTotalUsers = defaultYearlyValues.map((defaultYear) => {
+  const foundYear = yearlyTotalUsers.find(
+    (yearData) => yearData._id === defaultYear.year
+  );
+  return { year: defaultYear.year, totalUsers: foundYear ? foundYear.totalUsers : 0 };
+});
+
+
+
+
+
 
     res.render("dashboard", {
       monthlySales,
@@ -454,6 +501,11 @@ const loadDashboard = async (req, res) => {
       moment,
       updatedMonthlyValues,
       updatedYearlyValues,
+      updatedMonthlyTotalOrders,
+      updatedYearlyTotalOrders,
+      updatedMonthlyTotalUsers,
+      updatedYearlyTotalUsers
+
     });
   } catch (error) {
     res.redirect("/500");
@@ -620,8 +672,7 @@ const listCategories = async (req, res) => {
 
     res.json({ status: "success", category: updatedCategory });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ status: "error", error: "Internal Server Error" });
+  res.redirect('/500');
   }
 };
 
@@ -641,8 +692,7 @@ const unlistCategories = async (req, res) => {
 
     res.json({ status: "success", category: updatedCategory });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ status: "error", error: "Internal Server Error" });
+    res.redirect('/500');
   }
 };
 
@@ -654,8 +704,7 @@ const deleteCategory = async (req, res) => {
 
     res.json({ success: true });
   } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ success: false, error: "Internal Server Error" });
+      res.redirect('/500');
   }
 };
 
@@ -790,7 +839,7 @@ const unlistProducts = async (req, res) => {
     res.json({ status: "success", product: productId });
   } catch (error) {
     res.redirect("/500");
-    res.status(500).json({ status: "error", error: "Internal Server Error" });
+  
   }
 };
 
@@ -803,7 +852,7 @@ const deleteProducts = async (req, res) => {
     res.json({ success: true });
   } catch (error) {
     res.redirect("/500");
-    res.status(500).json({ success: false, error: "Internal Server Error" });
+   
   }
 };
 
@@ -884,7 +933,6 @@ const editProducts = async (req, res) => {
     res.redirect("/admin/products");
   } catch (error) {
     res.redirect("/500");
-    res.status(500).send("Internal Server Error");
   }
 };
 
@@ -897,7 +945,6 @@ const deleteImg = async (req, res) => {
     res.send({ success: true });
   } catch (error) {
     res.redirect("/500");
-    res.status(500).send({ success: false, error: error.message });
   }
 };
 

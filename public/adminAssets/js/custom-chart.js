@@ -13,8 +13,8 @@
         let jul = document.getElementById('jul').value
         let aug = document.getElementById('aug').value
         let sep = document.getElementById('sep').value
-        let oct = document.getElementById('nov').value
-        let nov = document.getElementById('dec').value
+        let oct = document.getElementById('oct').value
+        let nov = document.getElementById('nov').value
         let dec = document.getElementById('dec').value
     
         let year2018 = document.getElementById('2018').value;
@@ -24,7 +24,51 @@
         let year2022 = document.getElementById('2022').value;
         let year2023 = document.getElementById('2023').value;
         let year2024 = document.getElementById('2024').value;
-    
+
+        let Jan = document.getElementById('Jan').value;
+        let Feb = document.getElementById('Feb').value;
+        let Mar = document.getElementById('Mar').value;
+        let Apr = document.getElementById('Apr').value;
+        let May = document.getElementById('May').value;
+        let Jun = document.getElementById('Jun').value;
+        let Jul = document.getElementById('Jul').value;
+        let Aug = document.getElementById('Aug').value;
+        let Sep = document.getElementById('Sep').value;
+        let Oct = document.getElementById('Oct').value;
+        let Nov = document.getElementById('Nov').value;
+        let Dec = document.getElementById('Dec').value;
+
+        let order2018 = document.getElementById('order2018').value;
+        let order2019 = document.getElementById('order2019').value;
+        let order2020 = document.getElementById('order2020').value;
+        let order2021 = document.getElementById('order2021').value;
+        let order2022 = document.getElementById('order2022').value;
+        let order2023 = document.getElementById('order2023').value;
+        let order2024 = document.getElementById('order2024').value;
+
+        let JanUsers = document.getElementById('JAN').value;
+        let FebUsers = document.getElementById('FEB').value;
+        let MarUsers = document.getElementById('Mar').value;
+        let AprUsers = document.getElementById('APR').value;
+        let MayUsers = document.getElementById('MAY').value;
+        let JunUsers = document.getElementById('JUN').value;
+        let JulUsers = document.getElementById('JUL').value;
+        let AugUsers = document.getElementById('AUG').value;
+        let SepUsers = document.getElementById('SEP').value;
+        let OctUsers = document.getElementById('OCT').value;
+        let NovUsers = document.getElementById('NOV').value;
+        let DecUsers = document.getElementById('DEC').value;
+
+        let users2018 = document.getElementById('users2018').value;
+        let users2019 = document.getElementById('users2019').value;
+        let users2020 = document.getElementById('users2020').value;
+        let users2021 = document.getElementById('users2021').value;
+        let users2022 = document.getElementById('users2022').value;
+        let users2023 = document.getElementById('users2023').value;
+        let users2024 = document.getElementById('users2024').value;
+
+
+
         // Initial data for the chart
         var initialData1 = {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -43,8 +87,17 @@
                     fill: true,
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132)',
-                    data: [/* your orders data for each month */]
-                }
+                    data: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+                },
+                {
+                    label: 'Users',
+                    tension: 0.3,
+                    fill: true,
+                    backgroundColor: 'rgba(4, 209, 130, 0.2)',
+                    borderColor: 'rgb(4, 209, 130)',
+                    data: [JanUsers, FebUsers, MarUsers, AprUsers, MayUsers, JunUsers, JulUsers, AugUsers, SepUsers, OctUsers, NovUsers, DecUsers]
+                  }
+                  
             ]
         };
     
@@ -67,6 +120,12 @@
         // Monthly and yearly data
         var monthlyData = [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec];
         var yearlyData = [year2018, year2019, year2020, year2021, year2022, year2023, year2024];
+
+        var monthlyOrderData = [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec];
+        var yearlyOrderData = [order2018, order2019, order2020, order2021, order2022, order2023 ,order2024 ];
+
+        var monthlyUserData = [JanUsers, FebUsers, MarUsers, AprUsers, MayUsers, JunUsers, JulUsers, AugUsers, SepUsers, OctUsers, NovUsers, DecUsers];
+        var yearlyUserData = [users2018, users2019, users2020, users2021, users2022, users2023, users2024]
     
         // Click event for elements with the class "toggle-chart"
         $('.toggle-chart').on('click', function () {
@@ -77,10 +136,13 @@
     
             // Update data based on chart type
             var newData = chartType === 'monthly' ? monthlyData : yearlyData;
+            var newOrderData = chartType === 'monthly' ? monthlyOrderData : yearlyOrderData;
+            var newUsersData = chartType === 'monthly' ? monthlyUserData : yearlyUserData;
     
             // Update dataset values for both Sales and Orders
             chart1.data.datasets[0].data = newData; // Sales data
-            chart1.data.datasets[1].data = [/* your orders data for each month */]; // Orders data
+            chart1.data.datasets[1].data = newOrderData; // Orders data
+            chart1.data.datasets[2].data = newUsersData; // Orders data
     
             // Update labels for the dataset
             chart1.data.labels = labels1;
