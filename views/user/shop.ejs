@@ -1,4 +1,17 @@
-<%- include('../layouts/header.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Shoetopia - Shop</title>
+  <link rel="icon" type="image/x-icon" href="/assets/images/headericon.png">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
   <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
@@ -14,13 +27,14 @@
 
   <link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
   <link rel="stylesheet" href="/assets/css/jquery.timepicker.css">
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
 
   <link rel="stylesheet" href="/assets/css/flaticon.css">
   <link rel="stylesheet" href="/assets/css/icomoon.css">
   <link rel="stylesheet" href="/assets/css/style.css">
-<!-- Include ion-rangeslider CSS from CDN -->
+  <!-- Include ion-rangeslider CSS from CDN -->
 
 
 
@@ -57,472 +71,470 @@
 
   <% include('../layouts/center.ejs') %>
 
-    <body class="goto-here">
-      <%- include('../layouts/navbar.ejs') %>
-        <!-- END nav -->
+<body class="goto-here">
+  <%- include('../layouts/navbar.ejs') %>
+    <!-- END nav -->
 
 
 
 
-        <section class="ftco-section bg-light">
-          <div class="hero-bread d-flex align-items-center justify-content-center mb-4"
-            style="background-color: #dbcc8f;">
-            <div class="row no-gutters slider-text align-items-center justify-content-center mb-5">
-              <div class="col-md-9 ftco-animate text-center">
-                <p class="breadcrumbs">
-                  <span class="mr-2"><a style="color: white;" href="/">Home</a></span><span>Shop</span>
-                </p>
-                <h1 class="mb-0 bread">Shop</h1>
+    <section class="ftco-section bg-light">
+      <div class="hero-bread d-flex align-items-center justify-content-center mb-4" style="background-color: #dbcc8f;">
+        <div class="row no-gutters slider-text align-items-center justify-content-center mb-5">
+          <div class="col-md-9 ftco-animate text-center">
+            <p class="breadcrumbs">
+              <span class="mr-2"><a style="color: white;" href="/">Home</a></span><span>Shop</span>
+            </p>
+            <h1 class="mb-0 bread">Shop</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-lg-3">
+            <div class="sidebar">
+              <div class="sidebar-box-2">
+
+
+
+                <form action="#" class="search-form">
+                  <div class="form-group">
+                    <span class="icon ion-ios-search"></span>
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search for a product"
+                      autocomplete="off">
+                  </div>
+                </form>
+
+
+
+
+                <div class="sidebar-box ftco-animate">
+                  <ul class="categories panel ">
+                    <a href="/shop">
+                      <h3 class="heading">All Categories</h3>
+                    </a>
+                    <% categories.forEach(category=> { %>
+
+                      <li class="categoryIsSelected(<%=category.name %>) ? 'selected-category' : ''">
+                        <a href="/shop?Id=<%= category.name %>" style="text-transform: uppercase;">
+                          <%= category.name %><span></span>
+                        </a>
+                      </li>
+                      <% }) %>
+                  </ul>
+                </div>
+
               </div>
+              <div class="sidebar-box-2">
+                <h3 class="heading">Price Range</h3>
+                <form class="colorlib-form-2" id="filterForm">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <div id="priceSlider"></div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="hidden" id="priceFrom" name="priceFrom" value="0" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="hidden" id="priceTo" name="priceTo" value="10000" />
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Separate div for sorting -->
+              <div class="sidebar-box-2">
+                <h3 class="heading">Sort by Price</h3>
+                <form id="sortForm">
+                  <div class="form-group">
+                    <label for="priceSort">Sort by Price:</label>
+                    <select name="priceSort" id="priceSort" class="form-control">
+                      <option value="">Default </option>
+                      <option value="asc">Low to High</option>
+                      <option value="desc">High to Low</option>
+                    </select>
+                  </div>
+
+                </form>
+              </div>
+
+
+
+
+
+
             </div>
           </div>
 
-          <div class="container">
-            <div class="row">
-              <div class="col-md-4 col-lg-3">
-                <div class="sidebar">
-                  <div class="sidebar-box-2">
+          <div class="col-md-8 col-lg-9">
+            <%- include('partials/product-list', { products: products, categories: categories, req: req,user }) %>
+
+          </div>
+
+        </div>
+    </section>
 
 
 
-                    <form action="#" class="search-form">
-                      <div class="form-group">
-                        <span class="icon ion-ios-search"></span>
-                        <input type="text" class="form-control" id="searchInput" placeholder="Search for a product"
-                          autocomplete="off">
-                      </div>
-                    </form>
+    <%- include('../layouts/page-footer.ejs') %>
 
 
 
+      <!-- loader -->
+      <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+          <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+          <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+            stroke="#F96D00" />
+        </svg></div>
 
-                    <div class="sidebar-box ftco-animate">
-                      <ul class="categories panel ">
-                        <a href="/shop">
-                          <h3 class="heading">All Categories</h3>
-                        </a>
-                        <% categories.forEach(category=> { %>
 
-                          <li class="categoryIsSelected(<%=category.name %>) ? 'selected-category' : ''">
-                            <a href="/shop?Id=<%= category.name %>" style="text-transform: uppercase;">
-                              <%= category.name %><span></span>
-                            </a>
-                          </li>
-                          <% }) %>
-                      </ul>
-                    </div>
+      <script src="/assets/js/jquery.min.js"></script>
+      <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/js/popper.min.js"></script>
+      <script src="/assets/js/bootstrap.min.js"></script>
+      <script src="/assets/js/jquery.easing.1.3.js"></script>
+      <script src="/assets/js/jquery.waypoints.min.js"></script>
+      <script src="/assets/js/jquery.stellar.min.js"></script>
+      <script src="/assets/js/owl.carousel.min.js"></script>
+      <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+      <script src="/assets/js/aos.js"></script>
+      <script src="/assets/js/jquery.animateNumber.min.js"></script>
+      <script src="/assets/js/bootstrap-datepicker.js"></script>
+      <script src="/assets/js/scrollax.min.js"></script>
+      <!-- Include ion-rangeslider JS from CDN -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+      <script src="/assets/js/google-map.js"></script>
+      <script src="/assets/js/main.js"></script>
 
-                  </div>
-                  <div class="sidebar-box-2">
-                    <h3 class="heading">Price Range</h3>
-                    <form class="colorlib-form-2" id="filterForm">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div id="priceSlider"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="hidden" id="priceFrom" name="priceFrom" value="0" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="hidden" id="priceTo" name="priceTo" value="10000" />
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary">Apply Filters</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                
-                <!-- Separate div for sorting -->
-                <div class="sidebar-box-2">
-                    <h3 class="heading">Sort by Price</h3>
-                    <form id="sortForm">
-                        <div class="form-group">
-                            <label for="priceSort">Sort by Price:</label>
-                            <select name="priceSort" id="priceSort" class="form-control">
-                              <option value="">Default </option>
-                                <option value="asc">Low to High</option>
-                                <option value="desc">High to Low</option>
-                            </select>
-                        </div>
-                        
-                    </form>
-                </div>
-                
-                
+
+      <!-- Axios CDN -->
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+      <!-- Swal (SweetAlert2) CDN -->
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 
+      <!-- Your HTML file with the script at the bottom -->
+      <!-- ... your existing HTML code ... -->
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          // Initialize ion-rangeslider
+          $('#priceSlider').ionRangeSlider({
+            type: 'double',
+            min: 0,
+            max: 10000,
+            from: 0,
+            to: 10000,
+            grid: true,
 
-                </div>
-              </div>
+            postfix: '₹ ', // Add a currency symbol or any other postfix
+            onChange: function (data) {
+              // Optionally, you can update the input fields dynamically
+              var priceFromInput = document.getElementById('priceFrom');
+              var priceToInput = document.getElementById('priceTo');
 
-              <div class="col-md-8 col-lg-9">
-                <%- include('partials/product-list', { products: products, categories: categories, req: req,user }) %>
+              if (priceFromInput && priceToInput) {
+                priceFromInput.value = data.from;
+                priceToInput.value = data.to;
+              } else {
+                console.error("Elements with IDs 'priceFrom' and 'priceTo' not found.");
+              }
+            }
+          });
 
-              </div>
+        });
+      </script>
 
-            </div>
-        </section>
+      <script>
+        async function addToCart(event, productId) {
+          try {
+            event.preventDefault();
+            console.log('hatgdfggllloo');
 
+            const quantity = 1;
 
+            const data = {
+              productId: productId,
+              quantity: quantity
+            };
 
-        <%- include('../layouts/page-footer.ejs') %>
+            const response = await axios.post("/addToCart", data);
 
+            if (response.data.success) {
+              Swal.fire({
+                title: "Success",
+                text: "Product added to cart",
+                icon: "success",
+                showCancelButton: true,
+                confirmButtonText: "Go to Cart", // Text for the "Go to Cart" button
+                cancelButtonText: "Cancel", // Text for the "Cancel" button
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // Redirect to the cart page when the "Go to Cart" button is clicked
+                  window.location.href = "/cart"; // Replace "/cart" with your actual cart page URL
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                  // Handle the cancel action if needed (not needed in this case)
+                }
+              });
 
-
-          <!-- loader -->
-          <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-              <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-              <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
-            </svg></div>
-
-
-          <script src="/assets/js/jquery.min.js"></script>
-          <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
-          <script src="/assets/js/popper.min.js"></script>
-          <script src="/assets/js/bootstrap.min.js"></script>
-          <script src="/assets/js/jquery.easing.1.3.js"></script>
-          <script src="/assets/js/jquery.waypoints.min.js"></script>
-          <script src="/assets/js/jquery.stellar.min.js"></script>
-          <script src="/assets/js/owl.carousel.min.js"></script>
-          <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-          <script src="/assets/js/aos.js"></script>
-          <script src="/assets/js/jquery.animateNumber.min.js"></script>
-          <script src="/assets/js/bootstrap-datepicker.js"></script>
-          <script src="/assets/js/scrollax.min.js"></script>
-          <!-- Include ion-rangeslider JS from CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
-          <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-          <script src="/assets/js/google-map.js"></script>
-          <script src="/assets/js/main.js"></script>
-
-
-          <!-- Axios CDN -->
-          <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-          <!-- Swal (SweetAlert2) CDN -->
-          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-          <!-- Include jQuery before the script if using jQuery -->
-          <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+            } else if (response.data.limited) {
+              Swal.fire({
+                title: "Error",
+                text: 'Sorry!Product stock exceeded',
+                icon: 'error',
+                timer: 2000
+              })
 
 
-          <!-- Your HTML file with the script at the bottom -->
-          <!-- ... your existing HTML code ... -->
-          <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Initialize ion-rangeslider
-                $('#priceSlider').ionRangeSlider({
-                    type: 'double',
-                    min: 0,
-                    max: 10000,
-                    from: 0,
-                    to: 10000,
-                    grid: true,
-                   
-                    postfix: '₹ ', // Add a currency symbol or any other postfix
-                    onChange: function (data) {
-                        // Optionally, you can update the input fields dynamically
-                        var priceFromInput = document.getElementById('priceFrom');
-    var priceToInput = document.getElementById('priceTo');
 
-    if (priceFromInput && priceToInput) {
-        priceFromInput.value = data.from;
-        priceToInput.value = data.to;
-    } else {
-        console.error("Elements with IDs 'priceFrom' and 'priceTo' not found.");
-    }
-                    }
-                });
-        
+            } else {
+              Swal.fire({
+                title: "Error adding to cart",
+                text: "Please login to continue",
+                icon: "error",
+                showCancelButton: true,
+                confirmButtonText: "Login", // Text for the login button
+                cancelButtonText: "Cancel", // Text for the cancel button
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // Redirect to the login section when the "Login" button is clicked
+                  window.location.href = "/login"; // Replace "/login" with your actual login page URL
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                  // Handle the cancel action if needed (not needed in this case)
+                }
+              });
+
+
+            }
+          } catch (error) {
+
+            alert("Error");
+          }
+        }
+
+
+        $(document).ready(function () {
+          var searchTerm;
+          var selectedCategory;
+          var priceFrom;
+          var priceTo;
+          var currentPage = 1; // Initialize the current page
+
+
+
+          function sendFilterRequest(data, successCallback) {
+            console.log('data:', data);
+            $.ajax({
+              url: '/shop/filter',
+              method: 'GET',
+              data: data,
+              success: function (response) {
+                // console.log(response);
+                $('.pagination').empty();
+
+                $('#product-listing').html(response);
+                if (successCallback && typeof successCallback === 'function') {
+                  successCallback(response);
+                }
+              },
+              error: function (error) {
+                console.error('Error:', error);
+              }
             });
-        </script>
-
-          <script>
-            async function addToCart(event, productId) {
-              try {
-                event.preventDefault();
-                console.log('hatgdfggllloo');
-
-                const quantity = 1;
-
-                const data = {
-                  productId: productId,
-                  quantity: quantity
-                };
-
-                const response = await axios.post("/addToCart", data);
-
-                if (response.data.success) {
-                  Swal.fire({
-                    title: "Success",
-                    text: "Product added to cart",
-                    icon: "success",
-                    showCancelButton: true,
-                    confirmButtonText: "Go to Cart", // Text for the "Go to Cart" button
-                    cancelButtonText: "Cancel", // Text for the "Cancel" button
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      // Redirect to the cart page when the "Go to Cart" button is clicked
-                      window.location.href = "/cart"; // Replace "/cart" with your actual cart page URL
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                      // Handle the cancel action if needed (not needed in this case)
-                    }
-                  });
-
-                } else if (response.data.limited) {
-                  Swal.fire({
-                    title: "Error",
-                    text: 'Sorry!Product stock exceeded',
-                    icon: 'error',
-                    timer: 2000
-                  })
+          }
 
 
+          function performSearch(pageNumber) {
+            console.log('pageNOO:::', pageNumber);
+            var data = {
+              search: searchTerm,
+              category: selectedCategory,
+              page: pageNumber, // Update the page parameter
+              priceFrom: [$('#priceFrom').val()], // Add the price filters
+              priceTo: [$('#priceTo').val()],
+              priceSort: [$('#priceSort').val()]
+            };
+            sendFilterRequest(data);
+          }
 
-                } else {
-                  Swal.fire({
-                    title: "Error adding to cart",
-                    text: "Please login to continue",
-                    icon: "error",
-                    showCancelButton: true,
-                    confirmButtonText: "Login", // Text for the login button
-                    cancelButtonText: "Cancel", // Text for the cancel button
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      // Redirect to the login section when the "Login" button is clicked
-                      window.location.href = "/login"; // Replace "/login" with your actual login page URL
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                      // Handle the cancel action if needed (not needed in this case)
-                    }
-                  });
+          // Live search as the user types
+          $('#searchInput').on('input', function () {
+            searchTerm = $(this).val().trim();
+            selectedCategory = getSelectedCategory();
+            currentPage = 1; // Reset current page when searching
+            performSearch();
+          });
+
+          // Helper function to get selected category
+          function getSelectedCategory() {
+            var selectedCategoryElement = $('.categories.panel li.selected-category a');
+            return selectedCategoryElement.length > 0
+              ? selectedCategoryElement.attr('href').split('=')[1]
+              : undefined;
+          }
+
+          // Event handler for category filter
+          $('.categories.panel li a').on('click', function (e) {
+            e.preventDefault();
+            $('.categories.panel li').removeClass('selected-category');
+            $(this).parent('li').addClass('selected-category');
+            var category = $(this).attr('href').split('=')[1];
+            $('#priceFrom').val('');
+            $('#priceTo').val('');
+            $('#priceSort').val('')
+            currentPage = 1; // Reset current page when changing category
+            var data = { category: category };
+            sendFilterRequest(data);
+          });
+
+          // Event handler for form submission
+          $('#filterForm').submit(function (e) {
+            e.preventDefault();
+            $('#priceSort').val('')
+            // Serialize the form data
+            var formData = $(this).serialize();
+
+            // Get the price range values from the slider
+            var priceSliderData = $('#priceSlider').data("ionRangeSlider").result;
+            console.log('1:', priceSliderData.from);
+            console.log('2:', priceSliderData.to);
+            formData += '&priceFrom=' + priceSliderData.from;
+            formData += '&priceTo=' + priceSliderData.to;
+
+            // Get the selected category
+            var selectedCategory = getSelectedCategory();
+            formData += selectedCategory ? '&category=' + selectedCategory : '';
 
 
+
+            // Reset current page when applying filters
+            currentPage = 1;
+
+            // Send the filter request
+            var data = formData;
+            sendFilterRequest(data);
+          });
+
+          // Event handler for sorting option change
+          $('#priceSort').change(function () {
+            var selectedSortOption = $(this).val();
+            var selectedCategory = getSelectedCategory();
+            var formData = '&priceSort=' + selectedSortOption;
+            formData += selectedCategory ? '&category=' + selectedCategory : '';
+            var priceSliderData = $('#priceSlider').data("ionRangeSlider").result;
+            formData += '&priceFrom=' + priceSliderData.from;
+            formData += '&priceTo=' + priceSliderData.to;
+
+
+            currentPage = 1;
+            var data = formData;
+            sendFilterRequest(data);
+          });
+
+
+          // Event handler for pagination links
+          $(document).on('click', '.pagination a.page-link', function (e) {
+            e.preventDefault();
+            var currentPage = $(this).data('page');
+            selectedCategory = getSelectedCategory();
+            performSearch(currentPage);
+
+
+            // Scroll to the top of the page
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
+          });
+        });
+
+      </script>
+
+      <script>
+        function categoryIsSelected(selectedCategory) {
+          // Replace this with your logic to check if the selectedCategory matches the current category
+          var currentCategory = '<%= req.query.Id %>';
+          return currentCategory === selectedCategory;
+        }
+
+        async function addToWishlist(event, productId) {
+          try {
+            event.preventDefault();
+
+            const data = {
+              productId: productId,
+            };
+
+            const response = await axios.post("/addWishlist", data);
+
+            if (response.data.success) {
+              Swal.fire({
+                title: "Success",
+                text: "Product added to wishlist",
+                icon: "success",
+                showCancelButton: true,
+                confirmButtonText: "Go to Wishlist", // Text for the "Go to Wishlist" button
+                cancelButtonText: "Cancel", // Text for the "Cancel" button
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // Redirect to the wishlist page when the "Go to Wishlist" button is clicked
+                  window.location.href = "/wishlist"; // Replace "/wishlist" with your actual wishlist page URL
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                  // Handle the cancel action if needed (not needed in this case)
                 }
-              } catch (error) {
-
-                alert("Error");
-              }
-            }
-
-
-            $(document).ready(function () {
-              var searchTerm;
-              var selectedCategory;
-              var priceFrom;
-              var priceTo;
-              var currentPage = 1; // Initialize the current page
-
-
-
-              function sendFilterRequest(data, successCallback) {
-                console.log('data:', data);
-                $.ajax({
-                  url: '/shop/filter',
-                  method: 'GET',
-                  data: data,
-                  success: function (response) {
-                    // console.log(response);
-                    $('.pagination').empty();
-
-                    $('#product-listing').html(response);
-                    if (successCallback && typeof successCallback === 'function') {
-                      successCallback(response);
-                    }
-                  },
-                  error: function (error) {
-                    console.error('Error:', error);
-                  }
-                });
-              }
-
-
-              function performSearch(pageNumber) {
-                console.log('pageNOO:::', pageNumber);
-                var data = {
-                  search: searchTerm,
-                  category: selectedCategory,
-                  page: pageNumber, // Update the page parameter
-                  priceFrom: [$('#priceFrom').val()], // Add the price filters
-                  priceTo: [$('#priceTo').val()],
-                  priceSort: [$('#priceSort').val()] 
-                };
-                sendFilterRequest(data);
-              }
-
-              // Live search as the user types
-              $('#searchInput').on('input', function () {
-                searchTerm = $(this).val().trim();
-                selectedCategory = getSelectedCategory();
-                currentPage = 1; // Reset current page when searching
-                performSearch();
+              });
+            } else if (response.data.used) {
+              Swal.fire({
+                title: "Already in wishlist",
+                text: "Product already in wishlist",
+                icon: "error",
+                showCancelButton: true,
+                confirmButtonText: "Go to Wishlist", // Text for the "Go to Wishlist" button
+                cancelButtonText: "Cancel", // Text for the "Cancel" button
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // Redirect to the wishlist page when the "Go to Wishlist" button is clicked
+                  window.location.href = "/wishlist"; // Replace "/wishlist" with your actual wishlist page URL
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                  // Handle the cancel action if needed (not needed in this case)
+                }
               });
 
-              // Helper function to get selected category
-              function getSelectedCategory() {
-                var selectedCategoryElement = $('.categories.panel li.selected-category a');
-                return selectedCategoryElement.length > 0
-                  ? selectedCategoryElement.attr('href').split('=')[1]
-                  : undefined;
-              }
-
-              // Event handler for category filter
-              $('.categories.panel li a').on('click', function (e) {
-                e.preventDefault();
-                $('.categories.panel li').removeClass('selected-category');
-                $(this).parent('li').addClass('selected-category');
-                var category = $(this).attr('href').split('=')[1];
-                  $('#priceFrom').val('');
-                $('#priceTo').val('');
-                $('#priceSort').val('') 
-                currentPage = 1; // Reset current page when changing category
-                var data = { category: category };
-                sendFilterRequest(data);
-              });
-
-            // Event handler for form submission
-$('#filterForm').submit(function (e) {
-    e.preventDefault();
-    $('#priceSort').val('') 
-    // Serialize the form data
-    var formData = $(this).serialize();
-
-    // Get the price range values from the slider
-    var priceSliderData = $('#priceSlider').data("ionRangeSlider").result;
-    console.log('1:',priceSliderData.from);
-    console.log('2:',priceSliderData.to);
-    formData += '&priceFrom=' + priceSliderData.from;
-    formData += '&priceTo=' + priceSliderData.to;
-
-    // Get the selected category
-    var selectedCategory = getSelectedCategory();
-    formData += selectedCategory ? '&category=' + selectedCategory : '';
-
-   
-
-    // Reset current page when applying filters
-    currentPage = 1;
-
-    // Send the filter request
-    var data = formData;
-    sendFilterRequest(data);
-});
-
-// Event handler for sorting option change
-$('#priceSort').change(function () {
-    var selectedSortOption = $(this).val();
-    var selectedCategory = getSelectedCategory();
-    var formData = '&priceSort=' + selectedSortOption;
-    formData += selectedCategory ? '&category=' + selectedCategory : '';
-    var priceSliderData = $('#priceSlider').data("ionRangeSlider").result;
-    formData += '&priceFrom=' + priceSliderData.from;
-    formData += '&priceTo=' + priceSliderData.to;
-
-
-    currentPage = 1;
-    var data = formData;
-    sendFilterRequest(data);
-});
-
-
-              // Event handler for pagination links
-              $(document).on('click', '.pagination a.page-link', function (e) {
-                e.preventDefault();
-                var currentPage = $(this).data('page');
-                selectedCategory = getSelectedCategory();
-                performSearch(currentPage);
-                
-
-                // Scroll to the top of the page
-                $('html, body').animate({ scrollTop: 0 }, 'slow');
-              });
-            });
-
-          </script>
-
-          <script>
-            function categoryIsSelected(selectedCategory) {
-              // Replace this with your logic to check if the selectedCategory matches the current category
-              var currentCategory = '<%= req.query.Id %>';
-              return currentCategory === selectedCategory;
             }
-
-            async function addToWishlist(event, productId) {
-              try {
-                event.preventDefault();
-
-                const data = {
-                  productId: productId,
-                };
-
-                const response = await axios.post("/addWishlist", data);
-
-                if (response.data.success) {
-                  Swal.fire({
-                    title: "Success",
-                    text: "Product added to wishlist",
-                    icon: "success",
-                    showCancelButton: true,
-                    confirmButtonText: "Go to Wishlist", // Text for the "Go to Wishlist" button
-                    cancelButtonText: "Cancel", // Text for the "Cancel" button
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      // Redirect to the wishlist page when the "Go to Wishlist" button is clicked
-                      window.location.href = "/wishlist"; // Replace "/wishlist" with your actual wishlist page URL
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                      // Handle the cancel action if needed (not needed in this case)
-                    }
-                  });
-                } else if (response.data.used) {
-                  Swal.fire({
-                    title: "Already in wishlist",
-                    text: "Product already in wishlist",
-                    icon: "error",
-                    showCancelButton: true,
-                    confirmButtonText: "Go to Wishlist", // Text for the "Go to Wishlist" button
-                    cancelButtonText: "Cancel", // Text for the "Cancel" button
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      // Redirect to the wishlist page when the "Go to Wishlist" button is clicked
-                      window.location.href = "/wishlist"; // Replace "/wishlist" with your actual wishlist page URL
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                      // Handle the cancel action if needed (not needed in this case)
-                    }
-                  });
-
+            else {
+              Swal.fire({
+                title: "Error adding to wishlist",
+                text: "Please login to continue",
+                icon: "error",
+                showCancelButton: true,
+                confirmButtonText: "Login", // Text for the login button
+                cancelButtonText: "Cancel", // Text for the cancel button
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // Redirect to the login section when the "Login" button is clicked
+                  window.location.href = "/login"; // Replace "/login" with your actual login page URL
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                  // Handle the cancel action if needed (not needed in this case)
                 }
-                else {
-                  Swal.fire({
-                    title: "Error adding to wishlist",
-                    text: "Please login to continue",
-                    icon: "error",
-                    showCancelButton: true,
-                    confirmButtonText: "Login", // Text for the login button
-                    cancelButtonText: "Cancel", // Text for the cancel button
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      // Redirect to the login section when the "Login" button is clicked
-                      window.location.href = "/login"; // Replace "/login" with your actual login page URL
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                      // Handle the cancel action if needed (not needed in this case)
-                    }
-                  });
-                }
-              } catch (error) {
-                console.error("Error:", error.message);
-                // Handle the error if needed
-              }
+              });
             }
+          } catch (error) {
+            console.error("Error:", error.message);
+            // Handle the error if needed
+          }
+        }
 
 
-          </script>
+      </script>
 
-          <% include('../layouts/footer.ejs') %>
+      <% include('../layouts/footer.ejs') %>

@@ -1,325 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Minishop - Free Bootstrap 4 Template by Colorlib</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
-    <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/animate.css">
-    
-    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+<head>
+  <title>Shoetopia - Order Success</title>
+  <link rel="icon" type="image/x-icon" href="/assets/images/headericon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/css/aos.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
-    <link rel="stylesheet" href="/assets/css/ionicons.min.css">
+  <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/animate.css">
 
-    <link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/assets/css/jquery.timepicker.css">
+  <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/assets/css/magnific-popup.css">
 
-    
-    <link rel="stylesheet" href="/assets/css/flaticon.css">
-    <link rel="stylesheet" href="/assets/css/icomoon.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/aos.css">
 
-    <link rel="stylesheet" href="/assetss/css/all.min.css">
-<!-- bootstrap -->
-<link rel="stylesheet" href="/assetss/css/main.css">
-<!-- responsive -->
-<link rel="stylesheet" href="/assetss/css/responsive.css">
+  <link rel="stylesheet" href="/assets/css/ionicons.min.css">
 
-    
-<style>
-    #header{
-        margin-top: 7%;
-        width: 100%;
-        height: 70px;
-        background-color:#dbcc8f;
+  <link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/assets/css/jquery.timepicker.css">
+
+
+  <link rel="stylesheet" href="/assets/css/flaticon.css">
+  <link rel="stylesheet" href="/assets/css/icomoon.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <link rel="stylesheet" href="/assetss/css/all.min.css">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="/assetss/css/main.css">
+  <!-- responsive -->
+  <link rel="stylesheet" href="/assetss/css/responsive.css">
+
+
+  <style>
+    #header {
+      margin-top: 7%;
+      width: 100%;
+      height: 70px;
+      background-color: #dbcc8f;
     }
 
-    @media(max-width:992px){
-        #header{
+    @media(max-width:992px) {
+      #header {
         margin-top: 2%;
         width: 100%;
         height: 70px;
-        background-color:#dbcc8f;
-    } 
+        background-color: #dbcc8f;
+      }
     }
-
-</style>
-
+  </style>
 
 
 
 
-  </head>
-  <body class="goto-here">
-    <%- include('../layouts/navbar.ejs') %>
+
+</head>
+
+<body class="goto-here">
+  <%- include('../layouts/navbar.ejs') %>
 
     <style>
-        #header{
-            margin-top: 7%;
-            width: 100%;
-            height: 70px;
-            background-color:#dbcc8f;
-        }
-    
-        #Table{
-          margin-left: 26%
+      #header {
+        margin-top: 7%;
+        width: 100%;
+        height: 70px;
+        background-color: #dbcc8f;
+      }
+
+      #Table {
+        margin-left: 26%
+      }
+
+      @media(max-width:992px) {
+        #header {
+          margin-top: 2%;
+          width: 100%;
+          height: 70px;
+          background-color: #dbcc8f;
         }
 
-        @media(max-width:992px){
-            #header{
-            margin-top: 2%;
-            width: 100%;
-            height: 70px;
-            background-color:#dbcc8f;
-        } 
-        #Table{
+        #Table {
           margin-left: 0%
         }
-        }
-
+      }
     </style>
-    
+
     <section id="header">
-    <div>
+      <div>
         <h1 style="color: rgb(0, 0, 0); justify-content: center; text-align: center;">Order Placed Successfully!...</h1>
-       </div>
+      </div>
     </section>
 
 
- 
+
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 mt-5">
-                <div class="mb-4" style="text-align: center;">
-                    <h3 class="billing-heading mb-4">Order Summary</h3>
-                </div>
+      <div class="row">
+        <div class="col-lg-12 mt-5">
+          <div class="mb-4" style="text-align: center;">
+            <h3 class="billing-heading mb-4">Order Summary</h3>
+          </div>
 
 
-                <div class="container-fluid mb-5">
-                    <div class="row">
-                      <div class="col-lg-8 col-md-12">
-                        <div class="cart-table-wrap mx-auto"> <!-- Add mx-auto here -->
-                            <% if (order && order.items) { %>
-                          <table class="cart-table" id="Table" >
-                            <thead class="cart-table-head">
-                              <tr class="table-head-row">
-                                <th class="product-image">Item</th>
-                                <th class="product-name">Name</th>
-                                <th class="product-price">Price</th>
-                                <th class="product-quantity">Quantity</th>
-                                <th class="product-total">Total</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-            
-                                <% order.items.forEach((product)=> { %>
-            
-                              <tr class="table-body-row">
-                                <td class="product-image"><img src="/ResizedImages/<%= product.product_id.image[0] %>" alt="img"></td>
-                                <td class="product-name"><%= product.product_id.name %> - <%= product.product_id.category.name %></td>
-                                <td class="product-price">₹<%= product.price  %></td>
-                                <td class="quantity">
-                                  <div class="input-group mb-3" style="width: 80px; position: relative; left: 30%;">
-                                    <input style="text-align: center;" type="text" name="quantity" class="quantity form-control input-number" min="1" max="100" value="<%= product.quantity %>" readonly>
-                                  </div>
-                                </td>
-                                <td class="product-total">
-                              <% if(order.couponApplied === true) { %>
-                                  <del style="color: red;"> ₹<%= product.price * product.quantity %></del> ₹<%= (product.price * product.quantity)-product.couponDiscountTotal %>
-                              <%  }else{ %>
-                                 ₹<%= product.price * product.quantity %>
-                             <%  } %>
+          <div class="container-fluid mb-5">
+            <div class="row">
+              <div class="col-lg-8 col-md-12">
+                <div class="cart-table-wrap mx-auto"> <!-- Add mx-auto here -->
+                  <% if (order && order.items) { %>
+                    <table class="cart-table" id="Table">
+                      <thead class="cart-table-head">
+                        <tr class="table-head-row">
+                          <th class="product-image">Item</th>
+                          <th class="product-name">Name</th>
+                          <th class="product-price">Price</th>
+                          <th class="product-quantity">Quantity</th>
+                          <th class="product-total">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <% order.items.forEach((product)=> { %>
+
+                          <tr class="table-body-row">
+                            <td class="product-image"><img src="/ResizedImages/<%= product.product_id.image[0] %>"
+                                alt="img"></td>
+                            <td class="product-name">
+                              <%= product.product_id.name %> - <%= product.product_id.category.name %>
                             </td>
-                               
-                              </tr>
-                            </tbody>
-            
-                            <% } )%>
-            
-                          </table>
-                        </div>
-                        <% } %>
-                      </div>
-                    </div>
-                  </div>
+                            <td class="product-price">₹<%= product.price %>
+                            </td>
+                            <td class="quantity">
+                              <div class="input-group mb-3" style="width: 80px; position: relative; left: 30%;">
+                                <input style="text-align: center;" type="text" name="quantity"
+                                  class="quantity form-control input-number" min="1" max="100"
+                                  value="<%= product.quantity %>" readonly>
+                              </div>
+                            </td>
+                            <td class="product-total">
+                              <% if(order.couponApplied===true) { %>
+                                <del style="color: red;"> ₹<%= product.price * product.quantity %></del> ₹<%=
+                                  (product.price * product.quantity)-product.couponDiscountTotal %>
+                                  <% }else{ %>
+                                    ₹<%= product.price * product.quantity %>
+                                      <% } %>
+                            </td>
 
+                          </tr>
+                      </tbody>
 
+                      <% } )%>
 
-
-              
+                    </table>
+                </div>
+                <% } %>
+              </div>
             </div>
+          </div>
+
+
+
+
+
         </div>
+      </div>
     </div>
 
 
 
-   
-                    
-                    <div class="container-fluid mb-5">
-                        <div class="row">
-                          <div class="col-lg-8 col-md-12">
-                            <div class="cart-table-wrap mx-auto"> <!-- Add mx-auto here -->
-                               
-                              <table class="cart-table" id="Table" >
-                                <thead class="cart-table-head">
-                                  <tr class="table-head-row">
-                                    <th class="product-image">Details</th>
-                                    <th class="product-name">Info</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Order ID:</td>
-                                        <td>
-                                            <%= order.order_id %>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>User Name:</td>
-                                        <td>
-                                            <%= order.user_name %>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Address Details:</td>
-                                        <td>
-                                            <%= order.delivery_address %>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Payment:</td>
-                                        <td>
-                                            <%= order.payment %>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Total Price:</td>
-                                        <td>
-                                          <% if(order.couponApplied === true) { %>
-                                           coupon applied <del style="color: red;">₹ <%= order.total_amount %></del> ₹<%= order.totalDiscountAmount %></p>
-                                          <% }else{ %>
-                                            ₹ <%= order.total_amount %>
-                                          <% } %>                                      
-                                        
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Date:</td>
-                                        <td>
-                                          <%= moment(order.date).format('DD/MM/YYYY') %>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Delivery by:</td>
-    
-                                        <td>
-                                            <%= order.expected_delivery  %>
-                                        </td>
-                                    </tr>
-                
-                                  
-                                </tbody>
-                
-                              
-                
-                              </table>
-                            </div>
-                           
-                          </div>
-                        </div>
-                      </div>
-                     
-                      <div>
-
-                    <div class="container mb-5" style="text-align: center;">                     
-                            <div>
-                           <strong>Thank You For Purchasing With Us 😊    <span class="btn btn-light"><a href="/orders"><b>View orders</b></a></span></strong>
-   
-                       </div>
-                       <br>
-                       <div class="order-card-footer">
-                          <a href="/shop"><button class="btn btn-primary mt-3" style="width: 140px;">Continue Shopping</button></a>
-                       </div>
-                       <div>
-                           <!-- <button type="button" onclick="downloadPDF('printThisDiv')" class="btn btn-secondary mt-3" >
-                               Print
-                           </button> -->
-                       </div>
-                       <br>
-                    </div> 
-                             
-
-  
-
-   	
-                    <%- include('../layouts/page-footer.ejs') %>
-    
-  
-
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="/assets/js/jquery.min.js"></script>
-  <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="/assets/js/popper.min.js"></script>
-  <script src="/assets/js/bootstrap.min.js"></script>
-  <script src="/assets/js/jquery.easing.1.3.js"></script>
-  <script src="/assets/js/jquery.waypoints.min.js"></script>
-  <script src="/assets/js/jquery.stellar.min.js"></script>
-  <script src="/assets/js/owl.carousel.min.js"></script>
-  <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-  <script src="/assets/js/aos.js"></script>
-  <script src="/assets/js/jquery.animateNumber.min.js"></script>
-  <script src="/assets/js/bootstrap-datepicker.js"></script>
-  <script src="/assets/js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="/assets/js/google-map.js"></script>
-  <script src="/assets/js/main.js"></script>
+    <div class="container-fluid mb-5">
+      <div class="row">
+        <div class="col-lg-8 col-md-12">
+          <div class="cart-table-wrap mx-auto"> <!-- Add mx-auto here -->
 
-  <script>
-		$(document).ready(function(){
+            <table class="cart-table" id="Table">
+              <thead class="cart-table-head">
+                <tr class="table-head-row">
+                  <th class="product-image">Details</th>
+                  <th class="product-name">Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Order ID:</td>
+                  <td>
+                    <%= order.order_id %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>User Name:</td>
+                  <td>
+                    <%= order.user_name %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Address Details:</td>
+                  <td>
+                    <%= order.delivery_address %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Payment:</td>
+                  <td>
+                    <%= order.payment %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Total Price:</td>
+                  <td>
+                    <% if(order.couponApplied===true) { %>
+                      coupon applied <del style="color: red;">₹ <%= order.total_amount %></del> ₹<%=
+                        order.totalDiscountAmount %>
+                        </p>
+                        <% }else{ %>
+                          ₹ <%= order.total_amount %>
+                            <% } %>
 
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
+                  </td>
+                </tr>
+                <tr>
+                  <td>Date:</td>
+                  <td>
+                    <%= moment(order.date).format('DD/MM/YYYY') %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Delivery by:</td>
 
-		          
-		            // Increment
-		        
-		    });
+                  <td>
+                    <%= order.expected_delivery %>
+                  </td>
+                </tr>
 
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-		    
-		});
-	</script>
-    
-  </body>
+
+              </tbody>
+
+
+
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div>
+
+      <div class="container mb-5" style="text-align: center;">
+        <div>
+          <strong>Thank You For Purchasing With Us 😊 <span class="btn btn-light"><a href="/orders"><b>View
+                  orders</b></a></span></strong>
+
+        </div>
+        <br>
+        <div class="order-card-footer">
+          <a href="/shop"><button class="btn btn-primary mt-3" style="width: 140px;">Continue Shopping</button></a>
+        </div>
+        <div>
+
+        </div>
+        <br>
+      </div>
+
+
+
+
+
+      <%- include('../layouts/page-footer.ejs') %>
+
+
+
+        <!-- loader -->
+        <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+              stroke="#F96D00" />
+          </svg></div>
+
+
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
+        <script src="/assets/js/popper.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/jquery.easing.1.3.js"></script>
+        <script src="/assets/js/jquery.waypoints.min.js"></script>
+        <script src="/assets/js/jquery.stellar.min.js"></script>
+        <script src="/assets/js/owl.carousel.min.js"></script>
+        <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="/assets/js/aos.js"></script>
+        <script src="/assets/js/jquery.animateNumber.min.js"></script>
+        <script src="/assets/js/bootstrap-datepicker.js"></script>
+        <script src="/assets/js/scrollax.min.js"></script>
+        <script
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+        <script src="/assets/js/google-map.js"></script>
+        <script src="/assets/js/main.js"></script>
+
+        <script>
+          $(document).ready(function () {
+
+            var quantitiy = 0;
+            $('.quantity-right-plus').click(function (e) {
+
+              // Stop acting like a button
+              e.preventDefault();
+              // Get the field name
+              var quantity = parseInt($('#quantity').val());
+
+              // If is not undefined
+
+              $('#quantity').val(quantity + 1);
+
+
+              // Increment
+
+            });
+
+            $('.quantity-left-minus').click(function (e) {
+              // Stop acting like a button
+              e.preventDefault();
+              // Get the field name
+              var quantity = parseInt($('#quantity').val());
+
+              // If is not undefined
+
+              // Increment
+              if (quantity > 0) {
+                $('#quantity').val(quantity - 1);
+              }
+            });
+
+          });
+        </script>
+
+</body>
+
 </html>

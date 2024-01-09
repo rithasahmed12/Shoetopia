@@ -1,31 +1,40 @@
-<% include('../layouts/header.ejs') %>
-<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"> -->
+<!DOCTYPE html>
+<html lang="en">
 
-<link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="/assets/css/animate.css">
+<head>
+  <meta charset="utf-8" />
+  <title>Shoetopia - Login</title>
+  <link rel="icon" type="image/x-icon" href="/assets/images/headericon.png">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="" />
 
-<link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
-<link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="/assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/animate.css">
 
-<link rel="stylesheet" href="/assets/css/aos.css">
+  <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/assets/css/magnific-popup.css">
 
-<link rel="stylesheet" href="/assets/css/ionicons.min.css">
+  <link rel="stylesheet" href="/assets/css/aos.css">
 
-<link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="/assets/css/jquery.timepicker.css">
+  <link rel="stylesheet" href="/assets/css/ionicons.min.css">
+
+  <link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/assets/css/jquery.timepicker.css">
 
 
-<link rel="stylesheet" href="/assets/css/flaticon.css">
-<link rel="stylesheet" href="/assets/css/icomoon.css">
-<link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/flaticon.css">
+  <link rel="stylesheet" href="/assets/css/icomoon.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
 
-<!-- <link href="/login-form/https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet"> -->
 
-	<!-- <link rel="stylesheet" href="/login-form/https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-	
-	<link rel="stylesheet" href="/login-form/css/style.css">
-<style>
+  <link rel="stylesheet" href="/login-form/css/style.css">
+  <style>
     body {
       background-color: #dbcc8f;
       display: flex;
@@ -83,18 +92,20 @@
       font-weight: bold;
       color: #2ecc71;
     }
-    a:hover{
+
+    a:hover {
       color: black;
     }
-    
   </style>
 
-<% include('../layouts/center.ejs') %>
+  <% include('../layouts/center.ejs') %>
+
 <body class="goto-here">
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light" id="ftco-navbar">
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand text-dark" href="/">Shoetopia</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+        aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
       </button>
 
@@ -102,95 +113,101 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="/shop">Shop</a> </li>
-        <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
-      
-       
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown04">
-            <a class="dropdown-item" href="/profile">User Profile</a>
-            <a class="dropdown-item" href="/login">Sign in</a>
-            <a class="dropdown-item" href="/cart" class="nav-link"><span class="icon-shopping_cart"></span>Cart</a>
-            <a class="dropdown-item" href="/wishlist" class="nav-link"><span class="icon-heart"></span> Wishlist</a>
-            
-          </div>
-        </li>
-        
-      </ul>
+          <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">Profile</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown04">
+              <a class="dropdown-item" href="/profile">User Profile</a>
+              <a class="dropdown-item" href="/login">Sign in</a>
+              <a class="dropdown-item" href="/cart" class="nav-link"><span class="icon-shopping_cart"></span>Cart</a>
+              <a class="dropdown-item" href="/wishlist" class="nav-link"><span class="icon-heart"></span> Wishlist</a>
+
+            </div>
+          </li>
+
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
-<section class="ftco-section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-12 col-lg-10">
-        <div class="wrap d-md-flex">
-          <div class="img" style="background-image: url(/login-form/images/bg-3.webp);">
-          </div>
-          <div class="login-wrap p-4 p-md-5">
-     
+  </nav>
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-12 col-lg-10">
+          <div class="wrap d-md-flex">
+            <div class="img" style="background-image: url(/login-form/images/bg-3.webp);">
+            </div>
+            <div class="login-wrap p-4 p-md-5">
 
 
 
-            <form action="/login" class="signin-form" method="post" onsubmit="return validateForm()">
-              <div class="form-group mb-3">
-                <label class="label" for="email">Email</label>
-                <input type="text" class="form-control" placeholder="Email" name="email" id="email" value="<%= locals.email %>" >
-                <span id="emailError" class="error"></span>
-              </div>
-              <div class="form-group mb-3">
-                <label class="label" for="password">Password</label>
-                <input type="password" class="form-control" placeholder="Password" name="password" id="password" value="<%= locals.password %>" >
-                <span id="passwordError" class="error"></span>
-              </div>
-              <div class="form-group">
-                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
-              </div>
-              <div class="form-group d-md-flex">
-                <div class="w-50 text-left">
-                  <a href="/emailVerify" class="mb-2">Login with OTP</a>
+
+              <form action="/login" class="signin-form" method="post" onsubmit="return validateForm()">
+                <div class="form-group mb-3">
+                  <label class="label" for="email">Email</label>
+                  <input type="text" class="form-control" placeholder="Email" name="email" id="email"
+                    value="<%= locals.email %>">
+                  <span id="emailError" class="error"></span>
                 </div>
-                <div class="w-50 text-md-right">
-                  <a href="/forgetPass">Forgot Password?</a>
+                <div class="form-group mb-3">
+                  <label class="label" for="password">Password</label>
+                  <input type="password" class="form-control" placeholder="Password" name="password" id="password"
+                    value="<%= locals.password %>">
+                  <span id="passwordError" class="error"></span>
                 </div>
-              </div>
-            </form>
+                <div class="form-group">
+                  <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+                </div>
+                <div class="form-group d-md-flex">
+                  <div class="w-50 text-left">
+                    <a href="/emailVerify" class="mb-2">Login with OTP</a>
+                  </div>
+                  <div class="w-50 text-md-right">
+                    <a href="/forgetPass">Forgot Password?</a>
+                  </div>
+                </div>
+              </form>
 
 
-            <p class="text-center">Not a member? <a href="/signup">Sign Up</a></p>
-          
-            <% if (typeof message !== 'undefined') { %>
-              <div class="alert alert-danger d-flex align-items-center" role="alert" id="error-alert">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2 " viewBox="0 0 16 16" role="img" aria-label="Warning:">
-                      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+              <p class="text-center">Not a member? <a href="/signup">Sign Up</a></p>
+
+              <% if (typeof message !=='undefined' ) { %>
+                <div class="alert alert-danger d-flex align-items-center" role="alert" id="error-alert">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2 " viewBox="0 0 16 16" role="img"
+                    aria-label="Warning:">
+                    <path
+                      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                   </svg>
                   <div>
-                      <strong>!</strong>
-                      <%=  message %>
+                    <strong>!</strong>
+                    <%= message %>
                   </div>
-              </div>
-          <% } %>
-          
-          
+                </div>
+                <% } %>
+
+
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
 
 
-<!-- END nav -->
-<!--  -->
+  <!-- END nav -->
+  <!--  -->
 
   <style>
     .error {
       color: red;
       font-size: x-small;
     }
-  
+
     .error-outline {
       border: 1px solid red;
     }
@@ -198,121 +215,123 @@
 
 
 
-<!-- Footer started -->
- <%- include('../layouts/page-footer.ejs') %>
+  <!-- Footer started -->
+  <%- include('../layouts/page-footer.ejs') %>
 
- <script>
-  function validateForm() {
-    console.log('askalda');
-    document.getElementById('emailError').innerHTML = '';
-    document.getElementById('passwordError').innerHTML = '';
+    <script>
+      function validateForm() {
+        console.log('askalda');
+        document.getElementById('emailError').innerHTML = '';
+        document.getElementById('passwordError').innerHTML = '';
 
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
 
-    // Check if email is empty
-    if (!email.trim()) {
-      document.getElementById('emailError').innerHTML = 'Email address is required.';
-      return false;
-    }
+        // Check if email is empty
+        if (!email.trim()) {
+          document.getElementById('emailError').innerHTML = 'Email address is required.';
+          return false;
+        }
 
-    // Check if password is empty
-    if (!password.trim()) {
-      document.getElementById('passwordError').innerHTML = 'Password is required.';
-      return false;
-    }
+        // Check if password is empty
+        if (!password.trim()) {
+          document.getElementById('passwordError').innerHTML = 'Password is required.';
+          return false;
+        }
 
-    // Email validation using a more general regular expression
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
-    if (!emailRegex.test(email)) {
-      document.getElementById('emailError').innerHTML = 'Please enter a valid email address.';
-      return false;
-    }
+        // Email validation using a more general regular expression
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
+        if (!emailRegex.test(email)) {
+          document.getElementById('emailError').innerHTML = 'Please enter a valid email address.';
+          return false;
+        }
 
-    // Password validation (no spaces)
-    if (password.includes(' ')) {
-      document.getElementById('passwordError').innerHTML = 'Password should not contain spaces.';
-      return false;
-    }
+        // Password validation (no spaces)
+        if (password.includes(' ')) {
+          document.getElementById('passwordError').innerHTML = 'Password should not contain spaces.';
+          return false;
+        }
 
-    return true;
-  }
-</script>
-
-
-
-<!-- loader -->
-<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="/assets/js/popper.min.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/jquery.easing.1.3.js"></script>
-<script src="/assets/js/jquery.waypoints.min.js"></script>
-<script src="/assets/js/jquery.stellar.min.js"></script>
-<script src="/assets/js/owl.carousel.min.js"></script>
-<script src="/assets/js/jquery.magnific-popup.min.js"></script>
-<script src="/assets/js/aos.js"></script>
-<script src="/assets/js/jquery.animateNumber.min.js"></script>
-<script src="/assets/js/bootstrap-datepicker.js"></script>
-<script src="/assets/js/scrollax.min.js"></script>
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="/assets/js/google-map.js"></script> -->
-<script src="/assets/js/main.js"></script>
-
-
-<script src="/login-form/js/jquery.min.js"></script>
-<script src="/login-form/js/popper.js"></script>
-<script src="/login-form/js/bootstrap.min.js"></script>
-<script src="/login-form/js/main.js"></script>
-
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-
-    // Event listener for email input
-    emailInput.addEventListener("input", function() {
-      const emailError = document.getElementById("emailError");
-      const emailValue = emailInput.value.trim(); // Trim whitespace
-
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
-      if (!emailRegex.test(emailValue)) {
-        emailError.textContent = 'Please enter a valid email address.';
-        emailInput.classList.add("is-invalid");
-      } else {
-        emailError.textContent = '';
-        emailInput.classList.remove("is-invalid");
+        return true;
       }
-    });
-
-    // Event listener for password input
-    passwordInput.addEventListener("input", function() {
-      const passwordError = document.getElementById("passwordError");
-      const passwordValue = passwordInput.value;
-
-      // Password validation(no spaces)
-      if (passwordValue.includes(' ')) {
-        passwordError.textContent = 'Password should not contain Spaces';
-        passwordInput.classList.add("is-invalid");
-        return;
-      }
-
-      if (passwordValue.length < 6) {
-        passwordError.textContent = 'Password should contain at least 6 characters';
-        passwordInput.classList.add("is-invalid");
-      } else {
-        passwordError.textContent = '';
-        passwordInput.classList.remove("is-invalid");
-      }
-    });
-  });
-</script>
+    </script>
 
 
 
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+          stroke="#F96D00" />
+      </svg></div>
+
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.easing.1.3.js"></script>
+    <script src="/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/assets/js/jquery.stellar.min.js"></script>
+    <script src="/assets/js/owl.carousel.min.js"></script>
+    <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/js/aos.js"></script>
+    <script src="/assets/js/jquery.animateNumber.min.js"></script>
+    <script src="/assets/js/bootstrap-datepicker.js"></script>
+    <script src="/assets/js/scrollax.min.js"></script>
+    <script src="/assets/js/main.js"></script>
 
 
-<% include('../layouts/footer.ejs') %>
+    <script src="/login-form/js/jquery.min.js"></script>
+    <script src="/login-form/js/popper.js"></script>
+    <script src="/login-form/js/bootstrap.min.js"></script>
+    <script src="/login-form/js/main.js"></script>
+
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+
+        // Event listener for email input
+        emailInput.addEventListener("input", function () {
+          const emailError = document.getElementById("emailError");
+          const emailValue = emailInput.value.trim(); // Trim whitespace
+
+          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
+          if (!emailRegex.test(emailValue)) {
+            emailError.textContent = 'Please enter a valid email address.';
+            emailInput.classList.add("is-invalid");
+          } else {
+            emailError.textContent = '';
+            emailInput.classList.remove("is-invalid");
+          }
+        });
+
+        // Event listener for password input
+        passwordInput.addEventListener("input", function () {
+          const passwordError = document.getElementById("passwordError");
+          const passwordValue = passwordInput.value;
+
+          // Password validation(no spaces)
+          if (passwordValue.includes(' ')) {
+            passwordError.textContent = 'Password should not contain Spaces';
+            passwordInput.classList.add("is-invalid");
+            return;
+          }
+
+          if (passwordValue.length < 6) {
+            passwordError.textContent = 'Password should contain at least 6 characters';
+            passwordInput.classList.add("is-invalid");
+          } else {
+            passwordError.textContent = '';
+            passwordInput.classList.remove("is-invalid");
+          }
+        });
+      });
+    </script>
+
+
+
+
+
+    <% include('../layouts/footer.ejs') %>

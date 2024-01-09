@@ -1,11 +1,24 @@
-<% include('../layouts/header.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Shoetopia - Cart</title>
+  <link rel="icon" type="image/x-icon" href="/assets/images/headericon.png">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
   <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/animate.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
+
 
   <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
   <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
@@ -42,451 +55,454 @@
       border-radius: 0 5px 5px 0;
       background-color: #dbcc8f;
     }
-
-    
   </style>
 
 
 
   <% include('../layouts/center.ejs') %>
 
-    <body class="goto-here">
-      <%- include('../layouts/navbar.ejs') %>
+<body class="goto-here">
+  <%- include('../layouts/navbar.ejs') %>
 
 
-        <style>
-          #header {
-            margin-top: 7%;
-            width: 100%;
-            height: 70px;
-            background-color: #dbcc8f;
-          }
+    <style>
+      #header {
+        margin-top: 7%;
+        width: 100%;
+        height: 70px;
+        background-color: #dbcc8f;
+      }
 
-          #noCart {
-            margin: 3% 26%;
-          }
+      #noCart {
+        margin: 3% 26%;
+      }
 
 
-          @media(max-width:992px) {
-            #header {
-              margin-top: 2%;
-              width: 100%;
-              height: 70px;
-              background-color: #dbcc8f;
-            }
+      @media(max-width:992px) {
+        #header {
+          margin-top: 2%;
+          width: 100%;
+          height: 70px;
+          background-color: #dbcc8f;
+        }
 
-            #noCart {
-              margin: 3% 13%;
-            }
+        #noCart {
+          margin: 3% 13%;
+        }
 
-          }
-        </style>
+      }
+    </style>
 
-        <section id="header">
-          <div>
-            <h1 style="color: rgb(0, 0, 0); text-align: center;">Cart</h1>
-          </div>
-        </section>
-        <div class="container ms-5 me-5 mt-3">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="product__details__breadcrumb">
-                <a href="/">Home</a> <span>/</span>
-                <a href="/shop">Shop</a><span>/</span>
-                <span>Cart</span>
+    <section id="header">
+      <div>
+        <h1 style="color: rgb(0, 0, 0); text-align: center;">Cart</h1>
+      </div>
+    </section>
+    <div class="container ms-5 me-5 mt-3">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="product__details__breadcrumb">
+            <a href="/">Home</a> <span>/</span>
+            <a href="/shop">Shop</a><span>/</span>
+            <span>Cart</span>
 
-              </div>
-            </div>
           </div>
         </div>
-        <!-- END nav -->
-        <section class="mt-3 mb-5" id="reloadDiv">
+      </div>
+    </div>
+    <!-- END nav -->
+    <section class="mt-3 mb-5" id="reloadDiv">
 
-          <!-- <div class="cart-section mt-150 mb-150"> -->
-          <div class="container" style="margin: auto;">
-            <div class="row">
-              <div class="col-lg-8 col-md-12">
-                <div class="cart-table-wrap">
-                  <%if (cartDetails && cartDetails.items) { %>
-                    <table class="cart-table">
-                      <thead class="cart-table-head">
-                        <tr class="table-head-row">
-                          <!-- <th class="product-remove"></th> -->
-                          <th class="product-image">Item</th>
-                          <th class="product-name">Name</th>
-                          <th class="product-price">Price</th>
-                          <th class="product-quantity">Quantity</th>
-                          <th class="product-total">Total</th>
-                          <th></th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% let totalQuantity=0; let totalProductPrice=0; cartDetails.items.forEach((cartItem)=> {
-                          const itemTotalPrice = cartItem.product_id.price * cartItem.quantity;
-                          totalQuantity += cartItem.quantity;
-                          totalProductPrice += itemTotalPrice;
-                          %>
-                          <tr class="table-body-row">
-                            <!-- <td><a class="dropdown-item" style="font-size: 25px; " href="cart.html" class="nav-link"><span class="icon-heart"></span></a></td> -->
-                            <td class="product-image"><a href="#"><img
-                                  src="/ResizedImages/<%= cartItem.product_id.image[0] %>" alt=""></a></td>
-                            <td class="product-name">
-                              <%= cartItem.product_id.name %>
+
+      <div class="container" style="margin: auto;">
+        <div class="row">
+          <div class="col-lg-8 col-md-12">
+            <div class="cart-table-wrap">
+              <%if (cartDetails && cartDetails.items) { %>
+                <table class="cart-table">
+                  <thead class="cart-table-head">
+                    <tr class="table-head-row">
+
+                      <th class="product-image">Item</th>
+                      <th class="product-name">Name</th>
+                      <th class="product-price">Price</th>
+                      <th class="product-quantity">Quantity</th>
+                      <th class="product-total">Total</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% let totalQuantity=0; let totalProductPrice=0; cartDetails.items.forEach((cartItem)=> {
+                      const itemTotalPrice = cartItem.product_id.price * cartItem.quantity;
+                      totalQuantity += cartItem.quantity;
+                      totalProductPrice += itemTotalPrice;
+                      %>
+                      <tr class="table-body-row">
+
+                        <td class="product-image"><a href="#"><img
+                              src="/ResizedImages/<%= cartItem.product_id.image[0] %>" alt=""></a></td>
+                        <td class="product-name">
+                          <%= cartItem.product_id.name %>
+                        </td>
+
+                        <% if (cartItem.product_id.offer){ %>
+
+                          <td class="product-price">₹<%= cartItem.product_id.price - (cartItem.product_id.price *
+                              cartItem.product_id.offer.percentage / 100).toFixed(2) %>
+                          </td>
+
+                          <% } else if(cartItem.product_id.category.offer) { %>
+
+                            <td class="product-price">₹<%= cartItem.product_id.price - (cartItem.product_id.price *
+                                cartItem.product_id.category.offer.percentage / 100).toFixed(2) %>
                             </td>
 
-                            <% if (cartItem.product_id.offer){ %>
-
-                              <td class="product-price">₹<%= cartItem.product_id.price - (cartItem.product_id.price * cartItem.product_id.offer.percentage / 100).toFixed(2) %>
-                              </td>
-
-                              <% } else if(cartItem.product_id.category.offer) { %>
-
-                                <td class="product-price">₹<%= cartItem.product_id.price - (cartItem.product_id.price * cartItem.product_id.category.offer.percentage / 100).toFixed(2) %></td>
-  
-                              <% }else{ %>
+                            <% }else{ %>
                               <td class="product-price">₹<%= cartItem.product_id.price %>
                               </td>
 
                               <% } %>
-                          
 
 
-                            <td class="quantity">
 
-                              <div class="input-group mb-3" style="width: 80px; position: relative; left: 17%;">
-                                <div class="input-group-prepend">
-                                  <button class="quantity-btn minus-btn" id="minus-button" type="button"
-                                    onclick="increaseQuantity('<%= cartDetails._id%>','<%=cartItem.product_id._id %>',-1)">-</button>
-                                </div>
-                                <input style="text-align: center;" type="text" name="quantity"
-                                  class="quantity form-control input-number" min="1" max="100"
-                                  value="<%= cartItem.quantity %>" readonly>
+                                <td class="quantity">
 
-                                <div class="input-group-prepend">
-                                  <button class="quantity-btn plus-btn" id="plus-button"
-                                    onclick="increaseQuantity('<%= cartDetails._id%>','<%=cartItem.product_id._id %>',1)"
-                                    type="button">+</button>
-                                </div>
-                              </div>
-                            </td>
-                            <% if (cartItem.product_id.offer){ %>
-                              <td class="product-total">₹<%= ((cartItem.product_id.price - (cartItem.product_id.price * cartItem.product_id.offer.percentage / 100)) * cartItem.quantity).toFixed(2) %></td>
+                                  <div class="input-group mb-3" style="width: 80px; position: relative; left: 17%;">
+                                    <div class="input-group-prepend">
+                                      <button class="quantity-btn minus-btn" id="minus-button" type="button"
+                                        onclick="increaseQuantity('<%= cartDetails._id%>','<%=cartItem.product_id._id %>',-1)">-</button>
+                                    </div>
+                                    <input style="text-align: center;" type="text" name="quantity"
+                                      class="quantity form-control input-number" min="1" max="100"
+                                      value="<%= cartItem.quantity %>" readonly>
 
-                            <% } else if(cartItem.product_id.category.offer) { %>
+                                    <div class="input-group-prepend">
+                                      <button class="quantity-btn plus-btn" id="plus-button"
+                                        onclick="increaseQuantity('<%= cartDetails._id%>','<%=cartItem.product_id._id %>',1)"
+                                        type="button">+</button>
+                                    </div>
+                                  </div>
+                                </td>
+                                <% if (cartItem.product_id.offer){ %>
+                                  <td class="product-total">₹<%= ((cartItem.product_id.price -
+                                      (cartItem.product_id.price * cartItem.product_id.offer.percentage / 100)) *
+                                      cartItem.quantity).toFixed(2) %>
+                                  </td>
 
-                              <td class="product-total">₹<%= ((cartItem.product_id.price - (cartItem.product_id.price * cartItem.product_id.category.offer.percentage / 100)) * cartItem.quantity).toFixed(2) %></td>
+                                  <% } else if(cartItem.product_id.category.offer) { %>
 
-                            <% }else{ %>
-                              <td class="product-total">₹<%= cartItem.product_id.price * cartItem.quantity %>
-                              </td>
+                                    <td class="product-total">₹<%= ((cartItem.product_id.price -
+                                        (cartItem.product_id.price * cartItem.product_id.category.offer.percentage /
+                                        100)) * cartItem.quantity).toFixed(2) %>
+                                    </td>
 
-                              <% } %>
+                                    <% }else{ %>
+                                      <td class="product-total">₹<%= cartItem.product_id.price * cartItem.quantity %>
+                                      </td>
 
-                            <td class="remove-col">
-                              <!-- <button class="btn-remove" onclick="removeFromCart('<%= cartItem._id %>')"><i class="icon-close"></i></button> -->
-                              <a onclick="removeFromCart('<%= cartItem._id %>')"
-                                style="font-size: 20px; color: rgb(81, 0, 0);" class="nav-link"><i class="fa-solid fa-trash"></i></a>
+                                      <% } %>
 
-                            </td>
-                            
-                            <td>
-                               <a class="dropdown-item" href="cart.html" onclick="addToWishlist(event,'<%=cartItem.product_id._id %>')" style="font-size: 22px;" class="nav-link"><span class="icon-heart"></span></a>
-                            </td>
+                                        <td class="remove-col">
 
-                          </tr>
+                                          <a onclick="removeFromCart('<%= cartItem._id %>')"
+                                            style="font-size: 20px; color: rgb(81, 0, 0);" class="nav-link"><i
+                                              class="fa-solid fa-trash"></i></a>
 
+                                        </td>
 
-                          <% }) %>
-                      </tbody>
-                    </table>
-                </div>
-              </div>
+                                        <td>
+                                          <a class="dropdown-item" href="cart.html"
+                                            onclick="addToWishlist(event,'<%=cartItem.product_id._id %>')"
+                                            style="font-size: 22px;" class="nav-link"><span
+                                              class="icon-heart"></span></a>
+                                        </td>
 
-              <div class="col-lg-4">
-                <div class="total-section">
-                  <table class="total-table">
-                    <thead class="total-table-head">
-                      <tr class="table-total-row">
-                        <th>Total</th>
-                        <th>Price</th>
                       </tr>
-                    </thead>
-                    <tbody>
 
-                      <tr class="total-data">
-                        <td><strong>Subtotal: </strong></td>
-                        <td>₹<%= subTotal %>
-                        </td>
-                      </tr>
-                      <tr class="total-data">
-                        <td><strong>Discount: </strong></td>
-                        <td>₹<%= discountAmt.toFixed(2) %></td>
-                      </tr>
-                      <tr class="total-data">
-                        <td><strong>Total: </strong></td>
-                        <td>₹<%= total.toFixed(2) %>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div class="cart-buttons">
-                    <p class="text-center"><a href="/checkout-items" class="btn btn-primary py-3 px-4">Proceed to
-                        Checkout</a></p>
-                  </div>
-                </div>
 
-                <!-- <div class="coupon-section">
-                  <h3>Apply Coupon</h3>
-                  <div class="coupon-form-wrap">
-                    <form action="index.html">
-                      <p><input type="text" placeholder="Coupon"></p>
-                      <p><input type="submit" value="Apply" class="btn btn-primary"></p>
-                    </form>
-                  </div>
-                </div> -->
+                      <% }) %>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="total-section">
+              <table class="total-table">
+                <thead class="total-table-head">
+                  <tr class="table-total-row">
+                    <th>Total</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr class="total-data">
+                    <td><strong>Subtotal: </strong></td>
+                    <td>₹<%= subTotal %>
+                    </td>
+                  </tr>
+                  <tr class="total-data">
+                    <td><strong>Discount: </strong></td>
+                    <td>₹<%= discountAmt.toFixed(2) %>
+                    </td>
+                  </tr>
+                  <tr class="total-data">
+                    <td><strong>Total: </strong></td>
+                    <td>₹<%= total.toFixed(2) %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="cart-buttons">
+                <p class="text-center"><a href="/checkout-items" class="btn btn-primary py-3 px-4">Proceed to
+                    Checkout</a></p>
               </div>
             </div>
+
 
           </div>
-          <% }else{ %>
+        </div>
 
-            <div class="container" id="noCart">
-              <div class="row align-items-center">
-                <div class="col-12 text-center">
-                  <h4 class="mb-5">No products in cart</h4>
-                  <a href="/shop"><button class="btn btn-primary btn-lg ms-3" style="width: 140px;">continue
-                      Shopping</button></a>
-                </div>
-              </div>
+      </div>
+      <% }else{ %>
+
+        <div class="container" id="noCart">
+          <div class="row align-items-center">
+            <div class="col-12 text-center">
+              <h4 class="mb-5">No products in cart</h4>
+              <a href="/shop"><button class="btn btn-primary btn-lg ms-3" style="width: 140px;">continue
+                  Shopping</button></a>
             </div>
+          </div>
+        </div>
 
 
-            <% } %>
-              <!-- </div> -->
-        </section>
+        <% } %>
 
-        <style>
+    </section>
 
-
-        </style>
+    <style>
 
 
-
-
-        <%- include('../layouts/page-footer.ejs') %>
+    </style>
 
 
 
 
-          <!-- loader -->
-          <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-              <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-              <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
-            </svg></div>
-
-          <!-- Axios CDN -->
-          <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-          <!-- Swal (SweetAlert2) CDN -->
-          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-          <!-- Include jQuery before the script if using jQuery -->
-          <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+    <%- include('../layouts/page-footer.ejs') %>
 
 
-          <script src="/assets/js/jquery.min.js"></script>
-          <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
-          <script src="/assets/js/popper.min.js"></script>
-          <script src="/assets/js/bootstrap.min.js"></script>
-          <script src="/assets/js/jquery.easing.1.3.js"></script>
-          <script src="/assets/js/jquery.waypoints.min.js"></script>
-          <script src="/assets/js/jquery.stellar.min.js"></script>
-          <script src="/assets/js/owl.carousel.min.js"></script>
-          <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-          <script src="/assets/js/aos.js"></script>
-          <script src="/assets/js/jquery.animateNumber.min.js"></script>
-          <script src="/assets/js/bootstrap-datepicker.js"></script>
-          <script src="/assets/js/scrollax.min.js"></script>
-          <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-          <script src="/assets/js/google-map.js"></script>
-          <script src="/assets/js/main.js"></script>
 
 
-          <!-- Your HTML file with the script at the bottom -->
-          <!-- ... your existing HTML code ... -->
-          <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-          <script>
+      <!-- loader -->
+      <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+          <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+          <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+            stroke="#F96D00" />
+        </svg></div>
 
-            function removeFromCart(productId) {
+      <!-- Axios CDN -->
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-              Swal.fire({
-                title: 'Are you sure?',
-                text: "You want to delete!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButton: '#dbcc8f',
-                cancelButton: '#d33',
-                confirmButtonText: 'Yes, remove!'
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  $.ajax({
-                    url: '/deleteItems',
-                    data: {
-                      productOgId: productId
-                    },
-                    method: 'post',
-                    success: (response) => {
-                      if (response.success) {
+      <!-- Swal (SweetAlert2) CDN -->
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-                        $('#reloadDiv').load('/cart #reloadDiv', () => {
 
-                          Swal.fire({
-                            title: 'Deleted!',
-                            text: 'Your item has been deleted.',
-                            icon: 'success',
-                            timer: 1500,
-                            showConfirmButton: false
-                          });
-                        });
-                      } else {
-                        Swal.fire({
-                          title: 'Error!',
-                          text: 'Failed to delete item.',
-                          icon: 'error',
-                          showConfirmButton: false
-                        });
-                      }
-                    },
-                    error: (error) => {
-                      console.log(error);
+
+      <script src="/assets/js/jquery.min.js"></script>
+      <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/js/popper.min.js"></script>
+      <script src="/assets/js/bootstrap.min.js"></script>
+      <script src="/assets/js/jquery.easing.1.3.js"></script>
+      <script src="/assets/js/jquery.waypoints.min.js"></script>
+      <script src="/assets/js/jquery.stellar.min.js"></script>
+      <script src="/assets/js/owl.carousel.min.js"></script>
+      <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+      <script src="/assets/js/aos.js"></script>
+      <script src="/assets/js/jquery.animateNumber.min.js"></script>
+      <script src="/assets/js/bootstrap-datepicker.js"></script>
+      <script src="/assets/js/scrollax.min.js"></script>
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+      <script src="/assets/js/google-map.js"></script>
+      <script src="/assets/js/main.js"></script>
+
+
+      <!-- Your HTML file with the script at the bottom -->
+      <!-- ... your existing HTML code ... -->
+      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+      <script>
+
+        function removeFromCart(productId) {
+
+          Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButton: '#dbcc8f',
+            cancelButton: '#d33',
+            confirmButtonText: 'Yes, remove!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $.ajax({
+                url: '/deleteItems',
+                data: {
+                  productOgId: productId
+                },
+                method: 'post',
+                success: (response) => {
+                  if (response.success) {
+
+                    $('#reloadDiv').load('/cart #reloadDiv', () => {
+
                       Swal.fire({
-                        title: 'Error!',
-                        text: 'An error occurred while deleting the item.',
-                        icon: 'error',
+                        title: 'Deleted!',
+                        text: 'Your item has been deleted.',
+                        icon: 'success',
+                        timer: 1500,
                         showConfirmButton: false
                       });
-                    }
+                    });
+                  } else {
+                    Swal.fire({
+                      title: 'Error!',
+                      text: 'Failed to delete item.',
+                      icon: 'error',
+                      showConfirmButton: false
+                    });
+                  }
+                },
+                error: (error) => {
+                  console.log(error);
+                  Swal.fire({
+                    title: 'Error!',
+                    text: 'An error occurred while deleting the item.',
+                    icon: 'error',
+                    showConfirmButton: false
                   });
                 }
               });
             }
+          });
+        }
 
 
 
 
 
 
-            function increaseQuantity(cartId, productId, count) {
-              $.ajax({
-                url: '/changeQuantity',
-                method: 'post',
-                data: {
-                  cartId: cartId,
-                  productId: productId,
-                  count: count
+        function increaseQuantity(cartId, productId, count) {
+          $.ajax({
+            url: '/changeQuantity',
+            method: 'post',
+            data: {
+              cartId: cartId,
+              productId: productId,
+              count: count
 
-                },
-                success: (response) => {
-                  if (response.success) {
-                    $('#reloadDiv').load('/cart #reloadDiv')
-                  } else {
-                    Swal.fire({
-                      title: 'Error',
-                      icon: 'error',
-                      text: response.message,
-                      timer: 2000
-                    })
-                  }
-                },
-                error: (error) => {
-                  Swal.fire({
-                    title: 'Error',
-                    icon: 'error',
-                    text: response.message,
-                    timer: 1500
-                  })
-                }
-
-
+            },
+            success: (response) => {
+              if (response.success) {
+                $('#reloadDiv').load('/cart #reloadDiv')
+              } else {
+                Swal.fire({
+                  title: 'Error',
+                  icon: 'error',
+                  text: response.message,
+                  timer: 2000
+                })
+              }
+            },
+            error: (error) => {
+              Swal.fire({
+                title: 'Error',
+                icon: 'error',
+                text: response.message,
+                timer: 1500
               })
             }
 
 
-            
-  async function addToWishlist(event, productId) {
-  try {
-    event.preventDefault();
-
-    const data = {
-      productId: productId,
-    };
-
-    const response = await axios.post("/addWishlist", data);
-
-    if (response.data.success) {
-      Swal.fire({
-        title: "Success",
-        text: "Product added to wishlist",
-        icon: "success",
-        showCancelButton: true,
-        confirmButtonText: "Go to Wishlist", // Text for the "Go to Wishlist" button
-        cancelButtonText: "Cancel", // Text for the "Cancel" button
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Redirect to the wishlist page when the "Go to Wishlist" button is clicked
-          window.location.href = "/wishlist"; // Replace "/wishlist" with your actual wishlist page URL
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          // Handle the cancel action if needed (not needed in this case)
+          })
         }
-      });
-    }else if(response.data.used){
-      Swal.fire({
-        title: "Already in wishlist",
-        text: "Product already in wishlist",
-        icon: "error",
-        showCancelButton: true,
-        confirmButtonText: "Go to Wishlist", // Text for the "Go to Wishlist" button
-        cancelButtonText: "Cancel", // Text for the "Cancel" button
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Redirect to the wishlist page when the "Go to Wishlist" button is clicked
-          window.location.href = "/wishlist"; // Replace "/wishlist" with your actual wishlist page URL
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          // Handle the cancel action if needed (not needed in this case)
+
+
+
+        async function addToWishlist(event, productId) {
+          try {
+            event.preventDefault();
+
+            const data = {
+              productId: productId,
+            };
+
+            const response = await axios.post("/addWishlist", data);
+
+            if (response.data.success) {
+              Swal.fire({
+                title: "Success",
+                text: "Product added to wishlist",
+                icon: "success",
+                showCancelButton: true,
+                confirmButtonText: "Go to Wishlist", // Text for the "Go to Wishlist" button
+                cancelButtonText: "Cancel", // Text for the "Cancel" button
+              }).then((result) => {
+                if (result.isConfirmed) {
+
+                  window.location.href = "/wishlist";
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+                }
+              });
+            } else if (response.data.used) {
+              Swal.fire({
+                title: "Already in wishlist",
+                text: "Product already in wishlist",
+                icon: "error",
+                showCancelButton: true,
+                confirmButtonText: "Go to Wishlist", // Text for the "Go to Wishlist" button
+                cancelButtonText: "Cancel", // Text for the "Cancel" button
+              }).then((result) => {
+                if (result.isConfirmed) {
+
+                  window.location.href = "/wishlist"; // Replace "/wishlist" with your actual wishlist page URL
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+                }
+              });
+
+            }
+            else {
+              Swal.fire({
+                title: "Error adding to wishlist",
+                text: "Please login to continue",
+                icon: "error",
+                showCancelButton: true,
+                confirmButtonText: "Login", // Text for the login button
+                cancelButtonText: "Cancel", // Text for the cancel button
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // Redirect to the login section when the "Login" button is clicked
+                  window.location.href = "/login"; // Replace "/login" with your actual login page URL
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+                }
+              });
+            }
+          } catch (error) {
+            console.error("Error:", error.message);
+            // Handle the error if needed
+          }
         }
-      });
 
-    } 
-    else {
-      Swal.fire({
-        title: "Error adding to wishlist",
-        text: "Please login to continue",
-        icon: "error",
-        showCancelButton: true,
-        confirmButtonText: "Login", // Text for the login button
-        cancelButtonText: "Cancel", // Text for the cancel button
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Redirect to the login section when the "Login" button is clicked
-          window.location.href = "/login"; // Replace "/login" with your actual login page URL
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          // Handle the cancel action if needed (not needed in this case)
-        }
-      });
-    }
-  } catch (error) {
-    console.error("Error:", error.message);
-    // Handle the error if needed
-  }
-}
-
-          </script>
+      </script>
 
 
 
 
 
 
-          <% include('../layouts/footer.ejs') %>
+      <% include('../layouts/footer.ejs') %>

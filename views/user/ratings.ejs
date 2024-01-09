@@ -1,11 +1,24 @@
-<% include('../layouts/header.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Shoetopia - Product review</title>
+  <link rel="icon" type="image/x-icon" href="/assets/images/headericon.png">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
   <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/animate.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
+
 
   <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
   <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
@@ -30,46 +43,53 @@
   <!-- responsive -->
   <link rel="stylesheet" href="/assetss/css/responsive.css">
   <style>
-    *{
-    margin: 0;
-    padding: 0;
-}
-.rate {
-    float: left;
-    height: 46px;
-    padding: 0 10px;
-}
-.rate:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
-}
-.rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:60px;
-    color:#ccc;
-}
-.rate:not(:checked) > label:before {
-    content: '★ ';
-}
-.rate > input:checked ~ label {
-    color: #ffc700;    
-}
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
-}
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
-}
-</style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .rate {
+      float: left;
+      height: 46px;
+      padding: 0 10px;
+    }
+
+    .rate:not(:checked)>input {
+      position: absolute;
+      top: -9999px;
+    }
+
+    .rate:not(:checked)>label {
+      float: right;
+      width: 1em;
+      overflow: hidden;
+      white-space: nowrap;
+      cursor: pointer;
+      font-size: 60px;
+      color: #ccc;
+    }
+
+    .rate:not(:checked)>label:before {
+      content: '★ ';
+    }
+
+    .rate>input:checked~label {
+      color: #ffc700;
+    }
+
+    .rate:not(:checked)>label:hover,
+    .rate:not(:checked)>label:hover~label {
+      color: #deb217;
+    }
+
+    .rate>input:checked+label:hover,
+    .rate>input:checked+label:hover~label,
+    .rate>input:checked~label:hover,
+    .rate>input:checked~label:hover~label,
+    .rate>label:hover~input:checked~label {
+      color: #c59b08;
+    }
+  </style>
   <style>
     #minus-button {
       width: 20px;
@@ -82,258 +102,263 @@
       border-radius: 0 5px 5px 0;
       background-color: #dbcc8f;
     }
-
-    
   </style>
 
 
 
   <% include('../layouts/center.ejs') %>
 
-    <body class="goto-here">
-      <%- include('../layouts/navbar.ejs') %>
+<body class="goto-here">
+  <%- include('../layouts/navbar.ejs') %>
 
 
-        <style>
-          #header {
-            margin-top: 7%;
-            width: 100%;
-            height: 70px;
-            background-color: #dbcc8f;
-          }
+    <style>
+      #header {
+        margin-top: 7%;
+        width: 100%;
+        height: 70px;
+        background-color: #dbcc8f;
+      }
 
-          #noCart {
-            margin: 3% 26%;
-          }
+      #noCart {
+        margin: 3% 26%;
+      }
 
 
-          @media(max-width:992px) {
-            #header {
-              margin-top: 2%;
-              width: 100%;
-              height: 70px;
-              background-color: #dbcc8f;
-            }
+      @media(max-width:992px) {
+        #header {
+          margin-top: 2%;
+          width: 100%;
+          height: 70px;
+          background-color: #dbcc8f;
+        }
 
-            #noCart {
-              margin: 3% 13%;
-            }
+        #noCart {
+          margin: 3% 13%;
+        }
 
-          }
-        </style>
+      }
+    </style>
 
-        <section id="header">
-          <div>
-            <h1 style="color: rgb(0, 0, 0); text-align: center;">Cart</h1>
+    <section id="header">
+      <div>
+        <h1 style="color: rgb(0, 0, 0); text-align: center;">Cart</h1>
+      </div>
+    </section>
+    <div class="container ms-5 me-5 mt-3">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="product__details__breadcrumb">
+            <a href="/">Home</a> <span>/</span>
+            <a href="/shop">Shop</a><span>/</span>
+            <a href="/product?productId=<%= productId %>">Product</a><span>/</span>
+            <span>Product Rating</span>
+
           </div>
-        </section>
-        <div class="container ms-5 me-5 mt-3">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="product__details__breadcrumb">
-                <a href="/">Home</a> <span>/</span>
-                <a href="/shop">Shop</a><span>/</span>
-                <a href="/product?productId=<%= productId %>">Product</a><span>/</span>
-                <span>Product Rating</span>
+        </div>
+      </div>
+    </div>
 
+    <section class="mb-5">
+      <div class="container">
+        <div class="heading row mt-4 card rounded-0 border-0">
+          <div class="p-3">
+            <h3>RATING & REVIEW</h3>
+          </div>
+        </div>
+        <div class="main mt-3">
+          <div class="row">
+            <div class="col-md-3 card p-3 rounded-0">
+              <div class="section1">
+                <h5>What makes a good review..</h5>
               </div>
+              <hr>
+              <div>
+                <span style="font-size: 1.2rem;">Why review a product?</span><br>
+                <p class="mt-2">Your valuable feedback will help fellow shoppers decide!</p>
+                <hr>
+              </div>
+              <div>
+                <span style="font-size: 1.2rem;">How to review a product?</span><br>
+                <p class="mt-2">Your review should include facts. An honest opinion is always
+                  appreciated.
+                  If you have an issue with the product or service please contact us from the help
+                  centre.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-9 card rounded-0 p-2 mt-4 mt-md-0 ">
+              <% if(locals.user) { %>
+                <% if (productPurchased==1) { %>
+                  <% if(locals.reviews) { %>
+                    <form action="/review?id=<%= productId %>" method="post" id="ratingForm"
+                      onsubmit="return check('<%= productId %>')">
+                      <div class="p-3">
+                        <div>
+                          <h4>Rate this product</h4>
+                          <div class="form-group">
+                            <div class="rate rating text-start justify-content-end">
+                              <input type="hidden" name="reviewId" value="<%= locals.reviews._id %>">
+                              <input type="radio" id="star5" name="rate" value="5" <%=reviews.rating===5 ? 'checked'
+                                : '' %> />
+                              <label for="star5" title="text">5 stars</label>
+                              <input type="radio" id="star4" name="rate" value="4" <%=reviews.rating===4 ? 'checked'
+                                : '' %> />
+                              <label for="star4" title="text">4 stars</label>
+                              <input type="radio" id="star3" name="rate" value="3" <%=reviews.rating===3 ? 'checked'
+                                : '' %> />
+                              <label for="star3" title="text">3 stars</label>
+                              <input type="radio" id="star2" name="rate" value="2" <%=reviews.rating===2 ? 'checked'
+                                : '' %> />
+                              <label for="star2" title="text">2 stars</label>
+                              <input type="radio" id="star1" name="rate" value="1" <%=reviews.rating===1 ? 'checked'
+                                : '' %> />
+                              <label for="star1" title="text">1 star</label>
+                            </div><br><br>
+                            <p style="float: left;" id="rating-error" class="text-danger mt-2"></p>
+                          </div>
+                        </div>
+                        <hr>
+                        <div>
+                          <h4>Review this product</h4>
+                          <div class="mt-4">
+                            <textarea name="description" style="height: 120px !important;"
+                              class="w-100 mt-4 form-control-lg form-control rounded-0" placeholder="Description..."
+                              required><%= reviews.description %></textarea>
+                          </div>
+                        </div>
+                        <div class="text-end">
+                          <button type="submit" id="submitButton"
+                            class="btn btn-dark rounded-0 w-25 mt-3">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                    <% }else { %>
+                      <form action="/review?id=<%=productId  %>" method="post" id="ratingForm"
+                        onsubmit="return check('<%= productId%>')">
+                        <div class="p-3">
+                          <div>
+                            <h4>Rate this product</h4>
+                            <div class="form-group">
+
+                              <div class="rate rating text-start justify-content-end">
+                                <input type="radio" id="star5" name="rate" value="5" />
+                                <label for="star5" title="text">5 stars</label>
+                                <input type="radio" id="star4" name="rate" value="4" />
+                                <label for="star4" title="text">4 stars</label>
+                                <input type="radio" id="star3" name="rate" value="3" />
+                                <label for="star3" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="rate" value="2" />
+                                <label for="star2" title="text">2 stars</label>
+                                <input type="radio" id="star1" name="rate" value="1" />
+                                <label for="star1" title="text">1 star</label>
+                              </div><br><br>
+                              <p style="float: left;" id="rating-error" class="text-danger mt-2"></p>
+                            </div>
+                          </div>
+                          <hr>
+                          <div>
+                            <h4>Review this product</h4>
+                            <div class="mt-4">
+                              <textarea name="description" style="height: 120px !important;"
+                                class="w-100 mt-4 form-control-lg form-control rounded-0" placeholder="Description..."
+                                required></textarea>
+
+                            </div>
+                          </div>
+                          <div class="text-end">
+                            <button type="submit" id="submitButton"
+                              class="btn btn-dark rounded-0 w-25 mt-3">Submit</button>
+                          </div>
+                        </div>
+                      </form>
+                      <% } %>
+
+                        <% } else { %>
+                          <br>
+                          <h3 class="text-center">Haven't purchased this product? / Your product is not yet delivered to
+                            your hands?</h3>
+                          <div class="text-center my-auto d-flex justify-content-center align-items-center ms-4">
+                            <div class="text-center d-flex justify-content-center">
+                              <p class="text-secondary"></p>
+                            </div>
+                            <img src="/assets/images/58.png" width="400rem" class="img-fluid rounded-5" alt="">
+                          </div>
+                          <% } %>
+                            <% }else { %>
+                              <div style="text-align: center; margin-top: 18%;">
+                                <h3 class="text-center">Please Login to Rate the Product</h3>
+                                <a href="/login"><button class="btn btn-primary"
+                                    style="width: 100px;">Login</button></a>
+
+                              </div>
+
+
+                              <% } %>
+
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <section class="mb-5">
-            <div class="container">
-                <div class="heading row mt-4 card rounded-0 border-0">
-                    <div class="p-3">
-                        <h3>RATING & REVIEW</h3>
-                    </div>
-                </div>
-                <div class="main mt-3">
-                    <div class="row">
-                        <div class="col-md-3 card p-3 rounded-0">
-                            <div class="section1">
-                                <h5>What makes a good review..</h5>
-                            </div>
-                            <hr>
-                            <div>
-                                <span style="font-size: 1.2rem;">Why review a product?</span><br>
-                                <p class="mt-2">Your valuable feedback will help fellow shoppers decide!</p>
-                                <hr>
-                            </div>
-                            <div>
-                                <span style="font-size: 1.2rem;">How to review a product?</span><br>
-                                <p class="mt-2">Your review should include facts. An honest opinion is always
-                                    appreciated.
-                                    If you have an issue with the product or service please contact us from the help
-                                    centre.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-md-9 card rounded-0 p-2 mt-4 mt-md-0 ">
-                            <% if(locals.user) { %> 
-                            <% if (productPurchased == 1) { %>
-                                <% if(locals.reviews) { %> 
-                                    <form action="/review?id=<%= productId %>" method="post" id="ratingForm" onsubmit="return check('<%= productId %>')">
-                                        <div class="p-3">
-                                          <div>
-                                            <h4>Rate this product</h4>
-                                            <div class="form-group">
-                                              <div class="rate rating text-start justify-content-end">
-                                                  <input type="hidden" name="reviewId" value="<%= locals.reviews._id %>">
-                                                <input type="radio" id="star5" name="rate" value="5" <%= reviews.rating === 5 ? 'checked' : '' %> />
-                                                <label for="star5" title="text">5 stars</label>
-                                                <input type="radio" id="star4" name="rate" value="4" <%= reviews.rating === 4 ? 'checked' : '' %> />
-                                                <label for="star4" title="text">4 stars</label>
-                                                <input type="radio" id="star3" name="rate" value="3" <%= reviews.rating === 3 ? 'checked' : '' %> />
-                                                <label for="star3" title="text">3 stars</label>
-                                                <input type="radio" id="star2" name="rate" value="2" <%= reviews.rating === 2 ? 'checked' : '' %> />
-                                                <label for="star2" title="text">2 stars</label>
-                                                <input type="radio" id="star1" name="rate" value="1" <%= reviews.rating === 1 ? 'checked' : '' %> />
-                                                <label for="star1" title="text">1 star</label>
-                                              </div><br><br>
-                                              <p style="float: left;" id="rating-error" class="text-danger mt-2"></p>
-                                            </div>
-                                          </div>
-                                          <hr>
-                                          <div>
-                                            <h4>Review this product</h4>
-                                            <div class="mt-4">
-                                              <textarea name="description"
-                                                style="height: 120px !important;"
-                                                class="w-100 mt-4 form-control-lg form-control rounded-0"
-                                                placeholder="Description..." required><%= reviews.description %></textarea>
-                                            </div>
-                                          </div>
-                                          <div class="text-end">
-                                            <button type="submit" id="submitButton" class="btn btn-dark rounded-0 w-25 mt-3">Submit</button>
-                                          </div>
-                                        </div>
-                                      </form>
-                                    <% }else { %>
-                                        <form action="/review?id=<%=productId  %>" method="post" id="ratingForm" onsubmit="return check('<%= productId%>')">
-                                            <div class="p-3">
-                                                <div>
-                                                    <h4>Rate this product</h4>                                    
-                                                    <div class="form-group">
-                                                
-                                                        <div class="rate rating text-start justify-content-end">
-                                                          <input type="radio" id="star5" name="rate" value="5" />
-                                                          <label for="star5" title="text">5 stars</label>
-                                                          <input type="radio" id="star4" name="rate" value="4" />
-                                                          <label for="star4" title="text">4 stars</label>
-                                                          <input type="radio" id="star3" name="rate" value="3" />
-                                                          <label for="star3" title="text">3 stars</label>
-                                                          <input type="radio" id="star2" name="rate" value="2" />
-                                                          <label for="star2" title="text">2 stars</label>
-                                                          <input type="radio" id="star1" name="rate" value="1" />
-                                                          <label for="star1" title="text">1 star</label>
-                                                        </div><br><br>
-                                                        <p style="float: left;" id="rating-error" class="text-danger mt-2"></p>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div>
-                                                    <h4>Review this product</h4>
-                                                    <div class="mt-4">
-                                                            <textarea name="description"
-                                                            style="height: 120px !important;" 
-                                                            class="w-100 mt-4 form-control-lg form-control rounded-0"
-                                                            placeholder="Description..." required></textarea>
-                                                  
-                                                    </div>
-                                                </div>
-                                                <div class="text-end">
-                                                    <button type="submit" id="submitButton"
-                                                        class="btn btn-dark rounded-0 w-25 mt-3">Submit</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    <% } %>
-                          
-                              <% } else { %>
-                                <br>
-                                <h3 class="text-center">Haven't purchased this product? / Your product is not yet delivered to your hands?</h3>
-                                <div class="text-center my-auto d-flex justify-content-center align-items-center ms-4">
-                                  <div class="text-center d-flex justify-content-center">
-                                    <p class="text-secondary"></p>
-                                  </div>
-                                  <img src="/assets/images/58.png" width="400rem" class="img-fluid rounded-5" alt="">
-                                </div>
-                              <% } %>
-                              <% }else { %>
-                                <div style="text-align: center; margin-top: 18%;">
-                                    <h3 class="text-center">Please Login to Rate the Product</h3>
-                                    <a href="/login"><button class="btn btn-primary" style="width: 100px;">Login</button></a>
-
-                                </div>
-                               
-
-                             <% } %>
-                              
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <%- include('../layouts/page-footer.ejs') %>
+    <%- include('../layouts/page-footer.ejs') %>
 
 
 
 
-        <!-- loader -->
-        <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-              stroke="#F96D00" />
-          </svg></div>
+      <!-- loader -->
+      <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+          <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+          <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+            stroke="#F96D00" />
+        </svg></div>
 
-        <!-- Axios CDN -->
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <!-- Axios CDN -->
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-        <!-- Swal (SweetAlert2) CDN -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <!-- Include jQuery before the script if using jQuery -->
-        <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+      <!-- Swal (SweetAlert2) CDN -->
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-        <script src="/assets/js/jquery.min.js"></script>
-        <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
-        <script src="/assets/js/popper.min.js"></script>
-        <script src="/assets/js/bootstrap.min.js"></script>
-        <script src="/assets/js/jquery.easing.1.3.js"></script>
-        <script src="/assets/js/jquery.waypoints.min.js"></script>
-        <script src="/assets/js/jquery.stellar.min.js"></script>
-        <script src="/assets/js/owl.carousel.min.js"></script>
-        <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-        <script src="/assets/js/aos.js"></script>
-        <script src="/assets/js/jquery.animateNumber.min.js"></script>
-        <script src="/assets/js/bootstrap-datepicker.js"></script>
-        <script src="/assets/js/scrollax.min.js"></script>
-        <script src="/assets/js/main.js"></script>
 
-        <script>
-            async function check(productId) {
-               
-           
-                   const radioButtons = document.querySelectorAll('input[type="radio"]');
-                   const errorMessage = document.getElementById('rating-error');
-             
-                   let isRadioButtonSelected = false;
-                   radioButtons.forEach(function (radioButton) {
-                       if (radioButton.checked) {
-                           isRadioButtonSelected = true;
-                       }
-                   });
-                   if (!isRadioButtonSelected) {
-               
-                       errorMessage.innerHTML = 'Please select rating'
-                       return false
-                   }
-           
-                    
-           
-                 return true
-              
-               };
-           </script>
+      <script src="/assets/js/jquery.min.js"></script>
+      <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/js/popper.min.js"></script>
+      <script src="/assets/js/bootstrap.min.js"></script>
+      <script src="/assets/js/jquery.easing.1.3.js"></script>
+      <script src="/assets/js/jquery.waypoints.min.js"></script>
+      <script src="/assets/js/jquery.stellar.min.js"></script>
+      <script src="/assets/js/owl.carousel.min.js"></script>
+      <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+      <script src="/assets/js/aos.js"></script>
+      <script src="/assets/js/jquery.animateNumber.min.js"></script>
+      <script src="/assets/js/bootstrap-datepicker.js"></script>
+      <script src="/assets/js/scrollax.min.js"></script>
+      <script src="/assets/js/main.js"></script>
+
+      <script>
+        async function check(productId) {
+
+
+          const radioButtons = document.querySelectorAll('input[type="radio"]');
+          const errorMessage = document.getElementById('rating-error');
+
+          let isRadioButtonSelected = false;
+          radioButtons.forEach(function (radioButton) {
+            if (radioButton.checked) {
+              isRadioButtonSelected = true;
+            }
+          });
+          if (!isRadioButtonSelected) {
+
+            errorMessage.innerHTML = 'Please select rating'
+            return false
+          }
+
+
+
+          return true
+
+        };
+      </script>

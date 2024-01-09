@@ -1,83 +1,83 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const userSchema = mongoose.Schema({
-    username:{
-        type:String,
-        required:true
+const userSchema = mongoose.Schema(
+  {
+    username: {
+      type: String,
+      required: true,
     },
-    email:{
-        type:String,
-        required:true
+    email: {
+      type: String,
+      required: true,
     },
-    mobile:{
-        type:String,
-        required:true
+    mobile: {
+      type: String,
+      required: true,
     },
-    password:{
-        type:String,
-        required:true
+    password: {
+      type: String,
+      required: true,
     },
-    is_blocked:{
-        type:Number,
-        default:0
+    is_blocked: {
+      type: Number,
+      default: 0,
     },
-    token:{
-        type:String
+    token: {
+      type: String,
     },
     address: [
-        {
-          name: {
-            type: String,
-          },
-          housename: {
-            type: String,
-          },
-          city: {
-            type: String,
-          },
-          state: {
-            type: String,
-          },
-          phone: {
-            type: Number,
-          },
-          pincode: {
-            type: Number,
-          },
+      {
+        name: {
+          type: String,
         },
-      ],
-      wallet: {
-        type: Number,
-        default: 0,
+        housename: {
+          type: String,
+        },
+        city: {
+          type: String,
+        },
+        state: {
+          type: String,
+        },
+        phone: {
+          type: Number,
+        },
+        pincode: {
+          type: Number,
+        },
       },
-      wallet_history: [
-        {
-          date: {
-            type: Date,
-          },
-          amount: {
-            type: Number,
-          },
-          description: {
-            type: String,
-          },
+    ],
+    wallet: {
+      type: Number,
+      default: 0,
+    },
+    wallet_history: [
+      {
+        date: {
+          type: Date,
         },
-      ],
-      wishlist: [
-        {
-          productId: {
-            type: mongoose.Types.ObjectId,
-            ref: "product",
-            required: true,
-          },
-          date: {
-            type: Date,
-          },
+        amount: {
+          type: Number,
         },
-      ],
-  
-},{timestamps:true});
+        description: {
+          type: String,
+        },
+      },
+    ],
+    wishlist: [
+      {
+        productId: {
+          type: mongoose.Types.ObjectId,
+          ref: "product",
+          required: true,
+        },
+        date: {
+          type: Date,
+        },
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
-
-
-module.exports = mongoose.model('User',userSchema);
+module.exports = mongoose.model("User", userSchema);

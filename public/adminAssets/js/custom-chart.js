@@ -3,7 +3,7 @@
 
     if ($('#myChart').length) {
         var ctx1 = document.getElementById('myChart').getContext('2d');
-
+    
         let jan = document.getElementById('jan').value
         let feb = document.getElementById('feb').value
         let mar = document.getElementById('mar').value
@@ -16,7 +16,7 @@
         let oct = document.getElementById('nov').value
         let nov = document.getElementById('dec').value
         let dec = document.getElementById('dec').value
-
+    
         let year2018 = document.getElementById('2018').value;
         let year2019 = document.getElementById('2019').value;
         let year2020 = document.getElementById('2020').value;
@@ -28,14 +28,24 @@
         // Initial data for the chart
         var initialData1 = {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            datasets: [{
-                label: 'Sales',
-                tension: 0.3,
-                fill: true,
-                backgroundColor: 'rgba(44, 120, 220, 0.2)',
-                borderColor: 'rgba(44, 120, 220)',
-                data: [jan, feb, mar ,apr, may, jun, jul, aug, sep, oct, nov, dec]
-            }]
+            datasets: [
+                {
+                    label: 'Sales',
+                    tension: 0.3,
+                    fill: true,
+                    backgroundColor: 'rgba(44, 120, 220, 0.2)',
+                    borderColor: 'rgba(44, 120, 220)',
+                    data: [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+                },
+                {
+                    label: 'Orders',
+                    tension: 0.3,
+                    fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132)',
+                    data: [/* your orders data for each month */]
+                }
+            ]
         };
     
         var chartOptions1 = {
@@ -54,24 +64,23 @@
             options: chartOptions1
         });
     
-       // Monthly and yearly data
-        var monthlyData = [jan, feb, mar ,apr, may, jun, jul, aug, sep, oct, nov, dec];
-        var yearlyData = [ year2018, year2019, year2020, year2021, year2022, year2023,year2024];
-
+        // Monthly and yearly data
+        var monthlyData = [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec];
+        var yearlyData = [year2018, year2019, year2020, year2021, year2022, year2023, year2024];
     
         // Click event for elements with the class "toggle-chart"
         $('.toggle-chart').on('click', function () {
             var chartType = $(this).data('chart-type');
-            var labels1 = chartType === 'monthly' ? 
+            var labels1 = chartType === 'monthly' ?
                 ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] :
-                Array.from({length: 2024 - 2018 + 1}, (_, i) => (2018 + i).toString());
-
+                Array.from({ length: 2024 - 2018 + 1 }, (_, i) => (2018 + i).toString());
     
             // Update data based on chart type
             var newData = chartType === 'monthly' ? monthlyData : yearlyData;
     
-            // Update dataset values
-            chart1.data.datasets[0].data = newData;
+            // Update dataset values for both Sales and Orders
+            chart1.data.datasets[0].data = newData; // Sales data
+            chart1.data.datasets[1].data = [/* your orders data for each month */]; // Orders data
     
             // Update labels for the dataset
             chart1.data.labels = labels1;
@@ -80,6 +89,7 @@
             chart1.update();
         });
     }
+    
     
     
     

@@ -8,6 +8,7 @@ const app = express();
 const session = require('express-session');
 const path = require('path');
 const flash = require('express-flash');
+const morgan = require('morgan');
 
 
 // Use the 'upload' middleware for handling file uploads
@@ -19,7 +20,6 @@ app.use(express.urlencoded({extended:true}));
 app.set('view engine','ejs');
 
 
-// app.use(express.static(path.join(__dirname,'public','assets')));
 app.use(express.static(path.join(__dirname,'public')));
 
 
@@ -36,6 +36,10 @@ app.use(
     res.set('Cache-control','no-store,no-cache')
     next()
 }) 
+
+app.use(morgan('dev'));
+
+
 
 app.use(flash());
 
@@ -82,6 +86,3 @@ app.listen(port,()=>{
     console.log(`http://localhost:${port}`);
 })
 
-
-
-// mwone pwoli

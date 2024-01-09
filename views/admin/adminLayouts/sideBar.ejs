@@ -5,7 +5,8 @@
             Shoetopia Admin
         </a>
         <div>
-            <button class="btn btn-icon btn-aside-minimize"><i class="text-muted material-icons md-menu_open"></i></button>
+            <button class="btn btn-icon btn-aside-minimize"><i
+                    class="text-muted material-icons md-menu_open"></i></button>
         </div>
     </div>
     <nav>
@@ -69,13 +70,13 @@
 </aside>
 
 <script>
-    // Get the current URL
+
     const currentURL = window.location.pathname;
 
-    // Select all menu links
+
     const menuLinks = document.querySelectorAll('.menu-link');
 
-    // Loop through menu links and apply "active" class if their href matches the current URL
+
     menuLinks.forEach(link => {
         if (link.getAttribute('href') === currentURL) {
             link.parentElement.classList.add('active');

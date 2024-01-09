@@ -1,44 +1,60 @@
-<% include('../layouts/header.ejs') %>
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
 
-<link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="/assets/css/animate.css">
+<head>
+  <meta charset="utf-8" />
+  <title>Shoetopia - Register</title>
+  <link rel="icon" type="image/x-icon" href="/assets/images/headericon.png">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
-<link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
-<link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="/assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/animate.css">
 
-<link rel="stylesheet" href="/assets/css/aos.css">
+  <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/assets/css/magnific-popup.css">
 
-<link rel="stylesheet" href="/assets/css/ionicons.min.css">
+  <link rel="stylesheet" href="/assets/css/aos.css">
 
-<link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="/assets/css/jquery.timepicker.css">
+  <link rel="stylesheet" href="/assets/css/ionicons.min.css">
+
+  <link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/assets/css/jquery.timepicker.css">
 
 
-<link rel="stylesheet" href="/assets/css/flaticon.css">
-<link rel="stylesheet" href="/assets/css/icomoon.css">
-<link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/flaticon.css">
+  <link rel="stylesheet" href="/assets/css/icomoon.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
 
-<link href="/login-form/https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  <link href="/login-form/https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="/login-form/https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	<link rel="stylesheet" href="/login-form/css/style.css">
+  <link rel="stylesheet"
+    href="/login-form/https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/login-form/css/style.css">
 
   <style>
-    body{
-     background-color: #dbcc8f;
+    body {
+      background-color: #dbcc8f;
     }
   </style>
 
 
-<% include('../layouts/center.ejs') %>
+  <% include('../layouts/center.ejs') %>
+
 <body class="goto-here">
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light" id="ftco-navbar">
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand text-dark" href="/">Shoetopia</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+        aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
       </button>
 
@@ -46,309 +62,323 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="/shop">Shop</a> </li>
-        <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
-      
-       
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown04">
-            <a class="dropdown-item" href="/profile">User Profile</a>
-            <a class="dropdown-item" href="/login">Sign in</a>
-            <a class="dropdown-item" href="/cart" class="nav-link"><span class="icon-shopping_cart"></span> Cart</a>
-            <a class="dropdown-item" href="/wishlist" class="nav-link"><span class="icon-heart"></span> Wishlist</a>
-            
-          </div>
-        </li>
-        
-      </ul>
+          <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">Profile</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown04">
+              <a class="dropdown-item" href="/profile">User Profile</a>
+              <a class="dropdown-item" href="/login">Sign in</a>
+              <a class="dropdown-item" href="/cart" class="nav-link"><span class="icon-shopping_cart"></span> Cart</a>
+              <a class="dropdown-item" href="/wishlist" class="nav-link"><span class="icon-heart"></span> Wishlist</a>
+
+            </div>
+          </li>
+
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
 
-<section class="ftco-section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-12 col-lg-10">
-        <div class="wrap d-md-flex">
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-12 col-lg-10">
           <div class="wrap d-md-flex">
-						
-          <!-- Removed the empty <div> -->
-          <div class="login-wrap p-4 p-md-5">
-            <div class="d-flex">
-              <div class="w-100">
-                <h3 class="mb-4">Register</h3>
-              </div>
-            </div>
-            <form action="/submit-registration" method="post" id="signupForm" class="signin-form">
-              <div class="form-group mb-3">
-                <label class="label" for="username">Username</label>
-                <input type="text" class="form-control" placeholder="Username" required name="username" id="username">
-                <div id="usernameError" class="error-message"></div>
-              </div>
-              <div class="form-group mb-3">
-                <label class="label" for="email">Email</label>
-                <input type="text" class="form-control" placeholder="Email" required name="email" id="email">
-                <div id="emailError" class="error-message"></div>
-              </div>
-              <div class="form-group mb-3">
-                <label class="label" for="password">Password</label>
-                <input type="password" class="form-control" placeholder="Password" required name="password" id="password">
-                <div id="passwordError" class="error-message"></div>
-              </div>
-              <div class="form-group mb-3">
-                <label class="label" for="confirmpassword">Confirm Password</label>
-                <input type="password" class="form-control" placeholder="Confirm password" required name="confirmpassword" id="confirmpassword">
-                <div id="confirmpasswordError" class="error-message"></div>
-              </div>
-              <div class="form-group mb-3">
-                <label class="label" for="phoneNumber">Phone Number</label>
-                <input type="text" class="form-control" placeholder="Phone Number" required name="phoneNumber" id="phoneNumber">
-                <div id="phoneNumberError" class="error-message"></div>
-              </div>
-              <div class="form-group">
-                <button type="button" class="form-control btn btn-primary rounded submit px-3" id="sendOTPButton" onclick="sendOTP()">Send OTP</button>
-            </div>
-            
-            <div id="otpMessage" style="color: #2ecc71; font-size: smaller;"></div>
-            
-            <div class="form-group mb-3">
-                <label class="label" for="otpInput">Enter OTP</label>
-                <input type="text" class="form-control" placeholder="Enter OTP" required name="otpInput" id="otpInput">
-            </div>
-            
-            <div class="form-group">
-                <button type="button" class="form-control btn btn-dark rounded submit px-3" id="verifyOTPButton" disabled onclick="verifyOTP()">Verify</button>
-            </div>
-            
-            <div id="verifyMessage" style="color: #740000; font-size: smaller;"></div>
-            
-            <div class="login_footer form-group">
-                <!-- Your optional terms & policy checkbox can go here -->
-            </div>
-            
-            <div class="form-group">
-                <button type="submit" class="form-control btn btn-primary rounded submit px-3" id="registerButton" disabled>Register</button>
-            </div>
-            
+            <div class="wrap d-md-flex">
 
-              <div class="register">
-                <span>Already have an account?</span> <a href="/login">Sign in</a>
-                <% if (typeof message !== 'undefined') { %>
-                  <p style="color: green; text-align: center; font-size: smaller;"><%- message %></p>
-                <% } %>
+              <!-- Removed the empty <div> -->
+              <div class="login-wrap p-4 p-md-5">
+                <div class="d-flex">
+                  <div class="w-100">
+                    <h3 class="mb-4">Register</h3>
+                  </div>
+                </div>
+                <form action="/submit-registration" method="post" id="signupForm" class="signin-form">
+                  <div class="form-group mb-3">
+                    <label class="label" for="username">Username</label>
+                    <input type="text" class="form-control" placeholder="Username" required name="username"
+                      id="username">
+                    <div id="usernameError" class="error-message"></div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="email">Email</label>
+                    <input type="text" class="form-control" placeholder="Email" required name="email" id="email">
+                    <div id="emailError" class="error-message"></div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="password">Password</label>
+                    <input type="password" class="form-control" placeholder="Password" required name="password"
+                      id="password">
+                    <div id="passwordError" class="error-message"></div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="confirmpassword">Confirm Password</label>
+                    <input type="password" class="form-control" placeholder="Confirm password" required
+                      name="confirmpassword" id="confirmpassword">
+                    <div id="confirmpasswordError" class="error-message"></div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="phoneNumber">Phone Number</label>
+                    <input type="text" class="form-control" placeholder="Phone Number" required name="phoneNumber"
+                      id="phoneNumber">
+                    <div id="phoneNumberError" class="error-message"></div>
+                  </div>
+                  <div class="form-group">
+                    <button type="button" class="form-control btn btn-primary rounded submit px-3" id="sendOTPButton"
+                      onclick="sendOTP()">Send OTP</button>
+                  </div>
+
+                  <div id="otpMessage" style="color: #2ecc71; font-size: smaller;"></div>
+
+                  <div class="form-group mb-3">
+                    <label class="label" for="otpInput">Enter OTP</label>
+                    <input type="text" class="form-control" placeholder="Enter OTP" required name="otpInput"
+                      id="otpInput">
+                  </div>
+
+                  <div class="form-group">
+                    <button type="button" class="form-control btn btn-dark rounded submit px-3" id="verifyOTPButton"
+                      disabled onclick="verifyOTP()">Verify</button>
+                  </div>
+
+                  <div id="verifyMessage" style="color: #740000; font-size: smaller;"></div>
+
+                  <div class="login_footer form-group">
+                    <!-- Your optional terms & policy checkbox can go here -->
+                  </div>
+
+                  <div class="form-group">
+                    <button type="submit" class="form-control btn btn-primary rounded submit px-3" id="registerButton"
+                      disabled>Register</button>
+                  </div>
+
+
+                  <div class="register">
+                    <span>Already have an account?</span> <a href="/login">Sign in</a>
+                    <% if (typeof message !=='undefined' ) { %>
+                      <p style="color: green; text-align: center; font-size: smaller;"><%- message %></p>
+                      <% } %>
+                  </div>
+                </form>
               </div>
-            </form>
-          </div>
-          <div class="img" style="background-image: url(/login-form/images/bg-2.jpg);">
+              <div class="img" style="background-image: url(/login-form/images/bg-2.jpg);">
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+  </section>
 
 
-<script src="/login-form/js/jquery.min.js"></script>
-<script src="/login-form/js/popper.js"></script>
-<script src="/login-form/js/bootstrap.min.js"></script>
-<script src="/login-form/js/main.js"></script>
+  <script src="/login-form/js/jquery.min.js"></script>
+  <script src="/login-form/js/popper.js"></script>
+  <script src="/login-form/js/bootstrap.min.js"></script>
+  <script src="/login-form/js/main.js"></script>
 
 
 
 
-<!-- END nav -->
+  <!-- END nav -->
 
 
-<!-- Add this style block to your head tag or in a separate CSS file -->
-<style>
-  .error {
-    color: red;
-    font-size: x-small;
-  }
-
-  .error-outline {
-    border: 1px solid red;
-  }
-
-  .error-message{
-    color: red;
-    font-size: smaller;
-  }
-</style>
-
-<!-- Add this script block to your body tag or include it in a separate JavaScript file -->
-
-<!-- Footer started -->
-<%- include('../layouts/page-footer.ejs') %>
-
-
-
-<!-- loader -->
-<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="/assets/js/popper.min.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/jquery.easing.1.3.js"></script>
-<script src="/assets/js/jquery.waypoints.min.js"></script>
-<script src="/assets/js/jquery.stellar.min.js"></script>
-<script src="/assets/js/owl.carousel.min.js"></script>
-<script src="/assets/js/jquery.magnific-popup.min.js"></script>
-<script src="/assets/js/aos.js"></script>
-<script src="/assets/js/jquery.animateNumber.min.js"></script>
-<script src="/assets/js/bootstrap-datepicker.js"></script>
-<script src="/assets/js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="/assets/js/google-map.js"></script>
-<script src="/assets/js/main.js"></script>
-
-<script>
-
- function validateForm() {
-          var valid = true;
-
-    var username = $("#username").val();
-    if (!username || username.trim() === "" || !/^[a-zA-Z]+$/.test(username)) {
-        $("#usernameError").html("Username is required and should contain only letters");
-        valid = false;
-    } else {
-        $("#usernameError").html("");
+  <!-- Add this style block to your head tag or in a separate CSS file -->
+  <style>
+    .error {
+      color: red;
+      font-size: x-small;
     }
 
-    // Email Validation
-    var email = $("#email").val();
-    
-    if (!email || email.trim() === "" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        $("#emailError").html("Invalid email address");
-        valid = false;
-    } else {
-        $("#emailError").html("");
+    .error-outline {
+      border: 1px solid red;
     }
 
-    // Password Validation
-    var password = $("#password").val();
-    if (!password || password.trim() === "" || !/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/.test(password)) {
-        $("#passwordError").html("Password should be at least 8 characters long, contain an uppercase letter, a digit, and a special character");
-        valid = false;
-    } else {
-        $("#passwordError").html("");
+    .error-message {
+      color: red;
+      font-size: smaller;
     }
+  </style>
 
-    // Confirm Password Validation
-    var confirmPassword = $("#confirmpassword").val();
-    if (confirmPassword !== password) {
-        $("#confirmpasswordError").html("Passwords do not match");
-        valid = false;
-    } else {
-        $("#confirmpasswordError").html("");
-    }
+  <!-- Add this script block to your body tag or include it in a separate JavaScript file -->
 
-    // Phone Number Validation
-    var phoneNumber = $("#phoneNumber").val();
-    if (!phoneNumber || phoneNumber.trim() === "" || !/^\d+$/.test(phoneNumber)) {
-        $("#phoneNumberError").html("Invalid phone number");
-        valid = false;
-    } else {
-        $("#phoneNumberError").html("");
-    }
+  <!-- Footer started -->
+  <%- include('../layouts/page-footer.ejs') %>
 
-          // Similar validation for other input fields...
-          var sendOTPButton = $("#sendOTPButton");
 
-          
-          
-          return valid;
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+          stroke="#F96D00" />
+      </svg></div>
+
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.easing.1.3.js"></script>
+    <script src="/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/assets/js/jquery.stellar.min.js"></script>
+    <script src="/assets/js/owl.carousel.min.js"></script>
+    <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/js/aos.js"></script>
+    <script src="/assets/js/jquery.animateNumber.min.js"></script>
+    <script src="/assets/js/bootstrap-datepicker.js"></script>
+    <script src="/assets/js/scrollax.min.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="/assets/js/google-map.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+    <script>
+
+      function validateForm() {
+        var valid = true;
+
+        var username = $("#username").val();
+        if (!username || username.trim() === "" || !/^[a-zA-Z]+$/.test(username)) {
+          $("#usernameError").html("Username is required and should contain only letters");
+          valid = false;
+        } else {
+          $("#usernameError").html("");
+        }
+
+        // Email Validation
+        var email = $("#email").val();
+
+        if (!email || email.trim() === "" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          $("#emailError").html("Invalid email address");
+          valid = false;
+        } else {
+          $("#emailError").html("");
+        }
+
+        // Password Validation
+        var password = $("#password").val();
+        if (!password || password.trim() === "" || !/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/.test(password)) {
+          $("#passwordError").html("Password should be at least 8 characters long, contain an uppercase letter, a digit, and a special character");
+          valid = false;
+        } else {
+          $("#passwordError").html("");
+        }
+
+        // Confirm Password Validation
+        var confirmPassword = $("#confirmpassword").val();
+        if (confirmPassword !== password) {
+          $("#confirmpasswordError").html("Passwords do not match");
+          valid = false;
+        } else {
+          $("#confirmpasswordError").html("");
+        }
+
+        // Phone Number Validation
+        var phoneNumber = $("#phoneNumber").val();
+        if (!phoneNumber || phoneNumber.trim() === "" || !/^\d+$/.test(phoneNumber)) {
+          $("#phoneNumberError").html("Invalid phone number");
+          valid = false;
+        } else {
+          $("#phoneNumberError").html("");
+        }
+
+        // Similar validation for other input fields...
+        var sendOTPButton = $("#sendOTPButton");
+
+
+
+        return valid;
       }
 
       function sendOTP() {
-          if (validateForm()) {
-              // Your existing AJAX code for sending OTP
-              disableSendOTPButton();
-              var formData = $("#signupForm").serialize();
-              $.ajax({
-                  type: "POST",
-                  url: "/send-otp",
-                  data: formData,
-                  success: function (response) {
-                      $("#otpMessage").html('OTP has been sent to your email');
+        if (validateForm()) {
+          // Your existing AJAX code for sending OTP
+          disableSendOTPButton();
+          var formData = $("#signupForm").serialize();
+          $.ajax({
+            type: "POST",
+            url: "/send-otp",
+            data: formData,
+            success: function (response) {
+              $("#otpMessage").html('OTP has been sent to your email');
 
-                      
-                  },
-                  error: function () {
-                      $("#otpMessage").html("Error sending OTP");
-                  }
-              });
-          }
+
+            },
+            error: function () {
+              $("#otpMessage").html("Error sending OTP");
+            }
+          });
+        }
       }
 
-      
-function disableSendOTPButton() {
-    var sendOTPButton = $("#sendOTPButton");
-    var countdownSeconds = 60; // 2 minutes
 
-    // Disable the button
-    sendOTPButton.prop("disabled", true);
+      function disableSendOTPButton() {
+        var sendOTPButton = $("#sendOTPButton");
+        var countdownSeconds = 60; // 2 minutes
 
-    // Update button text with countdown timer
-    function updateButtonText() {
-        if (countdownSeconds > 0) {
+        // Disable the button
+        sendOTPButton.prop("disabled", true);
+
+        // Update button text with countdown timer
+        function updateButtonText() {
+          if (countdownSeconds > 0) {
             document.getElementById('sendOTPButton').innerHTML = "Expires in " + countdownSeconds + " seconds...";
             countdownSeconds--;
             setTimeout(updateButtonText, 1000); // Update every 1 second
-        } else {
+          } else {
             document.getElementById('sendOTPButton').innerHTML = "Resend OTP";
             sendOTPButton.prop("disabled", false);
-        }
-    }
-
-    updateButtonText(); // Start the countdown
-}
-
-
-  $(document).ready(function () {
-
-
-    function toggleVerifyButton() {
-      var otpInput = $("#otpInput").val();
-      var verifyButton = $("#verifyOTPButton");
-
-      if (otpInput && otpInput.trim() !== "") {
-        verifyButton.prop("disabled", false);
-      } else {
-        verifyButton.prop("disabled", true);
-      }
-    }
-    $("#otpInput").on("input", toggleVerifyButton);
-
-
-
-    $("#verifyOTPButton").click(function () {
-      var verifyData = $("#signupForm").serialize();
-
-      $.ajax({
-        type: "POST",
-        url: "/verify-otp-signup", // Update the URL to your server endpoint
-        data: verifyData,
-        success: function (response) {
-          console.log(response.message);
-          $("#verifyMessage").html(response.message);
-
-          // If verification is successful, enable the Register button
-          if (response.success) {
-            $("#registerButton").prop("disabled", false);
           }
-        },
-        error: function () {
-          $("#verifyMessage").html("Error verifying OTP");
         }
+
+        updateButtonText(); // Start the countdown
+      }
+
+
+      $(document).ready(function () {
+
+
+        function toggleVerifyButton() {
+          var otpInput = $("#otpInput").val();
+          var verifyButton = $("#verifyOTPButton");
+
+          if (otpInput && otpInput.trim() !== "") {
+            verifyButton.prop("disabled", false);
+          } else {
+            verifyButton.prop("disabled", true);
+          }
+        }
+        $("#otpInput").on("input", toggleVerifyButton);
+
+
+
+        $("#verifyOTPButton").click(function () {
+          var verifyData = $("#signupForm").serialize();
+
+          $.ajax({
+            type: "POST",
+            url: "/verify-otp-signup", // Update the URL to your server endpoint
+            data: verifyData,
+            success: function (response) {
+              console.log(response.message);
+              $("#verifyMessage").html(response.message);
+
+              // If verification is successful, enable the Register button
+              if (response.success) {
+                $("#registerButton").prop("disabled", false);
+              }
+            },
+            error: function () {
+              $("#verifyMessage").html("Error verifying OTP");
+            }
+          });
+        });
+
+
       });
-    });
-
- 
-  });
-</script>
+    </script>
 
 
 
@@ -356,4 +386,4 @@ function disableSendOTPButton() {
 
 
 
-<% include('../layouts/footer.ejs') %>
+    <% include('../layouts/footer.ejs') %>

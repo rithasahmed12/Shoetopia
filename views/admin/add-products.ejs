@@ -1,134 +1,148 @@
 <%- include('./adminLayouts/header.ejs') %>
-<%- include('./adminLayouts/sideBar.ejs') %>
+    <%- include('./adminLayouts/sideBar.ejs') %>
 
         <main class="main-wrap">
-            <%- include('./adminLayouts/navBar.ejs') %> 
-            <style>
-                .error-message{
-                    color: red;
-                    font-size: smaller;
-                }
-            </style>
-            <section class="content-main">
-                <div class="row">
-                    <div class="col-9">
-                        <div class="content-header">
-                            <h2 class="content-title">Add New Product</h2>
-                            <div>
-                              <a href="/admin/products"><button class="btn btn-light rounded font-sm mr-5 text-body hover-up">Go Back</button></a>  
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h4>Basic</h4>
-                            </div>
-                            <div class="card-body">
+            <%- include('./adminLayouts/navBar.ejs') %>
+                <style>
+                    .error-message {
+                        color: red;
+                        font-size: smaller;
+                    }
+                </style>
+                <section class="content-main">
+                    <div class="row">
+                        <div class="col-9">
+                            <div class="content-header">
+                                <h2 class="content-title">Add New Product</h2>
+                                <div>
+                                    <a href="/admin/products"><button
+                                            class="btn btn-light rounded font-sm mr-5 text-body hover-up">Go
+                                            Back</button></a>
 
-                                <form method="post" action="/admin/addProducts" enctype="multipart/form-data" onsubmit="return validateForm()">
-                                    <div class="mb-4">
-                                        <label for="product_name" class="form-label">Product title</label>
-                                        <input type="text" placeholder="Type here" class="form-control" id="product_name" name="name" />
-                                        <span id="productNameError" class="error-message"></span>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="form-label">Full description</label>
-                                        <textarea placeholder="Type here" class="form-control" rows="4" name="description" ></textarea>
-                                        <span id="productDescriptionError" class="error-message"></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="mb-4">
-                                                <label class="form-label">Price</label>
-                                                <div class="row gx-2">
-                                                    <input placeholder="$" type="text" class="form-control" id="product_price" name="price"  />
-                                                    <span id="priceError" style="color: red; font-size: smaller;"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="mb-4">
-                                                <label class="form-label">Stock Quantity</label>
-                                                <div class="row gx-2">
-                                                    <input placeholder="quantity" type="text" class="form-control" id="product_qty" name="quantity" />
-                                                    <span id="quantityError" style="color: red; font-size: smaller;"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 mb-3">
-                                            <label class="form-label">Category</label>
-                                            <select name="category" id="categorySelect" class="form-select" >
-                                                <option value="">select</option>
-                                                <% categories.forEach(category => { %> 
-                                                    <option><%= category.name %></option>
-                                                <% }); %>
-                                            </select>
-                                            <span id="categoryError"  class="error-message"></span>
-                                        </div>
-                                 
-                                    </div>
-                                  
-                            </div>
-                          
-                        </div>
-                  
-                       
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h4>Media</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="input-upload">
-                                    
-                                    <input class="form-control" type="file" name="image" multiple />
-                                    <span id="imageError" class="error-message"></span>
                                 </div>
                             </div>
                         </div>
-             
-                        <input type="hidden" name="selectedCategories" id="selectedCategories">
-                        <div>
-                            
-                            <input type="submit" value="Create Product" class="btn btn-md rounded font-sm hover-up" style="width: 100%;">
+                        <div class="col-lg-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h4>Basic</h4>
+                                </div>
+                                <div class="card-body">
+
+                                    <form method="post" action="/admin/addProducts" enctype="multipart/form-data"
+                                        onsubmit="return validateForm()">
+                                        <div class="mb-4">
+                                            <label for="product_name" class="form-label">Product title</label>
+                                            <input type="text" placeholder="Type here" class="form-control"
+                                                id="product_name" name="name" />
+                                            <span id="productNameError" class="error-message"></span>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label">Full description</label>
+                                            <textarea placeholder="Type here" class="form-control" rows="4"
+                                                name="description"></textarea>
+                                            <span id="productDescriptionError" class="error-message"></span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="mb-4">
+                                                    <label class="form-label">Price</label>
+                                                    <div class="row gx-2">
+                                                        <input placeholder="$" type="text" class="form-control"
+                                                            id="product_price" name="price" />
+                                                        <span id="priceError"
+                                                            style="color: red; font-size: smaller;"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-4">
+                                                    <label class="form-label">Stock Quantity</label>
+                                                    <div class="row gx-2">
+                                                        <input placeholder="quantity" type="text" class="form-control"
+                                                            id="product_qty" name="quantity" />
+                                                        <span id="quantityError"
+                                                            style="color: red; font-size: smaller;"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 mb-3">
+                                                <label class="form-label">Category</label>
+                                                <select name="category" id="categorySelect" class="form-select">
+                                                    <option value="">select</option>
+                                                    <% categories.forEach(category=> { %>
+                                                        <option>
+                                                            <%= category.name %>
+                                                        </option>
+                                                        <% }); %>
+                                                </select>
+                                                <span id="categoryError" class="error-message"></span>
+                                            </div>
+
+                                        </div>
+
+                                </div>
+
+                            </div>
+
+
                         </div>
-                        <% if (typeof message !== 'undefined') { %>
-                            <p style="color: red; font-size: smaller;"><%= message %></p>
-                        <% } %>
-                        
-                    </form>
-                    <!-- Add this script after your form HTML -->
-                    
-                    
-                    
+                        <div class="col-lg-3">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h4>Media</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="input-upload">
 
-                    
-                        <!-- card end// -->
-                    </div>
-                </div>
-            </section>
-            <!-- content-main end// -->
+                                        <input class="form-control" type="file" name="image" multiple />
+                                        <span id="imageError" class="error-message"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="selectedCategories" id="selectedCategories">
+                            <div>
+
+                                <input type="submit" value="Create Product" class="btn btn-md rounded font-sm hover-up"
+                                    style="width: 100%;">
+                            </div>
+                            <% if (typeof message !=='undefined' ) { %>
+                                <p style="color: red; font-size: smaller;">
+                                    <%= message %>
+                                </p>
+                                <% } %>
+
+                                    </form>
+                                    <!-- Add this script after your form HTML -->
 
 
-            <!-- content-main end// -->
-            <footer class="main-footer font-xs">
-                <div class="row pb-30 pt-15">
-                    <div class="col-sm-6">
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script>
-                        &copy; Nest - HTML Ecommerce Template .
+
+
+
+                                    <!-- card end// -->
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="text-sm-end">All rights reserved</div>
+                </section>
+                <!-- content-main end// -->
+
+
+                <!-- content-main end// -->
+                <footer class="main-footer font-xs">
+                    <div class="row pb-30 pt-15">
+                        <div class="col-sm-6">
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            &copy; Nest - HTML Ecommerce Template .
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end">All rights reserved</div>
+                        </div>
                     </div>
-                </div>
-            </footer>
+                </footer>
         </main>
-  
+
 
         <script src="/adminAssets/js/vendors/jquery-3.6.0.min.js"></script>
         <script src="/adminAssets/js/vendors/bootstrap.bundle.min.js"></script>
@@ -136,73 +150,73 @@
         <script src="/adminAssets/js/vendors/perfect-scrollbar.js"></script>
         <script src="/adminAssets/js/vendors/jquery.fullscreen.min.js"></script>
         <!-- List.js -->
-       
-  
+
+
         <!-- Main Script -->
         <script src="/adminAssets/js/main.js?v=1.1" type="text/javascript"></script>
 
         <script>
-            function validateForm(){
-            // Reset all error messages
-            resetErrorMessages();
+            function validateForm() {
 
-            // Validation for product name, description, category, and image
-            const productName = document.getElementById('product_name').value.trim();
-            const productDescription = document.querySelector('textarea[name="description"]').value.trim();
-            const categorySelect = document.getElementById('categorySelect');
-            const imageInput = document.querySelector('input[name="image"]');
+                resetErrorMessages();
 
-            if (!productName) {
-                showError('productNameError', 'Product title is required.');
-                return false;
+
+                const productName = document.getElementById('product_name').value.trim();
+                const productDescription = document.querySelector('textarea[name="description"]').value.trim();
+                const categorySelect = document.getElementById('categorySelect');
+                const imageInput = document.querySelector('input[name="image"]');
+
+                if (!productName) {
+                    showError('productNameError', 'Product title is required.');
+                    return false;
+                }
+
+                if (!productDescription) {
+                    showError('productDescriptionError', 'Full description is required.');
+                    return false
+                }
+
+                if (categorySelect.selectedIndex === 0) {
+                    showError('categoryError', 'Please select a category.');
+                    return false;
+                }
+
+                if (!imageInput.files.length) {
+                    showError('imageError', 'Please upload an image.');
+                    return false;
+                }
+
+
+                const productPrice = document.getElementById('product_price').value.trim();
+                const productQty = document.getElementById('product_qty').value.trim();
+
+                if (!/^\d+(\.\d{1,2})?$/.test(productPrice)) {
+                    showError('priceError', 'Invalid price format. Only numbers are allowed.');
+                    return false;
+                }
+
+                if (!/^\d+$/.test(productQty)) {
+                    showError('quantityError', 'Invalid quantity format. Only numbers are allowed.');
+                    return false;
+                }
+
+                return true;
+
+
+
+                function showError(elementId, message) {
+                    const errorElement = document.getElementById(elementId);
+                    errorElement.innerText = message;
+                }
+
+
+                function resetErrorMessages() {
+                    document.querySelectorAll('.error-message').forEach(function (errorElement) {
+                        errorElement.innerText = '';
+                    });
+                }
             }
-
-            if (!productDescription) {
-                showError('productDescriptionError', 'Full description is required.');
-                return false
-            }
-
-            if (categorySelect.selectedIndex === 0) {
-                showError('categoryError', 'Please select a category.');
-                return false;
-            }
-
-            if (!imageInput.files.length) {
-                showError('imageError', 'Please upload an image.');
-                return false;
-            }
-
-            // Validation for price and quantity (numeric values)
-            const productPrice = document.getElementById('product_price').value.trim();
-            const productQty = document.getElementById('product_qty').value.trim();
-
-            if (!/^\d+(\.\d{1,2})?$/.test(productPrice)) {
-                showError('priceError', 'Invalid price format. Only numbers are allowed.');
-                return false;
-            }
-
-            if (!/^\d+$/.test(productQty)) {
-                showError('quantityError', 'Invalid quantity format. Only numbers are allowed.');
-                return false;
-            }
-
-            return true;
-        
-
-        // Function to show an error message
-        function showError(elementId, message) {
-            const errorElement = document.getElementById(elementId);
-            errorElement.innerText = message;
-        }
-
-        // Function to reset all error messages
-        function resetErrorMessages() {
-            document.querySelectorAll('.error-message').forEach(function (errorElement) {
-                errorElement.innerText = '';
-            });
-        }
-    }
-</script>
+        </script>
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {
@@ -212,40 +226,40 @@
                 const imageInput = document.querySelector('input[name="image"]');
                 const priceInput = document.getElementById("product_price");
                 const quantityInput = document.getElementById("product_qty");
-        
-                // Event listener for product name input
+
+                
                 productNameInput.addEventListener("input", function () {
                     validateRequiredField(productNameInput, 'productNameError', 'Product title is required.');
                 });
-        
-                // Event listener for product description input
+
+                
                 productDescriptionInput.addEventListener("input", function () {
                     validateRequiredField(productDescriptionInput, 'productDescriptionError', 'Full description is required.');
                 });
-        
-                // Event listener for category select
+
+               
                 categorySelect.addEventListener("change", function () {
                     validateRequiredField(categorySelect, 'categoryError', 'Please select a category.');
                 });
-        
-                // Event listener for image input
+
+               
                 imageInput.addEventListener("change", function () {
                     validateRequiredField(imageInput, 'imageError', 'Please upload an image.');
                 });
-        
-                // Event listener for price input
+
+                
                 priceInput.addEventListener("input", function () {
                     validateNumericField(priceInput, 'priceError', 'Enter valid Price');
                 });
-        
-                // Event listener for quantity input
+
+               
                 quantityInput.addEventListener("input", function () {
                     validateNumericField(quantityInput, 'quantityError', 'Enter valid quantity');
                 });
-        
+
                 function validateRequiredField(inputElement, errorId, errorMessage) {
                     const errorElement = document.getElementById(errorId);
-        
+
                     if (!inputElement.value.trim()) {
                         errorElement.textContent = errorMessage;
                         inputElement.classList.add("is-invalid");
@@ -254,11 +268,11 @@
                         inputElement.classList.remove("is-invalid");
                     }
                 }
-        
+
                 function validateNumericField(inputElement, errorId, errorMessage) {
                     const errorElement = document.getElementById(errorId);
                     const inputValue = parseFloat(inputElement.value);
-        
+
                     if (isNaN(inputValue) || inputValue <= 0) {
                         errorElement.textContent = errorMessage;
                         inputElement.classList.add("is-invalid");
@@ -269,7 +283,7 @@
                 }
             });
         </script>
-        
-        
 
-<% include('../layouts/footer.ejs') %>
+
+
+        <% include('../layouts/footer.ejs') %>

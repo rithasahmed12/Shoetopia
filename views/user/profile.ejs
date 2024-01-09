@@ -1,4 +1,17 @@
-<% include('../layouts/header.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Shoetopia - Profile</title>
+  <link rel="icon" type="image/x-icon" href="/assets/images/headericon.png">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
   <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
@@ -87,407 +100,411 @@
       color: rgb(255, 191, 0);
     }
 
-    .btns{
-    border: 1px solid #dbcc8f;
-    background-color: #dbcc8f;
-    color: white;
-    text-align: center;
-    border-radius: 5px;
-    height: 35px;
-  }
-  .btns:hover{
-    background-color: transparent;
-  }
+    .btns {
+      border: 1px solid #dbcc8f;
+      background-color: #dbcc8f;
+      color: white;
+      text-align: center;
+      border-radius: 5px;
+      height: 35px;
+    }
 
+    .btns:hover {
+      background-color: transparent;
+    }
   </style>
 
 
   <% include('../layouts/center.ejs') %>
 
-    <body class="goto-here">
-      <%- include('../layouts/navbar.ejs') %>
-        <!-- END nav -->
-    </body>
-    <section style="background-color: #eee; margin-top: 6%;">
-      <div class="container py-5">
-        <div class="row">
-          <div class="col-lg-4">
-            <!-- User Photo and Name Card -->
-            <div class="card mb-4">
-              <div class="card-body text-center">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                  class="rounded-circle img-fluid" style="width: 150px;">
-                <h5 class="my-3">
-                  <%=user.username %>
-                </h5>
-              </div>
+<body class="goto-here">
+  <%- include('../layouts/navbar.ejs') %>
+    <!-- END nav -->
+</body>
+<section style="background-color: #eee; margin-top: 6%;">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <!-- User Photo and Name Card -->
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">
+              <%=user.username %>
+            </h5>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="d-flex flex-column">
+          <a href="/profile" class="btns mb-1 mt-1">User Profile</a>
+          <a href="/profile-address" class="btns mb-1 mt-1">Address</a>
+          <a href="/orders" class="btns mb-1 mt-1">Orders</a>
+          <a href="/wallet" class="btns mb-1 mt-1">Wallet</a>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <!-- User Details and Edit Button -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <!-- User Details Content -->
+            <div id="profileContent">
+              <h3>User Profile</h3>
+              <!-- Editable User Details -->
+              <form id="userDetailsForm">
+                <div class="row mb-3 mt-3">
+                  <div class="col-sm-2">
+                    <label for="username" style="font-size: medium; margin-top: 6%;"
+                      class="form-label">Username:</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input type="text" class="input-style" id="username" name="username" value="<%= user.username %>"
+                      readonly>
+                    <div id="usernameError" class="invalid-feedback"></div>
+                  </div>
+                  <div class="col-sm-3">
+                    <button type="button" class="edit-btn" onclick="editField('username')">Edit</button>
+                    <button type="button" class="cancel-button" id="cancelButton_username"
+                      onclick="cancelEdit('username')">Cancel</button>
+                  </div>
+                </div>
+
+                <div class="row mb-3 mt-3">
+                  <div class="col-sm-2">
+                    <label for="email" style="font-size: medium; margin-top: 6%;" class="form-label">Email:</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input type="text" class="input-style" id="email" name="email" value="<%=user.email %>" readonly>
+                  </div>
+                  <div class="col-sm-3">
+                  </div>
+                </div>
+
+                <div class="row mb-3 mt-3">
+                  <div class="col-sm-2">
+                    <label for="mobile" style="font-size: medium; margin-top: 6%;" class="form-label">Mobile:</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input type="text" class="input-style" id="mobile" name="mobile" value="<%=user.mobile %>" readonly>
+                  </div>
+                  <div class="col-sm-3">
+                    <button type="button" class="edit-btn" onclick="editField('mobile')">Edit</button>
+                    <button type="button" class="cancel-button" id="cancelButton_mobile"
+                      onclick="cancelEdit('mobile')">Cancel</button>
+                  </div>
+                </div>
+                <!-- Add other user details input fields here -->
+                <!-- Change Password Button -->
+                <div class="row mt-5">
+                  <div class="col-sm-9">
+                    <button type="button" class="btn btn-primary" id="passwordValue"
+                      onclick="togglePasswordFields()">Change Password</button>
+                  </div>
+                  <div class="col-sm-3">
+                    <button type="button" id="save-btn" onclick="saveUserDetails()">Save</button>
+                  </div>
+                </div>
+
+                <!-- Password Input Fields -->
+                <div id="changePasswordFields" class="mt-5" style="display: none;">
+                  <form id="changePasswordForm">
+                    <div class="row mb-3 mt-3">
+                      <div class="col-sm-3">
+                        <label for="oldPassword" style="font-size: medium; margin-top: 5%;" class="form-label">Old
+                          Password:</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3 mt-3">
+                      <div class="col-sm-3">
+                        <label for="newPassword" style="font-size: medium; margin-top: 5%;" class="form-label">New
+                          Password:</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+
+                      </div>
+                    </div>
+
+                    <div class="row mb-3 mt-3">
+                      <div class="col-sm-3">
+                        <label for="confirmPassword" style="font-size: medium; margin-top: 5%;"
+                          class="form-label">Confirm Password:</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                          required>
+                      </div>
+                    </div>
+                    <div id="successMessge"></div>
+                    <div id="errorMessge"></div>
+                    <div class="row mb-3 mt-3" style="align-items: center; justify-content: flex-end;">
+                      <div class="col-sm-3">
+                        <button type="button" class="btn btn-primary" onclick="changePassword()">Change
+                          Password</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+
             </div>
 
-            <!-- Navigation Buttons -->
-              <div class="d-flex flex-column">
-              <a href="/profile" class="btns mb-1 mt-1" >User Profile</a>
-              <a href="/profile-address" class="btns mb-1 mt-1" >Address</a>
-              <a href="/orders" class="btns mb-1 mt-1" >Orders</a>
-              <a href="/wallet" class="btns mb-1 mt-1" >Wallet</a>
-            </div>
+            <script>
+              function togglePasswordFields() {
+                const passwordFields = document.getElementById('changePasswordFields');
+                const changeButton = document.getElementById('passwordValue');
+                const oldPasswordInput = document.getElementById('oldPassword');
+                const newPasswordInput = document.getElementById('newPassword');
+                const confirmPasswordInput = document.getElementById('confirmPassword');
+                const errorMessageDiv = document.getElementById('errorMessge');
+
+                if (passwordFields.style.display === 'none') {
+                  // Show the password fields and change the button text to "Cancel"
+                  passwordFields.style.display = 'block';
+                  changeButton.textContent = 'Cancel';
+
+                  // Clear input values and error message
+                  oldPasswordInput.value = '';
+                  newPasswordInput.value = '';
+                  confirmPasswordInput.value = '';
+                  errorMessageDiv.innerHTML = '';
+                } else {
+                  // Hide the password fields and change the button text to "Change Password"
+                  passwordFields.style.display = 'none';
+                  changeButton.textContent = 'Change Password';
+
+                  // Clear input values and error message
+                  oldPasswordInput.value = '';
+                  newPasswordInput.value = '';
+                  confirmPasswordInput.value = '';
+                  errorMessageDiv.innerHTML = '';
+                }
+              }
+            </script>
+
+
+
+
+            </form>
+
+
+
           </div>
 
-          <div class="col-lg-8">
-            <!-- User Details and Edit Button -->
-            <div class="card mb-4">
-              <div class="card-body">
-                <!-- User Details Content -->
-                <div id="profileContent">
-                  <h3>User Profile</h3>
-                  <!-- Editable User Details -->
-                  <form id="userDetailsForm">
-                    <div class="row mb-3 mt-3">
-                      <div class="col-sm-2">
-                        <label for="username" style="font-size: medium; margin-top: 6%;"
-                          class="form-label">Username:</label>
-                      </div>
-                      <div class="col-sm-7">
-                        <input type="text" class="input-style" id="username" name="username"
-                          value="<%= user.username %>" readonly>
-                        <div id="usernameError" class="invalid-feedback"></div>
-                      </div>
-                      <div class="col-sm-3">
-                        <button type="button" class="edit-btn" onclick="editField('username')">Edit</button>
-                        <button type="button" class="cancel-button" id="cancelButton_username"
-                          onclick="cancelEdit('username')">Cancel</button>
-                      </div>
-                    </div>
 
-                    <div class="row mb-3 mt-3">
-                      <div class="col-sm-2">
-                        <label for="email" style="font-size: medium; margin-top: 6%;" class="form-label">Email:</label>
-                      </div>
-                      <div class="col-sm-7">
-                        <input type="text" class="input-style" id="email" name="email" value="<%=user.email %>"
-                          readonly>
-                      </div>
-                      <div class="col-sm-3">
-                      </div>
-                    </div>
 
-                    <div class="row mb-3 mt-3">
-                      <div class="col-sm-2">
-                        <label for="mobile" style="font-size: medium; margin-top: 6%;" class="form-label">Mobile:</label>
-                      </div>
-                      <div class="col-sm-7">
-                        <input type="text" class="input-style" id="mobile" name="mobile" value="<%=user.mobile %>"
-                          readonly>
-                      </div>
-                      <div class="col-sm-3">
-                        <button type="button" class="edit-btn" onclick="editField('mobile')">Edit</button>
-                        <button type="button" class="cancel-button" id="cancelButton_mobile"
-                          onclick="cancelEdit('mobile')">Cancel</button>
-                      </div>
-                    </div>
-                    <!-- Add other user details input fields here -->
-                   <!-- Change Password Button -->
-<div class="row mt-5">
-  <div class="col-sm-9">
-      <button type="button" class="btn btn-primary" id="passwordValue" onclick="togglePasswordFields()">Change Password</button>
-  </div>
-  <div class="col-sm-3">
-      <button type="button" id="save-btn" onclick="saveUserDetails()">Save</button>
-  </div>
-</div>
 
-<!-- Password Input Fields -->
-<div id="changePasswordFields" class="mt-5" style="display: none;">
-  <form id="changePasswordForm">
-    <div class="row mb-3 mt-3">
-        <div class="col-sm-3">
-            <label for="oldPassword" style="font-size: medium; margin-top: 5%;" class="form-label">Old Password:</label>
-        </div>
-        <div class="col-sm-8">
-            <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
-        </div>
-    </div>
 
-    <div class="row mb-3 mt-3">
-        <div class="col-sm-3">
-            <label for="newPassword" style="font-size: medium; margin-top: 5%;" class="form-label">New Password:</label>
-        </div>
-        <div class="col-sm-8">
-            <input type="password" class="form-control" id="newPassword" name="newPassword" required>
-           
-        </div>
-    </div>
 
-    <div class="row mb-3 mt-3">
-        <div class="col-sm-3">
-            <label for="confirmPassword" style="font-size: medium; margin-top: 5%;" class="form-label">Confirm Password:</label>
+
+
         </div>
-        <div class="col-sm-8">
-            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
-        </div>  
-    </div>
-    <div id="successMessge"></div>
-    <div id="errorMessge"></div>
-    <div class="row mb-3 mt-3" style="align-items: center; justify-content: flex-end;">
-      <div class="col-sm-3">
-          <button type="button" class="btn btn-primary" onclick="changePassword()">Change Password</button>
+
       </div>
+
+
     </div>
-  </form>
-</div>
+
+  </div>
+  </div>
+</section>
 
 
-</div>
 
 <script>
-  function togglePasswordFields() {
-    const passwordFields = document.getElementById('changePasswordFields');
-    const changeButton = document.getElementById('passwordValue');
-    const oldPasswordInput = document.getElementById('oldPassword');
-    const newPasswordInput = document.getElementById('newPassword');
-    const confirmPasswordInput = document.getElementById('confirmPassword');
-    const errorMessageDiv = document.getElementById('errorMessge');
+  function changePassword() {
+    // Get values from the form
+    const oldPassword = $('#oldPassword').val();
+    const newPassword = $('#newPassword').val();
+    const confirmPassword = $('#confirmPassword').val();
 
-    if (passwordFields.style.display === 'none') {
-      // Show the password fields and change the button text to "Cancel"
-      passwordFields.style.display = 'block';
-      changeButton.textContent = 'Cancel';
+    // Create an object with the data
+    const data = {
+      oldPassword: oldPassword,
+      newPassword: newPassword,
+      confirmPassword: confirmPassword
+    };
 
-      // Clear input values and error message
-      oldPasswordInput.value = '';
-      newPasswordInput.value = '';
-      confirmPasswordInput.value = '';
-      errorMessageDiv.innerHTML = '';
-    } else {
-      // Hide the password fields and change the button text to "Change Password"
-      passwordFields.style.display = 'none';
-      changeButton.textContent = 'Change Password';
+    // Send an AJAX post request
+    $.ajax({
+      type: 'POST',
+      url: '/change-password', // Replace with the actual route
+      data: data,
+      success: function (response) {
+        // Handle the success response
+        console.log(response);
 
-      // Clear input values and error message
-      oldPasswordInput.value = '';
-      newPasswordInput.value = '';
-      confirmPasswordInput.value = '';
-      errorMessageDiv.innerHTML = '';
-    }
+        // Clear previous error messages
+        $('#errorMessge').empty();
+
+        // Check for success or error messages
+        if (response.success) {
+          // Password change successful
+          $('#errorMessge').html('<div class="alert alert-success">Password changed successfully!</div>');
+        } else {
+          // Password change failed, display error message
+          $('#errorMessge').html('<div class="alert alert-danger">' + response.message + '</div>');
+        }
+      },
+      error: function (xhr, status, error) {
+        // Handle the error response
+        console.error(xhr);
+
+        // Clear previous error messages
+        $('#errorMessge').empty();
+
+        // Display specific error message for incorrect old password
+        if (xhr.responseJSON && xhr.responseJSON.message === 'Old password is incorrect.') {
+          $('#errorMessge').html('<div class="alert alert-danger">Old password is incorrect.</div>');
+        } else {
+          // Display a generic error message
+          $('#errorMessge').html('<div class="alert alert-danger">An error occurred while changing the password.</div>');
+        }
+      }
+    });
   }
 </script>
 
 
 
- 
-                  </form>
 
-
-
-                </div>
-
-                
+<!-- Script for handling navigation buttons and user details editing -->
 
 
 
 
-               
-      
-              </div>
-              
-            </div>
+<script>
+  // Object to store original values
+  const originalValues = {};
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("userDetailsForm");
+    const usernameInput = document.getElementById("username");
+    const mobileInput = document.getElementById("mobile");
+
+    form.addEventListener("input", function () {
+      // Reset the red border when input changes
+      usernameInput.classList.remove("is-invalid");
+      mobileInput.classList.remove("is-invalid");
+    });
+  });
+
+  function editField(fieldName) {
+    // Enable the specified input field for editing
+    const field = document.getElementById(fieldName);
+    originalValues[fieldName] = field.value; // Store the original value
+    field.removeAttribute('readonly');
+    field.classList.add('edit-mode');
+
+    // Show the corresponding cancel button
+    const cancelButton = document.getElementById(`cancelButton_${fieldName}`);
+    cancelButton.style.display = 'inline-block';
+
+    const saveButton = document.getElementById('save-btn');
+    saveButton.style.display = 'inline-block';
+  }
+  function cancelEdit(fieldName) {
+    if (confirm('Are you sure you want to cancel editing?')) {
+      // Disable all input fields and remove the edit-mode class
+      $('#userDetailsForm input').prop('readonly', true);
+      $('#userDetailsForm input').removeClass('edit-mode');
+
+      // Reset input values to their original values
+      const field = document.getElementById(fieldName);
+      field.value = originalValues[fieldName];
+
+      // Hide the corresponding cancel button
+      const cancelButton = document.getElementById(`cancelButton_${fieldName}`);
+      cancelButton.style.display = 'none';
+
+      const saveButton = document.getElementById('save-btn');
+      saveButton.style.display = 'none';
 
 
-          </div>
-          
-        </div>
-      </div>
-    </section>
-
-    
-
-    <script>
-      function changePassword() {
-        // Get values from the form
-        const oldPassword = $('#oldPassword').val();
-        const newPassword = $('#newPassword').val();
-        const confirmPassword = $('#confirmPassword').val();
-    
-        // Create an object with the data
-        const data = {
-          oldPassword: oldPassword,
-          newPassword: newPassword,
-          confirmPassword: confirmPassword
-        };
-    
-        // Send an AJAX post request
-        $.ajax({
-          type: 'POST',
-          url: '/change-password', // Replace with the actual route
-          data: data,
-          success: function(response) {
-            // Handle the success response
-            console.log(response);
-    
-            // Clear previous error messages
-            $('#errorMessge').empty();
-    
-            // Check for success or error messages
-            if (response.success) {
-              // Password change successful
-              $('#errorMessge').html('<div class="alert alert-success">Password changed successfully!</div>');
-            } else {
-              // Password change failed, display error message
-              $('#errorMessge').html('<div class="alert alert-danger">' + response.message + '</div>');
-            }
-          },
-          error: function(xhr, status, error) {
-            // Handle the error response
-            console.error(xhr);
-    
-            // Clear previous error messages
-            $('#errorMessge').empty();
-    
-            // Display specific error message for incorrect old password
-            if (xhr.responseJSON && xhr.responseJSON.message === 'Old password is incorrect.') {
-              $('#errorMessge').html('<div class="alert alert-danger">Old password is incorrect.</div>');
-            } else {
-              // Display a generic error message
-              $('#errorMessge').html('<div class="alert alert-danger">An error occurred while changing the password.</div>');
-            }
-          }
-        });
-      }
-    </script>
+    }
+  }
 
 
+  function saveUserDetails() {
+    // Collect form data using jQuery's serialize method
+    const formData = $('#userDetailsForm').serialize();
 
+    // Perform form validation
+    if (validateForm()) {
+      // Send the data to the server using AJAX
+      $.ajax({
+        type: 'POST',
+        url: '/updateUserProfile',  // Replace with your server endpoint
+        data: formData,
+        success: function (response) {
+          // Update the page with the new data (assuming response is the updated user data)
+          $('#username').val(response.username);
+          $('#email').val(response.email);
+          $('#mobile').val(response.mobile);
+          alert('Profile details successfully changed');
 
-    <!-- Script for handling navigation buttons and user details editing -->
-    
-
-
-
-    <script>
-      // Object to store original values
-      const originalValues = {};
-
-      document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("userDetailsForm");
-        const usernameInput = document.getElementById("username");
-        const mobileInput = document.getElementById("mobile");
-
-        form.addEventListener("input", function () {
-          // Reset the red border when input changes
-          usernameInput.classList.remove("is-invalid");
-          mobileInput.classList.remove("is-invalid");
-        });
-      });
-
-      function editField(fieldName) {
-        // Enable the specified input field for editing
-        const field = document.getElementById(fieldName);
-        originalValues[fieldName] = field.value; // Store the original value
-        field.removeAttribute('readonly');
-        field.classList.add('edit-mode');
-
-        // Show the corresponding cancel button
-        const cancelButton = document.getElementById(`cancelButton_${fieldName}`);
-        cancelButton.style.display = 'inline-block';
-
-        const saveButton = document.getElementById('save-btn');
-        saveButton.style.display = 'inline-block';
-      }
-      function cancelEdit(fieldName) {
-        if (confirm('Are you sure you want to cancel editing?')) {
-          // Disable all input fields and remove the edit-mode class
+          // Disable all input fields after saving
           $('#userDetailsForm input').prop('readonly', true);
           $('#userDetailsForm input').removeClass('edit-mode');
 
-          // Reset input values to their original values
-          const field = document.getElementById(fieldName);
-          field.value = originalValues[fieldName];
+          // Reset the red border
+          $('#username').removeClass("is-invalid");
+          $('#mobile').removeClass("is-invalid");
 
-          // Hide the corresponding cancel button
-          const cancelButton = document.getElementById(`cancelButton_${fieldName}`);
-          cancelButton.style.display = 'none';
+          window.location.reload();
+        },
+        error: function (xhr, status, error) {
+          // Check if the error response contains a message
+          const errorMessage = xhr.responseJSON ? xhr.responseJSON.message : 'Error updating user details';
 
-          const saveButton = document.getElementById('save-btn');
-          saveButton.style.display = 'none';
-         
-
+          // Display the error message
+          alert(errorMessage);
         }
-      }
+      });
+    } else {
+      // alert('Please fix the validation errors before saving.');
+    }
+  }
+
+  function validateForm() {
+    const usernameInput = document.getElementById("username");
+    const mobileInput = document.getElementById("mobile");
+
+    // Reset previous validation states
+    usernameInput.classList.remove("is-invalid", "input-error");
+    mobileInput.classList.remove("is-invalid", "input-error");
+
+    // Check if there are any validation errors
+
+    // Validate username (no numbers allowed, and it must not be empty)
+    const usernameValue = usernameInput.value.trim();
+    const usernameError = document.getElementById("usernameError");
+    if (!usernameValue || /\d/.test(usernameValue)) {
+      usernameInput.classList.add("is-invalid", "input-error");
+      usernameError.innerHTML = 'Username must not be empty and should not contain numbers.';
+    }
+
+    // Validate mobile number (no text allowed, and it must not be empty)
+    const mobileValue = mobileInput.value.trim();
+    const mobileError = document.getElementById("mobileError");
+    if (!mobileValue || /[a-zA-Z]/.test(mobileValue)) {
+      mobileInput.classList.add("is-invalid", "input-error");
+      mobileError.innerHTML = 'Mobile number must not be empty and should only contain numbers.';
+    }
+
+    // Return true if there are no validation errors
+    return !usernameInput.classList.contains("is-invalid") && !mobileInput.classList.contains("is-invalid");
+  }
 
 
-      function saveUserDetails() {
-        // Collect form data using jQuery's serialize method
-        const formData = $('#userDetailsForm').serialize();
 
-        // Perform form validation
-        if (validateForm()) {
-          // Send the data to the server using AJAX
-          $.ajax({
-            type: 'POST',
-            url: '/updateUserProfile',  // Replace with your server endpoint
-            data: formData,
-            success: function (response) {
-              // Update the page with the new data (assuming response is the updated user data)
-              $('#username').val(response.username);
-              $('#email').val(response.email);
-              $('#mobile').val(response.mobile);
-              alert('Profile details successfully changed');
-
-              // Disable all input fields after saving
-              $('#userDetailsForm input').prop('readonly', true);
-              $('#userDetailsForm input').removeClass('edit-mode');
-
-              // Reset the red border
-              $('#username').removeClass("is-invalid");
-              $('#mobile').removeClass("is-invalid");
-
-              window.location.reload();
-            },
-            error: function (xhr, status, error) {
-              // Check if the error response contains a message
-              const errorMessage = xhr.responseJSON ? xhr.responseJSON.message : 'Error updating user details';
-
-              // Display the error message
-              alert(errorMessage);
-            }
-          });
-        } else {
-          // alert('Please fix the validation errors before saving.');
-        }
-      }
-
-      function validateForm() {
-        const usernameInput = document.getElementById("username");
-        const mobileInput = document.getElementById("mobile");
-
-        // Reset previous validation states
-        usernameInput.classList.remove("is-invalid", "input-error");
-        mobileInput.classList.remove("is-invalid", "input-error");
-
-        // Check if there are any validation errors
-
-        // Validate username (no numbers allowed, and it must not be empty)
-        const usernameValue = usernameInput.value.trim();
-        const usernameError = document.getElementById("usernameError");
-        if (!usernameValue || /\d/.test(usernameValue)) {
-          usernameInput.classList.add("is-invalid", "input-error");
-          usernameError.innerHTML = 'Username must not be empty and should not contain numbers.';
-        }
-
-        // Validate mobile number (no text allowed, and it must not be empty)
-        const mobileValue = mobileInput.value.trim();
-        const mobileError = document.getElementById("mobileError");
-        if (!mobileValue || /[a-zA-Z]/.test(mobileValue)) {
-          mobileInput.classList.add("is-invalid", "input-error");
-          mobileError.innerHTML = 'Mobile number must not be empty and should only contain numbers.';
-        }
-
-        // Return true if there are no validation errors
-        return !usernameInput.classList.contains("is-invalid") && !mobileInput.classList.contains("is-invalid");
-      }
-
-
-   
-    </script>
+</script>
 
 
 
@@ -495,35 +512,35 @@
 
 
 
-    <%- include('../layouts/page-footer.ejs') %>
+<%- include('../layouts/page-footer.ejs') %>
 
 
 
-      <!-- loader -->
-      <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-          <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-          <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-            stroke="#F96D00" />
-        </svg></div>
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+        stroke="#F96D00" />
+    </svg></div>
 
-      <script src="/assets/js/jquery.min.js"></script>
-      <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
-      <script src="/assets/js/popper.min.js"></script>
-      <script src="/assets/js/bootstrap.min.js"></script>
-      <script src="/assets/js/jquery.easing.1.3.js"></script>
-      <script src="/assets/js/jquery.waypoints.min.js"></script>
-      <script src="/assets/js/jquery.stellar.min.js"></script>
-      <script src="/assets/js/owl.carousel.min.js"></script>
-      <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-      <script src="/assets/js/aos.js"></script>
-      <script src="/assets/js/jquery.animateNumber.min.js"></script>
-      <script src="/assets/js/bootstrap-datepicker.js"></script>
-      <script src="/assets/js/scrollax.min.js"></script>
-      <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-      <script src="/assets/js/google-map.js"></script>
-      <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/assets/js/popper.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/jquery.easing.1.3.js"></script>
+  <script src="/assets/js/jquery.waypoints.min.js"></script>
+  <script src="/assets/js/jquery.stellar.min.js"></script>
+  <script src="/assets/js/owl.carousel.min.js"></script>
+  <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+  <script src="/assets/js/aos.js"></script>
+  <script src="/assets/js/jquery.animateNumber.min.js"></script>
+  <script src="/assets/js/bootstrap-datepicker.js"></script>
+  <script src="/assets/js/scrollax.min.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="/assets/js/google-map.js"></script>
+  <script src="/assets/js/main.js"></script>
 
-      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-      <% include('../layouts/footer.ejs') %>
+  <% include('../layouts/footer.ejs') %>

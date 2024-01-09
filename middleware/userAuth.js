@@ -2,8 +2,6 @@ const User = require("../models/usersModels");
 
 const isLogin = async (req, res, next) => {
   try {
-    console.log("heyboss", req.session.userId);
-
     if (req.session.userId) {
       if (req.path === "/login") {
         res.redirect("/home");
@@ -15,14 +13,12 @@ const isLogin = async (req, res, next) => {
       res.redirect("/login");
     }
   } catch (error) {
-    console.log(error.message);
+    res.redirect("/500");
   }
 };
 
 const isLogout = async (req, res, next) => {
   try {
-    console.log("heyboss", req.session.userId);
-
     if (req.session.userId) {
       res.redirect("/home");
       return;
@@ -30,7 +26,7 @@ const isLogout = async (req, res, next) => {
 
     next();
   } catch (error) {
-    console.log(error.message);
+    res.redirect("/500");
   }
 };
 
@@ -45,7 +41,7 @@ const checkBlocked = async (req, res, next) => {
         return res.redirect("/blocked-user");
       }
     } catch (error) {
-      console.error(error.message);
+      res.redirect("/500");
     }
   }
 

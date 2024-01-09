@@ -1,702 +1,728 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Minishop - Free Bootstrap 4 Template by Colorlib</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
-    <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/animate.css">
-    
-    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+<head>
+  <title>Shoetopia - order details</title>
+  <link rel="icon" type="image/x-icon" href="/assets/images/headericon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/css/aos.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
-    <link rel="stylesheet" href="/assets/css/ionicons.min.css">
+  <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/animate.css">
 
-    <link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/assets/css/jquery.timepicker.css">
+  <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/assets/css/magnific-popup.css">
 
-    
-    <link rel="stylesheet" href="/assets/css/flaticon.css">
-    <link rel="stylesheet" href="/assets/css/icomoon.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/aos.css">
 
-    <link rel="stylesheet" href="/assetss/css/all.min.css">
-<!-- bootstrap -->
-<link rel="stylesheet" href="/assetss/css/main.css">
-<!-- responsive -->
-<link rel="stylesheet" href="/assetss/css/responsive.css">
+  <link rel="stylesheet" href="/assets/css/ionicons.min.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/assets/css/jquery.timepicker.css">
 
 
+  <link rel="stylesheet" href="/assets/css/flaticon.css">
+  <link rel="stylesheet" href="/assets/css/icomoon.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
 
-    
-<style>
+  <link rel="stylesheet" href="/assetss/css/all.min.css">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="/assetss/css/main.css">
+  <!-- responsive -->
+  <link rel="stylesheet" href="/assetss/css/responsive.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 
-  #header{
+
+
+  <style>
+    #header {
       margin-top: 7%;
       width: 100%;
       height: 70px;
-      background-color:#dbcc8f;
-  }
+      background-color: #dbcc8f;
+    }
 
-  @media(max-width:992px){
-      #header{
-      margin-top: 2%;
-      width: 100%;
-      height: 70px;
-      background-color:#dbcc8f;
-  } 
-  }
-
-
-</style>
+    @media(max-width:992px) {
+      #header {
+        margin-top: 2%;
+        width: 100%;
+        height: 70px;
+        background-color: #dbcc8f;
+      }
+    }
+  </style>
 
 
 
 
 
-  </head>
-  <body class="goto-here">
-    <%- include('../layouts/navbar.ejs') %>
+</head>
+
+<body class="goto-here">
+  <%- include('../layouts/navbar.ejs') %>
 
     <style>
       #header {
-          margin-top: 7%;
+        margin-top: 7%;
+        width: 100%;
+        height: 70px;
+        background-color: #dbcc8f;
+      }
+
+      #Table {
+        width: 100%;
+        margin-left: 10%;
+      }
+
+      @media (max-width: 992px) {
+        #header {
+          margin-top: 2%;
           width: 100%;
           height: 70px;
           background-color: #dbcc8f;
-      }
-  
-      #Table {
-          width: 100%;
-          margin-left: 10%;
-      }
-  
-      @media (max-width: 992px) {
-          #header {
-              margin-top: 2%;
-              width: 100%;
-              height: 70px;
-              background-color: #dbcc8f;
-          }
-  
-          #Table {
-              margin-left: auto;
-              margin-right: auto; /* Add this line for horizontal centering */
-          }
-      }
-  </style>
+        }
 
-<style>
-  /* Add any additional styling as needed */
-  .search-input-group {
-      width: 60%; /* Adjust the width as needed */
-  }
+        #Table {
+          margin-left: auto;
+          margin-right: auto;
+          /* Add this line for horizontal centering */
+        }
+      }
+    </style>
 
-  .search-button {
-      width: 13%;
-      background-color: #dbcc8f;
-      border: 1px solid #dbcc8f;
-      color: white;
-  }
-  .custom-section-hover:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease-in-out;
-}
+    <style>
+      /* Add any additional styling as needed */
+      .search-input-group {
+        width: 60%;
+        /* Adjust the width as needed */
+      }
 
-</style>
+      .search-button {
+        width: 13%;
+        background-color: #dbcc8f;
+        border: 1px solid #dbcc8f;
+        color: white;
+      }
+
+      .custom-section-hover:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s ease-in-out;
+      }
+    </style>
     <section id="header">
       <div>
-          <h1 style="color: rgb(0, 0, 0); justify-content: center; text-align: center;">Your Order</h1>
+        <h1 style="color: rgb(0, 0, 0); justify-content: center; text-align: center;">Your Order</h1>
       </div>
-  </section>
+    </section>
 
-  <div class="container mt-3">
-    <div class="row">
-       <div class="col-lg-12">
-           <div class="product__details__breadcrumb">
-               <a href="/">Home</a> <span>/</span>
-               <a href="/profile">Profile</a><span>/</span>
-               <a href="/orders">orders</a><span>/</span>
-               <span>order details</span>
-               
-           </div>
-       </div>
-     </div>
-   </div> 
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="product__details__breadcrumb">
+            <a href="/">Home</a> <span>/</span>
+            <a href="/profile">Profile</a><span>/</span>
+            <a href="/orders">orders</a><span>/</span>
+            <span>order details</span>
 
-   <% function calculateProgress(status) {
-    switch (status) {
-        case 'placed':
-            return '23%';
-        case 'shipped':
-            return '40%';
-        case 'out_for_delivery':
-            return '62%';
-        case 'delivered':
-            return '100%';
-        default:
-            return '0%';
-    }
-} %>
-
-<% function getOrderStatusLabel(status) {
-  switch (status) {
-      case 'placed':
-          return 'Placed';
-      case 'processing':
-          return 'Processing';
-      case 'shipped':
-          return 'Shipped';
-      case 'out_for_delivery':
-          return 'Out for Delivery';
-      case 'delivered':
-          return 'Delivered';
-      default:
-          return 'Unknown';
-  }
-} %>
-
-<section class="gradient-custom mb-0">
-  <div class="container">
-
-    <!-- Order Details Card -->
-    <div class="card">
-        <div class="card-header">
-            Order Details
-        </div>
-        <div class="card-body">
-
-            <div class="order-details">
-                <!-- Order Information -->
-                <div class="order-info">
-                    <div>
-                      <h3><strong>Order ID:</strong> <%= order.order_id %></h3>
-
-                      <% if(order.couponApplied === true) { %>
-                        <h6 style="color: red;">Coupon Applied</h6>
-                      <% } %>
-              
-
-                    </div>
-                    
-                    <p><strong>Order Date:</strong> <%= moment(order.date).format('DD/MM/YYYY') %></p>
-                    <p><strong>Expected Delivery:</strong> <%= order.expected_delivery %></p>
-                    <p><strong>Delivery Address:</strong> <%= order.delivery_address %></p>
-                    <% if(order.couponApplied === true) { %>
-                      <p> <strong>Order Total:</strong> <del style="color: red;">₹<%= order.total_amount %></del> ₹<%= order.totalDiscountAmount %></p>
-                    <% }else{ %>
-                      <p><strong>Order Total:</strong> ₹<%= order.total_amount %></p>
-                    <% } %>
-                    
-                </div>
-
-                <!-- Order Actions -->
-                <!-- <div class="order-actions">
-                    <button class="cancel-btn" onclick="cancelOrder()">Cancel Order</button>
-                </div> -->
-            </div>
-
-            <div class="container">
-              <!-- Order Items -->
-              <% order.items.forEach(item => { %>
-              <div class="order-item">
-      
-                  <div class="item-image">
-                      <img src="/ResizedImages/<%= item.product_id.image[0] %>" alt="<%= item.product_id.name %>">
-                  </div>
-      
-                  <div class="item-details">
-                      <div style="display: flex; ">
-                        <div>
-                          <h4><%= item.product_id.name %></h4>
-                        </div>
-                        <% if(item.offerPercentage > 0){ %>
-                          <div class="offer-container">
-                            <div class="offer-badge" style="color: #339200;">
-                              <span class="offer-percentage"><%= item.offerPercentage%>%</span>
-                              <span class="offer-label">OFF</span>
-                            </div>
-                          </div>
-                        
-                          <% } %>
-                      
-                      </div>
-                      
-                      <p><strong>Category:</strong> <%= item.product_id.category.name %></p>
-                      <p><strong>Quantity:</strong> <%= item.quantity %></p>
-
-                      <% if (item.ordered_status === 'cancelled') { %>
-                        <p  style="color: red;"><b>Status:</b> <%= item.ordered_status %></p>
-                      <% }else if(item.ordered_status === 'request_cancellation'){ %>
-                        <p style="color: red;"><b>Status:</b>cancellation Requested</p>
-                      <%} else if (item.ordered_status === 'request_return') { %>
-                        <p  style="color: red;"><b>Status:</b>return requested</p>
-                      <%} else if (item.ordered_status === 'returned') { %>
-                        <p  style="color: red;"><b>Status:</b><%= item.ordered_status %></p>
-                      <%} else if (item.ordered_status === 'delivered') { %>
-                        <p  style="color: green;"><b>Status:</b> <%= item.ordered_status %></p>
-                      <% } else { %>
-                        <p ><b>Status:</b> <%= item.ordered_status %></p>
-                      <% } %>
-                      
-                      <% if(order.couponApplied === true) { %>
-                        <p>  <del style="color: red;">₹<%= item.price * item.quantity %></del> ₹<%= (item.price * item.quantity)-item.couponDiscountTotal %></p>
-                      <% }else{ %>
-                      <p>₹<%= item.price * item.quantity %></p>
-                      <% } %>
-      
-                      <div class="item-actions mt-2">
-                        <% if (!['request_cancellation', 'cancelled', 'request_return', 'returned'].includes(item.ordered_status)) { %>
-                            <% if (item.ordered_status === 'delivered') { %>
-                              <% const currentDate = new Date(); %>
-                              <% const returnPolicyDays = 7; %> <!-- Set the return policy days -->
-                              
-                              <!-- Calculate the return expiry date based on the current date -->
-                              <% const returnExpiryDate = new Date(order.date); %>
-                              <% console.log('gunda',returnExpiryDate) %>
-                              <% returnExpiryDate.setDate(returnExpiryDate.getDate() + returnPolicyDays); %>
-
-                              <% if (currentDate <= returnExpiryDate) { %>
-                                <button class="cancel-btn return-btn" onclick="returnOrder('<%= order._id %>','<%= item._id %>')">Return Item</button>
-                                <p class="text-muted mt-3" id="return-text">Please note that order returns are only possible within <%= returnPolicyDays %> days from the delivery date.</p>
-                              <% } else { %>
-                                <p class="text-muted mt-3">Return expired</p>
-                             <% } %>
-                              
-                            <% } else { %>
-                                <button class="cancel-btn" onclick="cancelOrder('<%= order._id %>','<%= item._id %>')">Cancel Item</button>
-                            <% } %>
-                        <% } %>
-                    </div>
-
-
-                  </div>
-      
-                  <!-- Order Tracking Bar -->
-                  <div class="order-tracking-bar">
-                      <div class="progress" style="width: 100%;">
-                          <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
-                              style="width: <%= calculateProgress(item.ordered_status) %>"
-                              aria-valuenow="<%= calculateProgress(item.ordered_status) %>" aria-valuemin="0"
-                              aria-valuemax="100"></div>
-                      </div>
-                      <div class="order-status-labels">
-                          <span class="order-status-label <%= item.ordered_status === 'placed' ? 'active' : '' %>">Placed</span>
-                          <span class="order-status-label <%= item.ordered_status === 'shipped' ? 'active' : '' %>">Shipped</span>
-                          <span class="order-status-label <%= item.ordered_status === 'out_for_delivery' ? 'active' : '' %>">Out for Delivery</span>
-                          <span class="order-status-label <%= item.ordered_status === 'delivered' ? 'active' : '' %>">Delivered</span>
-                      </div>
-                  </div>
-      
-              </div>
-              <% }) %>
           </div>
-
         </div>
+      </div>
     </div>
 
-</div>
+    <% function calculateProgress(status) { switch (status) { case 'placed' : return '23%' ; case 'shipped' :
+      return '40%' ; case 'out_for_delivery' : return '62%' ; case 'delivered' : return '100%' ; default: return '0%' ;
+      } } %>
 
-</section>
+      <% function getOrderStatusLabel(status) { switch (status) { case 'placed' : return 'Placed' ; case 'processing' :
+        return 'Processing' ; case 'shipped' : return 'Shipped' ; case 'out_for_delivery' : return 'Out for Delivery' ;
+        case 'delivered' : return 'Delivered' ; default: return 'Unknown' ; } } %>
 
+        <section class="gradient-custom mb-0">
+          <div class="container">
 
-<style>
-  body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f8f9fa;
-  }
+            <!-- Order Details Card -->
+            <div class="card">
+              <div class="card-header">
+                Order Details
+              </div>
+              <div class="card-body">
 
-  .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-  }
+                <div class="order-details">
+                  <!-- Order Information -->
+                  <div class="order-info">
+                    <div>
+                      <h3><strong>Order ID:</strong>
+                        <%= order.order_id %>
+                      </h3>
 
-  .card {
-      background-color: #fff;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      margin-bottom: 20px;
-      overflow: hidden;
-  }
-
-  .card-header {
-      background-color: #dbcc8f;
-      color: #fff;
-      padding: 15px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .card-body {
-      padding: 20px;
-  }
-
-  .order-details {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-  }
-
-  .order-details p {
-      margin: 0;
-      font-size: 16px;
-  }
-
-  .order-actions {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-  }
-
-  .cancel-btn {
-      background-color: #dc3545;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-  }
-
-  .order-item {
-      display: flex;
-      border-bottom: 1px solid #dee2e6;
-      padding: 20px 0;
-      align-items: center;
-  }
-
-  .item-image {
-      flex: 0 0 150px;
-      margin-right: 20px;
-  }
-
-  .item-image img {
-      max-width: 100%;
-      border-radius: 5px;
-  }
-
-  .item-details {
-      flex-grow: 1;
-  }
-
-  .item-details h4 {
-      margin: 0;
-      font-size: 20px;
-      margin-bottom: 5px;
-  }
-
-  .item-details p {
-      margin: 0;
-      color: #6c757d;
-  }
-
-  .item-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-  }
-
-  .progress-bar {
-      height: 10px;
-      border-radius: 5px;
-  }
-
-  .order-status-labels {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
-      font-size: 14px;
-  }
-
-  .order-status-label {
-      flex: 1;
-      text-align: center;
-      color: #6c757d;
-  }
-
-  .order-status-label.active {
-      color: #dbcc8f;
-  }
-
-  @media (max-width: 768px) {
-      .order-details {
-          flex-direction: column;
-      }
-
-      .order-actions {
-          margin-top: 10px;
-      }
-  }
-</style>
-<style>
-  body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f8f9fa;
-  }
-
-  .order-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-  }
-
-  .item-image {
-      flex: 0 0 150px;
-      margin-right: 20px;
-  }
-
-  .item-image img {
-      max-width: 100%;
-      border-radius: 5px;
-  }
-
-  .item-details {
-      flex-grow: 1;
-      text-align: left; /* Align text to the left on larger screens */
-  }
-
-  .item-details h4 {
-      margin: 0;
-      font-size: 20px;
-      margin-bottom: 5px;
-  }
-
-  .item-details p {
-      margin: 0;
-      color: #6c757d;
-  }
-
-  .item-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap; /* Allow item actions to wrap on smaller screens */
-  }
-
-  .progress-bar {
-      height: 10px;
-      border-radius: 5px;
-  }
-
-  .order-tracking-bar {
-      width: 100%;
-      text-align: center; /* Center the tracking bar on smaller screens */
-      margin-top: 10px;
-  }
-
-  .order-status-labels {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
-  }
-
-  .order-status-label {
-      flex: 1;
-      text-align: center;
-      color: #6c757d;
-  }
-
-  .order-status-label.active {
-      color: #007bff;
-  }
-
-  @media (max-width: 555px) {
-      .order-item {
-          flex-direction: column;
-          align-items: center;
-      }
-
-      .item-details {
-          text-align: center;
-      }
-  }
-</style>
+                      <% if(order.couponApplied===true) { %>
+                        <h6 style="color: red;">Coupon Applied</h6>
+                        <% } %>
 
 
-  
-  
+                    </div>
 
- 
-      
-    
-    
+                    <p><strong>Order Date:</strong>
+                      <%= moment(order.date).format('DD/MM/YYYY') %>
+                    </p>
+                    <p><strong>Expected Delivery:</strong>
+                      <%= order.expected_delivery %>
+                    </p>
+                    <p><strong>Delivery Address:</strong>
+                      <%= order.delivery_address %>
+                    </p>
+                    <% if(order.couponApplied===true) { %>
+                      <p> <strong>Order Total:</strong> <del style="color: red;">₹<%= order.total_amount %></del> ₹<%=
+                          order.totalDiscountAmount %>
+                      </p>
+                      <% }else{ %>
+                        <p><strong>Order Total:</strong> ₹<%= order.total_amount %>
+                        </p>
+                        <% } %>
 
-
-            
-
-
- 
-   <%- include('../layouts/page-footer.ejs') %>
-    
-  
-
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
-  <script src="/assets/js/jquery.min.js"></script>
-  <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="/assets/js/popper.min.js"></script>
-  <script src="/assets/js/bootstrap.min.js"></script>
-  <script src="/assets/js/jquery.easing.1.3.js"></script>
-  <script src="/assets/js/jquery.waypoints.min.js"></script>
-  <script src="/assets/js/jquery.stellar.min.js"></script>
-  <script src="/assets/js/owl.carousel.min.js"></script>
-  <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-  <script src="/assets/js/aos.js"></script>
-  <script src="/assets/js/jquery.animateNumber.min.js"></script>
-  <script src="/assets/js/bootstrap-datepicker.js"></script>
-  <script src="/assets/js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="/assets/js/google-map.js"></script>
-  <script src="/assets/js/main.js"></script>
+                  </div>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                </div>
 
-  <script>
-		$(document).ready(function(){
+                <div class="container">
+                  <!-- Order Items -->
+                  <% order.items.forEach(item=> { %>
+                    <div class="order-item">
 
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
+                      <div class="item-image">
+                        <img src="/ResizedImages/<%= item.product_id.image[0] %>" alt="<%= item.product_id.name %>">
+                      </div>
 
-		          
-		            // Increment
-		        
-		    });
+                      <div class="item-details">
+                        <div style="display: flex; ">
+                          <div>
+                            <h4>
+                              <%= item.product_id.name %>
+                            </h4>
+                          </div>
+                          <% if(item.offerPercentage> 0){ %>
+                            <div class="offer-container">
+                              <div class="offer-badge" style="color: #339200;">
+                                <span class="offer-percentage">
+                                  <%= item.offerPercentage%>%
+                                </span>
+                                <span class="offer-label">OFF</span>
+                              </div>
+                            </div>
 
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-		    
-		});
-	</script>
+                            <% } %>
 
-<script>
-  function cancelOrder(orderId,itemId) {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'Please provide a reason for the cancellation:',
-      input: 'text',
-      showCancelButton: true,
-      confirmButtonText: 'Cancel Order',
-      cancelButtonText: 'Close',
-      preConfirm: (reason) => {
-        return fetch('/cancel-order', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            orderId ,
-             itemId , 
-            reason: reason,
-          }),
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Failed to cancel order');
+                        </div>
+
+                        <p><strong>Category:</strong>
+                          <%= item.product_id.category.name %>
+                        </p>
+                        <p><strong>Quantity:</strong>
+                          <%= item.quantity %>
+                        </p>
+
+                        <% if (item.ordered_status==='cancelled' ) { %>
+                          <p style="color: red;"><b>Status:</b>
+                            <%= item.ordered_status %>
+                          </p>
+                          <% }else if(item.ordered_status==='request_cancellation' ){ %>
+                            <p style="color: red;"><b>Status:</b>cancellation Requested</p>
+                            <%} else if (item.ordered_status==='request_return' ) { %>
+                              <p style="color: red;"><b>Status:</b>return requested</p>
+                              <%} else if (item.ordered_status==='returned' ) { %>
+                                <p style="color: red;"><b>Status:</b>
+                                  <%= item.ordered_status %>
+                                </p>
+                                <%} else if (item.ordered_status==='delivered' ) { %>
+                                  <p style="color: green;"><b>Status:</b>
+                                    <%= item.ordered_status %>
+                                  </p>
+                                  <% } else { %>
+                                    <p><b>Status:</b>
+                                      <%= item.ordered_status %>
+                                    </p>
+                                    <% } %>
+
+                                      <% if(order.couponApplied===true) { %>
+                                        <p> <del style="color: red;">₹<%= item.price * item.quantity %></del> ₹<%=
+                                            (item.price * item.quantity)-item.couponDiscountTotal %>
+                                        </p>
+                                        <% }else{ %>
+                                          <p>₹<%= item.price * item.quantity %>
+                                          </p>
+                                          <% } %>
+
+                                            <div class="item-actions mt-2">
+                                              <% if (!['request_cancellation', 'cancelled' , 'request_return'
+                                                , 'returned' ].includes(item.ordered_status)) { %>
+                                                <% if (item.ordered_status==='delivered' ) { %>
+                                                  <% const currentDate=new Date(); %>
+                                                    <% const returnPolicyDays=7; %> <!-- Set the return policy days -->
+
+                                                      <!-- Calculate the return expiry date based on the current date -->
+                                                      <% const returnExpiryDate=new Date(order.date); %>
+                                                        <% console.log('gunda',returnExpiryDate) %>
+                                                          <% returnExpiryDate.setDate(returnExpiryDate.getDate() +
+                                                            returnPolicyDays); %>
+
+                                                            <% if (currentDate <=returnExpiryDate) { %>
+                                                              <button class="cancel-btn return-btn"
+                                                                onclick="returnOrder('<%= order._id %>','<%= item._id %>')">Return
+                                                                Item</button>
+                                                              <p class="text-muted mt-3" id="return-text">Please note
+                                                                that order returns are only possible within <%=
+                                                                  returnPolicyDays %> days from the delivery date.</p>
+                                                              <% } else { %>
+                                                                <p class="text-muted mt-3">Return expired</p>
+                                                                <% } %>
+
+                                                                  <% } else { %>
+                                                                    <button class="cancel-btn"
+                                                                      onclick="cancelOrder('<%= order._id %>','<%= item._id %>')">Cancel
+                                                                      Item</button>
+                                                                    <% } %>
+                                                                      <% } %>
+                                            </div>
+
+
+                      </div>
+
+                      <!-- Order Tracking Bar -->
+                      <div class="order-tracking-bar">
+                        <div class="progress" style="width: 100%;">
+                          <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
+                            style="width: <%= calculateProgress(item.ordered_status) %>"
+                            aria-valuenow="<%= calculateProgress(item.ordered_status) %>" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                        </div>
+                        <div class="order-status-labels">
+                          <span
+                            class="order-status-label <%= item.ordered_status === 'placed' ? 'active' : '' %>">Placed</span>
+                          <span
+                            class="order-status-label <%= item.ordered_status === 'shipped' ? 'active' : '' %>">Shipped</span>
+                          <span
+                            class="order-status-label <%= item.ordered_status === 'out_for_delivery' ? 'active' : '' %>">Out
+                            for Delivery</span>
+                          <span
+                            class="order-status-label <%= item.ordered_status === 'delivered' ? 'active' : '' %>">Delivered</span>
+                        </div>
+                      </div>
+
+                    </div>
+                    <% }) %>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <style>
+          body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
           }
-        })
-        .catch(error => {
-          Swal.showValidationMessage(`Request failed: ${error}`);
-        });
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: 'Order Cancellation requested!',
-          icon: 'success',
-          showCancelButton: false,
-          confirmButtonText: 'OK'
-        }).then(() => {
-          // Redirect to /orders after clicking OK on the success message
-          window.location.href = '/single-order?orderId=<%= order._id %>';
-        });
-      }
-    });
-  }
 
-
-  function returnOrder(orderId,itemId) {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'Please provide a reason for returning the item :',
-      input: 'text',
-      showCancelButton: true,
-      confirmButtonText: 'Return Order',
-      cancelButtonText: 'Close',
-      preConfirm: (returnReason) => {
-        return fetch('/cancel-order', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            orderId , 
-            itemId , 
-            returnReason: returnReason,
-          }),
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Failed to cancel order');
+          .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
           }
-        })
-        .catch(error => {
-          Swal.showValidationMessage(`Request failed: ${error}`);
-        });
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: 'Order return requested!',
-          icon: 'success',
-          showCancelButton: false,
-          confirmButtonText: 'OK'
-        }).then(() => {
-          // Redirect to /orders after clicking OK on the success message
-          window.location.href = '/single-order?orderId=<%= order._id %>';
-        });
-      }
-    });
-  }
+
+          .card {
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+          }
+
+          .card-header {
+            background-color: #dbcc8f;
+            color: #fff;
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          }
+
+          .card-body {
+            padding: 20px;
+          }
+
+          .order-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+          }
+
+          .order-details p {
+            margin: 0;
+            font-size: 16px;
+          }
+
+          .order-actions {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+          }
+
+          .cancel-btn {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+
+          .order-item {
+            display: flex;
+            border-bottom: 1px solid #dee2e6;
+            padding: 20px 0;
+            align-items: center;
+          }
+
+          .item-image {
+            flex: 0 0 150px;
+            margin-right: 20px;
+          }
+
+          .item-image img {
+            max-width: 100%;
+            border-radius: 5px;
+          }
+
+          .item-details {
+            flex-grow: 1;
+          }
+
+          .item-details h4 {
+            margin: 0;
+            font-size: 20px;
+            margin-bottom: 5px;
+          }
+
+          .item-details p {
+            margin: 0;
+            color: #6c757d;
+          }
+
+          .item-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+
+          .progress-bar {
+            height: 10px;
+            border-radius: 5px;
+          }
+
+          .order-status-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 14px;
+          }
+
+          .order-status-label {
+            flex: 1;
+            text-align: center;
+            color: #6c757d;
+          }
+
+          .order-status-label.active {
+            color: #dbcc8f;
+          }
+
+          @media (max-width: 768px) {
+            .order-details {
+              flex-direction: column;
+            }
+
+            .order-actions {
+              margin-top: 10px;
+            }
+          }
+        </style>
+        <style>
+          body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+          }
+
+          .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+          }
+
+          .item-image {
+            flex: 0 0 150px;
+            margin-right: 20px;
+          }
+
+          .item-image img {
+            max-width: 100%;
+            border-radius: 5px;
+          }
+
+          .item-details {
+            flex-grow: 1;
+            text-align: left;
+            /* Align text to the left on larger screens */
+          }
+
+          .item-details h4 {
+            margin: 0;
+            font-size: 20px;
+            margin-bottom: 5px;
+          }
+
+          .item-details p {
+            margin: 0;
+            color: #6c757d;
+          }
+
+          .item-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            /* Allow item actions to wrap on smaller screens */
+          }
+
+          .progress-bar {
+            height: 10px;
+            border-radius: 5px;
+          }
+
+          .order-tracking-bar {
+            width: 100%;
+            text-align: center;
+            /* Center the tracking bar on smaller screens */
+            margin-top: 10px;
+          }
+
+          .order-status-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+          }
+
+          .order-status-label {
+            flex: 1;
+            text-align: center;
+            color: #6c757d;
+          }
+
+          .order-status-label.active {
+            color: #007bff;
+          }
+
+          @media (max-width: 555px) {
+            .order-item {
+              flex-direction: column;
+              align-items: center;
+            }
+
+            .item-details {
+              text-align: center;
+            }
+          }
+        </style>
 
 
 
 
-</script>
 
-    
-  </body>
+
+
+
+
+
+
+
+
+
+
+        <%- include('../layouts/page-footer.ejs') %>
+
+
+
+          <!-- loader -->
+          <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+              <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+              <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+            </svg></div>
+
+
+          <script src="/assets/js/jquery.min.js"></script>
+          <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
+          <script src="/assets/js/popper.min.js"></script>
+          <script src="/assets/js/bootstrap.min.js"></script>
+          <script src="/assets/js/jquery.easing.1.3.js"></script>
+          <script src="/assets/js/jquery.waypoints.min.js"></script>
+          <script src="/assets/js/jquery.stellar.min.js"></script>
+          <script src="/assets/js/owl.carousel.min.js"></script>
+          <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+          <script src="/assets/js/aos.js"></script>
+          <script src="/assets/js/jquery.animateNumber.min.js"></script>
+          <script src="/assets/js/bootstrap-datepicker.js"></script>
+          <script src="/assets/js/scrollax.min.js"></script>
+          <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+          <script src="/assets/js/google-map.js"></script>
+          <script src="/assets/js/main.js"></script>
+
+
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+          <script>
+            $(document).ready(function () {
+
+              var quantitiy = 0;
+              $('.quantity-right-plus').click(function (e) {
+
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                var quantity = parseInt($('#quantity').val());
+
+                // If is not undefined
+
+                $('#quantity').val(quantity + 1);
+
+
+                // Increment
+
+              });
+
+              $('.quantity-left-minus').click(function (e) {
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                var quantity = parseInt($('#quantity').val());
+
+                // If is not undefined
+
+                // Increment
+                if (quantity > 0) {
+                  $('#quantity').val(quantity - 1);
+                }
+              });
+
+            });
+          </script>
+
+          <script>
+            function cancelOrder(orderId, itemId) {
+              Swal.fire({
+                title: 'Are you sure?',
+                text: 'Please provide a reason for the cancellation:',
+                input: 'text',
+                showCancelButton: true,
+                confirmButtonText: 'Cancel Order',
+                cancelButtonText: 'Close',
+                preConfirm: (reason) => {
+                  return fetch('/cancel-order', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      orderId,
+                      itemId,
+                      reason: reason,
+                    }),
+                  })
+                    .then(response => {
+                      if (!response.ok) {
+                        throw new Error('Failed to cancel order');
+                      }
+                    })
+                    .catch(error => {
+                      Swal.showValidationMessage(`Request failed: ${error}`);
+                    });
+                },
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire({
+                    title: 'Order Cancellation requested!',
+                    icon: 'success',
+                    showCancelButton: false,
+                    confirmButtonText: 'OK'
+                  }).then(() => {
+                    // Redirect to /orders after clicking OK on the success message
+                    window.location.href = '/single-order?orderId=<%= order._id %>';
+                  });
+                }
+              });
+            }
+
+
+            function returnOrder(orderId, itemId) {
+              Swal.fire({
+                title: 'Are you sure?',
+                text: 'Please provide a reason for returning the item :',
+                input: 'text',
+                showCancelButton: true,
+                confirmButtonText: 'Return Order',
+                cancelButtonText: 'Close',
+                preConfirm: (returnReason) => {
+                  return fetch('/cancel-order', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      orderId,
+                      itemId,
+                      returnReason: returnReason,
+                    }),
+                  })
+                    .then(response => {
+                      if (!response.ok) {
+                        throw new Error('Failed to cancel order');
+                      }
+                    })
+                    .catch(error => {
+                      Swal.showValidationMessage(`Request failed: ${error}`);
+                    });
+                },
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire({
+                    title: 'Order return requested!',
+                    icon: 'success',
+                    showCancelButton: false,
+                    confirmButtonText: 'OK'
+                  }).then(() => {
+                    // Redirect to /orders after clicking OK on the success message
+                    window.location.href = '/single-order?orderId=<%= order._id %>';
+                  });
+                }
+              });
+            }
+
+
+
+
+          </script>
+
+
+</body>
+
 </html>
