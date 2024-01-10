@@ -484,10 +484,6 @@ const updatedYearlyTotalUsers = defaultYearlyValues.map((defaultYear) => {
 });
 
 
-
-
-
-
     res.render("dashboard", {
       monthlySales,
       yearlySales,
