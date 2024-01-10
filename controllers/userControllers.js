@@ -801,7 +801,7 @@ const sentResetLink = async (username, email, token) => {
           <p style="text-align: center; font-size: 18px;">Hi ${username},</p>
           <p style="text-align: center; font-size: 16px;">We received a request to reset your password. If this wasn't you, please ignore this email.</p>
           <p style="text-align: center; font-size: 16px;">To reset your password, click the link below:</p>
-          <p style="text-align: center; font-size: 16px;"><a href='http://shoetopia.site/ResetForgetPass?token=${token}' style="color: #2ecc71; text-decoration: none;">Reset Your Password</a></p>
+          <p style="text-align: center; font-size: 16px;"><a href='http://16.16.200.253/ResetForgetPass?token=${token}' style="color: #2ecc71; text-decoration: none;">Reset Your Password</a></p>
           <p style="text-align: center; font-size: 16px;">This link will expire in 1 hour for security reasons.</p>
           <p style="text-align: center; font-size: 16px;">If you didn't request a password reset or have any concerns, please contact our support team immediately.</p>
           <p style="text-align: center; font-size: 16px; margin: 20px 0;">Best regards,<br>Shoetopia</p>
