@@ -15,7 +15,7 @@ bannerRoute.get("/addBanner", adminAuth.isLogin, bannerController.addBanner);
 
 bannerRoute.post(
   "/addBanner",
-  upload.upload.array("bannerImage", 1),
+  upload.array("bannerImage", 1),
   bannerController.postBanner
 );
 
@@ -23,7 +23,7 @@ bannerRoute.get("/bannerEdit", adminAuth.isLogin, bannerController.loadEditBanne
 
 bannerRoute.post(
   "/bannerEdit",
-  upload.upload.array("bannerImage", 1),
+  upload.array("bannerImage", 1),
   bannerController.editBanner
 );
 

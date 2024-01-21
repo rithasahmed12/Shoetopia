@@ -950,13 +950,13 @@ const addToCart = async (req, res) => {
       const product = await Products.findOne({ _id: productId })
         .populate({
           path: "offer",
-          // match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
+          match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
         })
         .populate({
           path: "category",
           populate: {
             path: "offer",
-            // match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
+            match: { startingDate: { $lte: new Date() }, expiryDate: { $gte: new Date() } }
           },
         });
 
@@ -981,6 +981,8 @@ const addToCart = async (req, res) => {
             itemPrice -= (itemPrice * percentage) / 100;
           }
           // Update existing product in the cart
+          
+
           await Cart.findOneAndUpdate(
             { user_id: userId, "items.product_id": productId },
             {
