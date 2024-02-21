@@ -482,7 +482,7 @@ const updatedYearlyTotalUsers = defaultYearlyValues.map((defaultYear) => {
   );
   return { year: defaultYear.year, totalUsers: foundYear ? foundYear.totalUsers : 0 };
 });
-
+      console.log(updatedMonthlyValues);
 
     res.render("dashboard", {
       monthlySales,

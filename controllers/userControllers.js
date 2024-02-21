@@ -1064,6 +1064,8 @@ const addToCart = async (req, res) => {
 
       res.json({ success: true });
     }
+
+    
   } catch (error) {
     res.redirect("/500");
   }

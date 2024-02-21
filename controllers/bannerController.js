@@ -92,7 +92,7 @@ const editBanner = async (req, res) => {
         );
 
         await sharp(req.files[i].path)
-          .resize({ width: 1920, height: 900 })
+          .resize({ width: 1920, height: 1000 })
           .toFile(filePath);
         imageArr.push(req.files[i].filename);
       }
