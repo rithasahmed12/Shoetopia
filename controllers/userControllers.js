@@ -164,7 +164,7 @@ const generateOtp = async ({ email }, res) => {
       secure: true,
       auth: {
         user: process.env.EMAIL_USER,
-        pass: "mpgl gxyb ohvb hkda",
+        pass: process.env.EMAIL_PASS,
       },
     });
 
