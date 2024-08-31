@@ -241,7 +241,7 @@ const sendOtpVerificationEmail = async (req, res) => {
       secure: true,
       auth: {
         user: process.env.EMAIL_USER,
-        pass: "mpgl gxyb ohvb hkda",
+        pass: process.env.EMAIL_PASS,
       },
     });
 
@@ -785,7 +785,7 @@ const sentResetLink = async (username, email, token) => {
       secure: true,
       auth: {
         user: process.env.EMAIL_USER,
-        pass: "mpgl gxyb ohvb hkda",
+        pass: process.env.EMAIL_PASS,
       },
     });
 
